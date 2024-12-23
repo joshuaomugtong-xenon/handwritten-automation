@@ -1,0 +1,40 @@
+form_type: "PGH Form No. P-123456(a)"
+form_title: "Form Title"
+regions:
+
+  # name:
+  #   as much as possible the same as in the form, even the
+  #     capitalization since this field must be searchable
+  #   enclosed in double quotes so you can add symbols
+
+  # types:
+  #   text, encirclement, checkbox
+  #   (all lower case)
+
+  # markers:
+  #   list form, 4 elements only,
+  #   [x_left, x_right, y_top, y_bottom]
+
+  # for text fields, this includes birthdates and numbers like ages:
+  - name: "Patient Name"
+    type: "text"
+    markers: [201, 202, 301, 302]
+
+  # for encirclements and checkboxes with a list of choices, for example:
+  #
+  #   Sex:  Male  Female
+  #
+  #   Member:
+  #     [ ] Yes
+  #     [ ] No
+  #
+  # name must be <title> = <choice>
+  - name: "Sex = Male"
+    type: "encirclement"
+    markers: [203, 204, 303, 304]
+
+  - name: "Sex = Female"
+    type: "encirclement"
+    markers: [205, 206, 305, 306]
+
+
