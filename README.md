@@ -12,7 +12,7 @@ This guide will help you set up the development environment for this project.
 
 We recommend using `pyenv` to install and manage your Python version. If you haven't already installed `pyenv`, follow the installation instructions from [pyenv GitHub](https://github.com/pyenv/pyenv).
 
-Once `pyenv` is installed, install the recommended Python version (3.12.2) by running the following command in your terminal:
+Once `pyenv` is installed, install the recommended Python version `3.12.2` by running the following command in your terminal:
 
 ```bash
 pyenv install 3.12.2
@@ -69,12 +69,22 @@ Install the required packages while the virtual enviroment is activated:
 pip install -r requirements.txt
 ```
 
-### 4. Run the main file
+## Usage Guide
+
+Make sure that the virtual environment is activated before running any of the following commands
+
+### main.py
 
 ```bash
 python main.py
 ```
 
-## Usage Guide
+Open a specific image using `File` > `Open` or using the `CTRL + O` shortcut key. Choose an image to process and select the template file to use for the ROI detection in the drop down list and click `Ok` to process the document image. Edit fields and save it using `File` > `Save...` or using the `CTRL + S` shortcut key.
 
-Open a specific image using `File` > `Open` or using the `CTRL + O` shortcut key. Select the template file to use for the ROI detection in the drop down box and click `Ok`.
+### query.py
+
+```bash
+python query.py
+```
+
+Enter query in the search bar. The search results will be displayed on the left side. Click on any of the search results to view the JSON file. The contents of the file will be displayed in table view on the right side.

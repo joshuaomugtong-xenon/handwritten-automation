@@ -1,6 +1,7 @@
 import os
 import sys
 import yaml
+import json
 import cv2
 import qdarkstyle
 from PyQt5.QtWidgets import (
@@ -17,6 +18,7 @@ from PyQt5.QtWidgets import (
     QSpacerItem,
     QSizePolicy,
     QLayout,
+    QFileDialog
 )
 from PyQt5.QtGui import (
     QPixmap,
@@ -44,7 +46,9 @@ class ProjectApp(QMainWindow):
         self.templates = {}
         self.templates_folder = 'templates'
         self.scanned_folder = 'scanned'
+        self.data_folder = 'data'
         self.load_templates()
+        self.current_image_path = ''
 
         self.initUI()
         self.showMaximized()
@@ -64,7 +68,7 @@ class ProjectApp(QMainWindow):
         open_action.setShortcut('Ctrl+O')
         open_action.triggered.connect(self.show_file_dialog)
 
-        save_action = file_menu.addAction('&Save')
+        save_action = file_menu.addAction('&Save...')
         save_action.setShortcut('Ctrl+S')
         save_action.triggered.connect(self.save_data)
 
@@ -102,6 +106,7 @@ class ProjectApp(QMainWindow):
 
     def process_image(self, image_path, selected):
         self.reset_datafields()
+        self.current_image_path = image_path
 
         image = cv2.imread(image_path)
         disp_image = image.copy()
@@ -163,8 +168,37 @@ class ProjectApp(QMainWindow):
         self.photo_viewer.setPhoto(pixmap)
 
     def save_data(self):
+        if self.datafields == {}:
+            return
+        data = {}
         for region_name, field_widget in self.datafields.items():
-            pass
+            if isinstance(field_widget, QLineEdit):
+                data[region_name] = field_widget.text()
+            elif isinstance(field_widget, QComboBox):
+                data_ = field_widget.currentText()
+                data[region_name] = True if data_ == 'Yes' else False
+            else:
+                print(f'Unhandled widget type for region_name: {region_name}')
+
+        base_name = os.path.basename(self.current_image_path)
+        filename = os.path.splitext(base_name)[0]
+        default_save_name = f"{filename}.json"
+        save_path = os.path.join(self.data_folder, default_save_name)
+
+        save_path, _ = QFileDialog.getSaveFileName(
+            parent=self,
+            caption='Save',
+            directory=save_path,
+            filter='JSON Files (*.json)',
+        )
+
+        if save_path:
+            try:
+                with open(save_path, 'w') as file:
+                    json.dump(data, file, indent=4)
+                print(f'Data saved to {save_path}')
+            except Exception as e:
+                print(f'Failed to save data: {e}')
 
     def reset_datafields(self):
         self.datafields = {}
