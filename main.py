@@ -18,7 +18,8 @@ from PyQt5.QtWidgets import (
     QSpacerItem,
     QSizePolicy,
     QLayout,
-    QFileDialog
+    QFileDialog,
+    QSplitter
 )
 from PyQt5.QtGui import (
     QPixmap,
@@ -75,16 +76,14 @@ class ProjectApp(QMainWindow):
         close_action = file_menu.addAction('&Exit')
         close_action.triggered.connect(self.close)
 
-        self.main_widget = QWidget()
-        self.main_widget_layout = QHBoxLayout()
-        self.main_widget.setLayout(self.main_widget_layout)
+        self.main_widget = QSplitter(Qt.Horizontal)
 
         self.photo_viewer = PhotoViewer(self)
-        self.main_widget_layout.addWidget(self.photo_viewer, stretch=1)
+        self.main_widget.addWidget(self.photo_viewer)
 
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
-        self.main_widget_layout.addWidget(scroll_area, stretch=1)
+        self.main_widget.addWidget(scroll_area)
 
         self.data_widget = QWidget()
         self.data_widget_layout = QVBoxLayout()
@@ -93,6 +92,7 @@ class ProjectApp(QMainWindow):
         scroll_area.setWidget(self.data_widget)
 
         self.setCentralWidget(self.main_widget)
+        self.main_widget.setSizes([self.width() // 2, self.width() // 2])
 
     def show_file_dialog(self):
         dialog = OpenFileDialog(self)

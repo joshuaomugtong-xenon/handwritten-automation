@@ -105,7 +105,6 @@ class PhotoViewer(QGraphicsView):
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
-        self.resetView()
 
     def toggleDragMode(self):
         if self.dragMode() == QGraphicsView.ScrollHandDrag:
