@@ -75,16 +75,30 @@ Make sure that the virtual environment is activated before running any of the fo
 
 ### main.py
 
+This app allows you to select a photo of the document with fiducial markers and extracts its contents using the selected template. Templates are located in the `./templates` folder.
+
 ```bash
 python main.py
 ```
 
-Open a specific image using `File` > `Open` or using the `CTRL + O` shortcut key. Choose an image to process and select the template file to use for the ROI detection in the drop down list and click `Ok` to process the document image. Edit fields and save it using `File` > `Save...` or using the `CTRL + S` shortcut key.
+Open a specific image using `File` > `Open...` or using the `CTRL + O` shortcut key. Choose an image to process and select the template file to use for the ROI detection in the drop down list and click `Ok` to process the document image.
+
+Inspect the image using `Left-Click` to drag to move around the image and `Mouse Scroll Up` or `Mouse Scroll Down` to zoom in and out, respectively.
+
+Adjust the UI size by dragging the splitter in the middle.
+
+Edit the fields for any corrections and save the JSON file using `File` > `Save...` or using the `CTRL + S` shortcut key.
 
 ### query.py
+
+This app looks for JSON files in the `./data` folder.
 
 ```bash
 python query.py
 ```
 
-Enter query in the search bar. The search results will be displayed on the left side. Click on any of the search results to view the JSON file. The contents of the file will be displayed in table view on the right side.
+Enter query in the search bar and the search results will be displayed on the left side. The app uses a simple search algorithm that matches any filenames and contents containing the search term.
+
+Click on any of the search results to view the JSON file. The contents of the file will be displayed in table view on the right side.
+
+Adjust the UI size by dragging the splitter in the middle.
