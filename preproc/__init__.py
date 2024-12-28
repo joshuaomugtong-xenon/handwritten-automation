@@ -1,3 +1,4 @@
-from .roi_extraction import ROI_Extractor
+from .roi_extraction import ROIExtractor
+from .homography_alignment import HomographyAligner
 
-__all__ = ['ROI_Extractor']
+__all__ = ['ROIExtractor', 'HomographyAligner']

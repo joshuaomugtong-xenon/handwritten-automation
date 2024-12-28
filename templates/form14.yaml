@@ -1,5 +1,7 @@
 form_type: "PGH Form No. P-610004"
 form_title: "Nursing Care Plan"
+length: 2200
+width: 1700
 regions:
   - name: "Case #"
     type: "text"

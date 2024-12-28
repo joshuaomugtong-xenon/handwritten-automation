@@ -7,11 +7,9 @@ Point = tuple[int, int]
 Corners = tuple[Point, Point, Point, Point]
 
 
-class ROI_Extractor:
-    def __init__(self) -> None:
-        aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_1000)
-        parameters = cv2.aruco.DetectorParameters()
-        self.arucodetector = cv2.aruco.ArucoDetector(aruco_dict, parameters)
+class ROIExtractor:
+    def __init__(self, detector: cv2.aruco.ArucoDetector) -> None:
+        self.arucodetector = detector
 
     def get_marker_locations(
             self,
@@ -35,17 +33,10 @@ class ROI_Extractor:
             centers: dict[int, Point],
             corners: dict[int, Corners]):
         for id_, center in centers.items():
-            loc = (0, 0)
-            if id_ >= 300 and id_ < 400:
-                loc = (center[0] + 15, center[1] + 5)
-            elif id_ >= 200 and id_ < 300:
-                loc = (center[0] - 10, center[1] + 25)
-            else:
-                loc = (center[0] + 15, center[1] + 25)
             cv2.putText(
                 img=image,
                 text=f'{id_}',
-                org=loc,
+                org=center,
                 fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                 fontScale=0.35,
                 color=(0, 0, 255),
@@ -94,7 +85,7 @@ class ROI_Extractor:
 
 
 def main():
-    extractor = ROI_Extractor()
+    extractor = ROIExtractor()
 
     image = cv2.imread('./scanned/fiducial_test_6.png')
     centers, corners = extractor.get_marker_locations(image)

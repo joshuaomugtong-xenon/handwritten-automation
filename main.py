@@ -19,7 +19,7 @@ from PyQt5.QtWidgets import (
     QSizePolicy,
     QLayout,
     QFileDialog,
-    QSplitter
+    QSplitter,
 )
 from PyQt5.QtGui import (
     QPixmap,
@@ -27,9 +27,14 @@ from PyQt5.QtGui import (
 )
 from PyQt5.QtCore import Qt
 
-from preproc import ROI_Extractor
-from ui import PhotoViewer
-from ui import OpenFileDialog
+from preproc import (
+    ROIExtractor,
+    HomographyAligner,
+)
+from ui import (
+    PhotoViewer,
+    OpenFileDialog,
+)
 
 MatLike = cv2.typing.MatLike
 
@@ -41,7 +46,12 @@ class ProjectApp(QMainWindow):
 
         self.accepted_image_types = ['.jpg', '.jpeg', '.png']
 
-        self.roi_extractor = ROI_Extractor()
+        aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_1000)
+        parameters = cv2.aruco.DetectorParameters()
+        detector = cv2.aruco.ArucoDetector(aruco_dict, parameters)
+
+        self.roi_extractor = ROIExtractor(detector)
+        self.homography_aligner = HomographyAligner(detector)
         self.datafields = {}
 
         self.templates = {}
@@ -108,15 +118,23 @@ class ProjectApp(QMainWindow):
         self.reset_datafields()
         self.current_image_path = image_path
 
+        template: dict = self.templates[selected]
+        length = template.get('length')
+        width = template.get('width')
+
         image = cv2.imread(image_path)
+
+        try:
+            image = self.homography_aligner.align(image, length, width)
+        except Exception as e:
+            print(f'Failed to align image: {e}')
+            return
+
         disp_image = image.copy()
         loc = self.roi_extractor.get_marker_locations(image)
         self.centers, self.corners = loc
-        self.centers = dict(sorted(self.centers.items()))
-        self.corners = dict(sorted(self.corners.items()))
         self.roi_extractor.draw_markers(disp_image, self.centers, self.corners)
 
-        template: dict = self.templates[selected]
         regions: list[dict] = template.get('regions')
         for region in regions:
             markers = region.get('markers')
