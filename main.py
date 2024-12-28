@@ -30,6 +30,8 @@ from PyQt5.QtCore import Qt
 from preproc import (
     ROIExtractor,
     HomographyAligner,
+    CheckboxDetector,
+    EncirclementDetector,
 )
 from ui import (
     PhotoViewer,
@@ -52,6 +54,9 @@ class ProjectApp(QMainWindow):
 
         self.roi_extractor = ROIExtractor(detector)
         self.homography_aligner = HomographyAligner(detector)
+        self.checkbox_detector = CheckboxDetector()
+        self.encirclement_detector = EncirclementDetector()
+
         self.datafields = {}
 
         self.templates = {}
@@ -122,7 +127,11 @@ class ProjectApp(QMainWindow):
         length = template.get('length')
         width = template.get('width')
 
-        image = cv2.imread(image_path)
+        try:
+            image = cv2.imread(image_path)
+        except Exception as e:
+            print(f'Failed to read image: {e}')
+            return
 
         try:
             image = self.homography_aligner.align(image, length, width)
@@ -174,6 +183,16 @@ class ProjectApp(QMainWindow):
                 field_widget = QLineEdit()
                 field_widget.setAttribute(Qt.WA_DeleteOnClose)
                 field_layout.addWidget(field_widget)
+
+            gray_roi = cv2.cvtColor(cropped_roi, cv2.COLOR_BGR2GRAY)
+            if region_type == 'encirclement':
+                has_circle = self.encirclement_detector.detect(gray_roi)
+                field_widget.setCurrentIndex(0 if has_circle else 1)
+            elif region_type == 'checkbox':
+                is_checked = self.checkbox_detector.detect(gray_roi)
+                field_widget.setCurrentIndex(0 if is_checked else 1)
+            else:
+                pass
 
             self.datafields[region_name] = field_widget
 
