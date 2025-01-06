@@ -27,11 +27,12 @@ from PyQt5.QtGui import (
 )
 from PyQt5.QtCore import Qt
 
-from preproc import (
+from modules import (
     ROIExtractor,
     HomographyAligner,
     CheckboxDetector,
     EncirclementDetector,
+    TextRecognizer,
 )
 from ui import (
     PhotoViewer,
@@ -56,6 +57,7 @@ class ProjectApp(QMainWindow):
         self.homography_aligner = HomographyAligner(detector)
         self.checkbox_detector = CheckboxDetector()
         self.encirclement_detector = EncirclementDetector()
+        self.text_recognizer = TextRecognizer()
 
         self.datafields = {}
 
@@ -114,10 +116,10 @@ class ProjectApp(QMainWindow):
         if dialog.exec() == QDialog.Accepted:
             image_path, selected = dialog.get_selected_files()
 
-            try:
-                self.process_image(image_path, selected)
-            except Exception as e:
-                print(f'Image process failed: {e}')
+            # try:
+            self.process_image(image_path, selected)
+            # except Exception as e:
+            #     print(f'Image process failed: {e}')
 
     def process_image(self, image_path, selected):
         self.reset_datafields()
@@ -192,7 +194,8 @@ class ProjectApp(QMainWindow):
                 is_checked = self.checkbox_detector.detect(gray_roi)
                 field_widget.setCurrentIndex(0 if is_checked else 1)
             else:
-                pass
+                text = self.text_recognizer.recognize_text(cropped_roi)
+                field_widget.setText(text)
 
             self.datafields[region_name] = field_widget
 
