@@ -3,6 +3,7 @@ import sys
 import yaml
 import json
 import cv2
+from cv2.typing import MatLike
 import qdarkstyle
 from PyQt5.QtWidgets import (
     QApplication,
@@ -38,8 +39,6 @@ from ui import (
     PhotoViewer,
     OpenFileDialog,
 )
-
-MatLike = cv2.typing.MatLike
 
 
 class ProjectApp(QMainWindow):

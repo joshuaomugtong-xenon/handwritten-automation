@@ -215,7 +215,10 @@ class WordDetector:
 
         plt.show()
 
-        return sort_multiline(bboxes)
+        if bboxes:
+            return sort_multiline(bboxes)
+        else:
+            return []
 
 
 def _compute_weighted_centroid(image: np.ndarray) -> tuple[int, int]:
