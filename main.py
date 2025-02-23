@@ -36,7 +36,7 @@ from modules import (
     TextRecognizer,
 )
 from ui import (
-    PhotoViewer,
+    PhotoViewerWidget,
     OpenFileDialog,
 )
 
@@ -94,7 +94,7 @@ class ProjectApp(QMainWindow):
 
         self.main_widget = QSplitter(Qt.Horizontal)
 
-        self.photo_viewer = PhotoViewer(self)
+        self.photo_viewer = PhotoViewerWidget(self)
         self.main_widget.addWidget(self.photo_viewer)
 
         scroll_area = QScrollArea()
@@ -204,7 +204,7 @@ class ProjectApp(QMainWindow):
             self.data_widget_layout.addSpacing(20)
 
         pixmap = QPixmap.fromImage(create_image(disp_image))
-        self.photo_viewer.setPhoto(pixmap)
+        self.photo_viewer.viewer.setPhoto(pixmap)
 
     def save_data(self):
         if self.datafields == {}:
@@ -241,7 +241,7 @@ class ProjectApp(QMainWindow):
 
     def reset_datafields(self):
         self.datafields = {}
-        self.photo_viewer.setPhoto(None)
+        self.photo_viewer.viewer.setPhoto(None)
         self.clear_layout(self.data_widget_layout)
 
     def clear_layout(self, layout: QLayout):

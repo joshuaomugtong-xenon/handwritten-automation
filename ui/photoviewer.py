@@ -1,4 +1,7 @@
 from PyQt5.QtWidgets import (
+    QWidget,
+    QLabel,
+    QVBoxLayout,
     QGraphicsView,
     QGraphicsScene,
     QGraphicsPixmapItem,
@@ -128,6 +131,29 @@ class PhotoViewer(QGraphicsView):
     def leaveEvent(self, event):
         self.coordinatesChanged.emit(QPoint())
         super().leaveEvent(event)
+
+
+class PhotoViewerWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.viewer = PhotoViewer(self)
+        self.viewer.coordinatesChanged.connect(self.handleCoords)
+        self.labelCoords = QLabel(self)
+        self.labelCoords.setStyleSheet("background: rgba(255, 0, 0, 0);")
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.viewer)
+        layout.addWidget(
+            self.labelCoords,
+            alignment=Qt.AlignRight | Qt.AlignCenter)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+        self.setContentsMargins(0, 0, 0, 0)
+
+    def handleCoords(self, point):
+        if not point.isNull():
+            self.labelCoords.setText(f'{point.x()}, {point.y()}')
+        else:
+            self.labelCoords.clear()
 
 
 def main():

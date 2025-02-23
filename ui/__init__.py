@@ -1,4 +1,4 @@
-from .photoviewer import PhotoViewer
+from .photoviewer import PhotoViewerWidget
 from .openfiledialog import OpenFileDialog
 
-__all__ = ['PhotoViewer', 'OpenFileDialog']
+__all__ = ['PhotoViewerWidget', 'OpenFileDialog']
