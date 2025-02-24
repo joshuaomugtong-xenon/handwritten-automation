@@ -19,6 +19,9 @@ class ROIExtractor:
         centers: dict[int, Point] = {}
         corners: dict[int, Corners] = {}
 
+        if marker_ids is None:
+            raise ValueError('No markers found')
+
         for id_, corners_ in zip(marker_ids.flatten(), marker_corners):
             points = corners_.reshape((4, 2))
             center = np.mean(points, axis=0).astype(int)
@@ -81,6 +84,25 @@ class ROIExtractor:
         y1 = locations[y1_id][1]
         y2 = locations[y2_id][1]
 
+        return image[y1:y2, x1:x2].copy()
+
+    def draw_roi_coordinates(
+            self,
+            image: MatLike,
+            x1: int, y1: int, x2: int, y2: int):
+        roi_tl = (x1, y1)
+        roi_tr = (x2, y1)
+        roi_br = (x2, y2)
+        roi_bl = (x1, y2)
+        cv2.line(image, roi_tl, roi_tr, (0, 255, 0), 2)
+        cv2.line(image, roi_tr, roi_br, (0, 255, 0), 2)
+        cv2.line(image, roi_br, roi_bl, (0, 255, 0), 2)
+        cv2.line(image, roi_bl, roi_tl, (0, 255, 0), 2)
+
+    def crop_roi_coordinates(
+            self,
+            image: MatLike,
+            x1: int, y1: int, x2: int, y2: int):
         return image[y1:y2, x1:x2].copy()
 
 

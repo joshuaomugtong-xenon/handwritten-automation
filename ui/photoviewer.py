@@ -34,7 +34,7 @@ class PhotoViewer(QGraphicsView):
         self._scene = QGraphicsScene(self)
         self._photo = QGraphicsPixmapItem()
         self._photo.setShapeMode(QGraphicsPixmapItem.BoundingRectShape)
-        self._photo.setTransformationMode(Qt.SmoothTransformation)
+        # self._photo.setTransformationMode(Qt.SmoothTransformation)
         self._scene.addItem(self._photo)
         self.setScene(self._scene)
         self.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)

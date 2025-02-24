@@ -114,11 +114,11 @@ class ProjectApp(QMainWindow):
         dialog = OpenFileDialog(self)
         if dialog.exec() == QDialog.Accepted:
             image_path, selected = dialog.get_selected_files()
-
-            # try:
-            self.process_image(image_path, selected)
-            # except Exception as e:
-            #     print(f'Image process failed: {e}')
+            # self.process_image(image_path, selected)
+            try:
+                self.process_image(image_path, selected)
+            except Exception as e:
+                print(f'Image process failed: {e}')
 
     def process_image(self, image_path, selected):
         self.reset_datafields()
@@ -141,24 +141,42 @@ class ProjectApp(QMainWindow):
             return
 
         disp_image = image.copy()
-        loc = self.roi_extractor.get_marker_locations(image)
-        self.centers, self.corners = loc
-        self.roi_extractor.draw_markers(disp_image, self.centers, self.corners)
-
         regions: list[dict] = template.get('regions')
+
+        if 'use_coordinates' in template and \
+                template.get('use_coordinates'):
+            pass
+
+        else:
+            centers, corners = self.roi_extractor.get_marker_locations(image)
+            self.roi_extractor.draw_markers(disp_image, centers, corners)
+
         for region in regions:
-            markers = region.get('markers')
             image_layout = QHBoxLayout()
             roi_image = QLabel()
             roi_image.setAttribute(Qt.WA_DeleteOnClose)
-            try:
-                self.roi_extractor.draw_roi(disp_image, self.centers, *markers)
-                cropped_roi = self.roi_extractor.crop_roi(
-                    image, self.centers, *markers)
+            if 'use_coordinates' in template and \
+                    template.get('use_coordinates'):
+                coordinates = region.get('coordinates')
+                self.roi_extractor.draw_roi_coordinates(
+                    disp_image, *coordinates
+                )
+                cropped_roi = self.roi_extractor.crop_roi_coordinates(
+                    image, *coordinates)
                 pixmap = QPixmap.fromImage(create_image(cropped_roi))
                 roi_image.setPixmap(pixmap)
-            except Exception as e:
-                print(f'Failed to identify region: {e}')
+            else:
+                try:
+                    markers = region.get('markers')
+                    self.roi_extractor.draw_roi(
+                        disp_image, centers, *markers)
+                    cropped_roi = self.roi_extractor.crop_roi(
+                        image, centers, *markers)
+                    pixmap = QPixmap.fromImage(create_image(cropped_roi))
+                    roi_image.setPixmap(pixmap)
+                except Exception as e:
+                    print(f'Failed to identify region: {e}')
+
             image_layout.addSpacing(20)
             image_layout.addWidget(roi_image)
 
