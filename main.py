@@ -66,6 +66,7 @@ class ProjectApp(QMainWindow):
         self.data_folder = 'data'
         self.load_templates()
         self.current_image_path = ''
+        self.selected_template = ''
 
         self.initUI()
         self.showMaximized()
@@ -75,6 +76,7 @@ class ProjectApp(QMainWindow):
         self.setGeometry(100, 100, 1600, 900)
 
         menu_bar = self.menuBar()
+
         file_menu = menu_bar.addMenu('&File')
 
         new_action = file_menu.addAction('&New')
@@ -91,6 +93,12 @@ class ProjectApp(QMainWindow):
 
         close_action = file_menu.addAction('&Exit')
         close_action.triggered.connect(self.close)
+
+        edit_menu = menu_bar.addMenu('&Edit')
+
+        reload_action = edit_menu.addAction('&Reload')
+        reload_action.setShortcut('Ctrl+R')
+        reload_action.triggered.connect(self.reload_data)
 
         self.main_widget = QSplitter(Qt.Horizontal)
 
@@ -114,15 +122,22 @@ class ProjectApp(QMainWindow):
         dialog = OpenFileDialog(self)
         if dialog.exec() == QDialog.Accepted:
             image_path, selected = dialog.get_selected_files()
-            # self.process_image(image_path, selected)
-            try:
-                self.process_image(image_path, selected)
-            except Exception as e:
-                print(f'Image process failed: {e}')
+            self.process_image(image_path, selected)
+            # try:
+            #     self.process_image(image_path, selected)
+            # except Exception as e:
+            #     print(f'Image process failed: {e}')
+
+    def reload_data(self):
+        if self.current_image_path == '' or self.selected_template == '':
+            return
+        self.load_templates()
+        self.process_image(self.current_image_path, self.selected_template)
 
     def process_image(self, image_path, selected):
         self.reset_datafields()
         self.current_image_path = image_path
+        self.selected_template = selected
 
         template: dict = self.templates[selected]
         length = template.get('length')
@@ -261,6 +276,8 @@ class ProjectApp(QMainWindow):
         self.datafields = {}
         self.photo_viewer.viewer.setPhoto(None)
         self.clear_layout(self.data_widget_layout)
+        self.current_image_path = ''
+        self.selected_template = ''
 
     def clear_layout(self, layout: QLayout):
         while layout.count():
