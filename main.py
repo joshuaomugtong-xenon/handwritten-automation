@@ -38,6 +38,7 @@ from modules import (
 from ui import (
     PhotoViewerWidget,
     OpenFileDialog,
+    ErrorDialog,
 )
 
 
@@ -122,11 +123,10 @@ class ProjectApp(QMainWindow):
         dialog = OpenFileDialog(self)
         if dialog.exec() == QDialog.Accepted:
             image_path, selected = dialog.get_selected_files()
-            self.process_image(image_path, selected)
-            # try:
-            #     self.process_image(image_path, selected)
-            # except Exception as e:
-            #     print(f'Image process failed: {e}')
+            try:
+                self.process_image(image_path, selected)
+            except Exception:
+                ErrorDialog()
 
     def reload_data(self):
         if self.current_image_path == '' or self.selected_template == '':
@@ -143,17 +143,9 @@ class ProjectApp(QMainWindow):
         length = template.get('length')
         width = template.get('width')
 
-        try:
-            image = cv2.imread(image_path)
-        except Exception as e:
-            print(f'Failed to read image: {e}')
-            return
+        image = cv2.imread(image_path)
 
-        try:
-            image = self.homography_aligner.align(image, length, width)
-        except Exception as e:
-            print(f'Failed to align image: {e}')
-            return
+        image = self.homography_aligner.align(image, length, width)
 
         disp_image = image.copy()
         regions: list[dict] = template.get('regions')
