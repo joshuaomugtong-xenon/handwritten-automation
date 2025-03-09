@@ -6,12 +6,14 @@ from PyQt5.QtWidgets import (
     QGraphicsScene,
     QGraphicsPixmapItem,
     QFrame,
+    QGraphicsRectItem,
 )
 from PyQt5.QtGui import (
     QBrush,
     QColor,
     QPixmap,
     QCursor,
+    QPen,
 )
 from PyQt5.QtCore import (
     Qt,
@@ -154,6 +156,14 @@ class PhotoViewerWidget(QWidget):
             self.labelCoords.setText(f'{point.x()}, {point.y()}')
         else:
             self.labelCoords.clear()
+
+    def drawRect(self, x1, y1, x2, y2):
+        top_left = QPoint(x1, y1)
+        bottom_right = QPoint(x2, y2)
+        red_pen = QPen(Qt.green, 3)
+        rect = QGraphicsRectItem(QRectF(top_left, bottom_right))
+        rect.setPen(red_pen)
+        self.viewer._scene.addItem(rect)
 
 
 def main():

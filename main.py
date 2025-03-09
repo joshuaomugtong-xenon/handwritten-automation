@@ -26,8 +26,9 @@ from PyQt5.QtGui import (
     QPixmap,
     QImage,
 )
-from PyQt5.QtCore import Qt
-
+from PyQt5.QtCore import (
+    Qt,
+)
 from modules import (
     ROIExtractor,
     HomographyAligner,
@@ -165,9 +166,10 @@ class ProjectApp(QMainWindow):
             if 'use_coordinates' in template and \
                     template.get('use_coordinates'):
                 coordinates = region.get('coordinates')
-                self.roi_extractor.draw_roi_coordinates(
-                    disp_image, *coordinates
-                )
+                self.photo_viewer.drawRect(*coordinates)
+                # self.roi_extractor.draw_roi_coordinates(
+                #     disp_image, *coordinates
+                # )
                 cropped_roi = self.roi_extractor.crop_roi_coordinates(
                     image, *coordinates)
                 pixmap = QPixmap.fromImage(create_image(cropped_roi))
