@@ -8,7 +8,6 @@ import qdarkstyle
 from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
-    QHBoxLayout,
     QVBoxLayout,
     QWidget,
     QScrollArea,
@@ -16,12 +15,11 @@ from PyQt5.QtWidgets import (
     QLineEdit,
     QLabel,
     QDialog,
-    QSpacerItem,
-    QSizePolicy,
     QLayout,
     QFileDialog,
     QSplitter,
     QGraphicsRectItem,
+    QGroupBox,
 )
 from PyQt5.QtGui import (
     QPixmap,
@@ -166,9 +164,6 @@ class ProjectApp(QMainWindow):
                 self.rects.append(rects)
 
         for region in regions:
-            image_layout = QHBoxLayout()
-            roi_image = QLabel()
-            roi_image.setAttribute(Qt.WA_DeleteOnClose)
             coordinates = []
             if 'use_coordinates' in template and \
                     template.get('use_coordinates'):
@@ -180,38 +175,46 @@ class ProjectApp(QMainWindow):
                 except Exception as e:
                     print(f'Failed to identify region: {e}')
 
+            # Draw the ROI
             rect = self.photo_viewer.addRect(*coordinates)
+            # Save the rect so it can be deleted later
             self.rects.append(rect)
+            # Crop the ROI
             cropped_roi = self.roi_extractor.crop_roi_coordinates(
                 image, *coordinates)
+            # Display the ROI under the label
             pixmap = QPixmap.fromImage(create_image(cropped_roi))
+            roi_image = QLabel()
+            roi_image.setAttribute(Qt.WA_DeleteOnClose)
             roi_image.setPixmap(pixmap)
 
-            image_layout.addSpacing(20)
-            image_layout.addWidget(roi_image)
-
             region_name = region.get('name')
-            label_widget = QLabel(text=region_name)
-            label_widget.setAttribute(Qt.WA_DeleteOnClose)
+            groupbox = QGroupBox(region_name)
+            groupbox.setAttribute(Qt.WA_DeleteOnClose)
+            groupbox_layout = QVBoxLayout()
+            groupbox.setLayout(groupbox_layout)
 
-            field_layout = QHBoxLayout()
-            field_layout.addSpacing(20)
+            groupbox_layout.addSpacing(20)
+
             region_type = region.get('type')
 
             if region_type == 'encirclement' or region_type == 'checkbox':
                 field_widget = QComboBox()
                 field_widget.setAttribute(Qt.WA_DeleteOnClose)
-                field_widget.setSizeAdjustPolicy(QComboBox.AdjustToContents)
+                # field_widget.setSizeAdjustPolicy(QComboBox.AdjustToContents)
                 field_widget.addItems(['Yes', 'No'])
-                field_widget.setMinimumContentsLength(10)
-                field_layout.addWidget(field_widget)
-                spacer = QSpacerItem(
-                    2000, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
-                field_layout.addSpacerItem(spacer)
-            else:
+                field_widget.setFixedWidth(100)
+                field_widget.resize(field_widget.sizeHint())
+                # field_widget.setMinimumContentsLength(10)
+                groupbox_layout.addWidget(field_widget)
+            elif region_type == 'text':
                 field_widget = QLineEdit()
+                field_widget.setFixedWidth(500)
+                field_widget.setAlignment(Qt.AlignLeft)
                 field_widget.setAttribute(Qt.WA_DeleteOnClose)
-                field_layout.addWidget(field_widget)
+                groupbox_layout.addWidget(field_widget)
+            else:
+                print(f'Unknown region type: \'{region_type}\'')
 
             gray_roi = cv2.cvtColor(cropped_roi, cv2.COLOR_BGR2GRAY)
             if region_type == 'encirclement':
@@ -220,15 +223,18 @@ class ProjectApp(QMainWindow):
             elif region_type == 'checkbox':
                 is_checked = self.checkbox_detector.detect(gray_roi)
                 field_widget.setCurrentIndex(0 if is_checked else 1)
-            else:
+            elif region_type == 'text':
                 text = self.text_recognizer.recognize_text(cropped_roi)
                 field_widget.setText(text)
+            else:
+                print(f'Unknown region type: \'{region_type}\'')
+
+            groupbox_layout.addWidget(roi_image)
+            groupbox_layout.addSpacing(20)
 
             self.datafields[region_name] = field_widget
 
-            self.data_widget_layout.addWidget(label_widget)
-            self.data_widget_layout.addLayout(field_layout)
-            self.data_widget_layout.addLayout(image_layout)
+            self.data_widget_layout.addWidget(groupbox)
             self.data_widget_layout.addSpacing(20)
 
     def save_data(self):
