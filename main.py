@@ -21,6 +21,7 @@ from PyQt5.QtWidgets import (
     QLayout,
     QFileDialog,
     QSplitter,
+    QGraphicsRectItem,
 )
 from PyQt5.QtGui import (
     QPixmap,
@@ -69,6 +70,7 @@ class ProjectApp(QMainWindow):
         self.load_templates()
         self.current_image_path = ''
         self.selected_template = ''
+        self.rects: list[QGraphicsRectItem] = []
 
         self.initUI()
         self.showMaximized()
@@ -145,10 +147,11 @@ class ProjectApp(QMainWindow):
         width = template.get('width')
 
         image = cv2.imread(image_path)
-
         image = self.homography_aligner.align(image, length, width)
 
-        disp_image = image.copy()
+        pixmap = QPixmap.fromImage(create_image(image))
+        self.photo_viewer.viewer.setPhoto(pixmap)
+
         regions: list[dict] = template.get('regions')
 
         if 'use_coordinates' in template and \
@@ -157,34 +160,32 @@ class ProjectApp(QMainWindow):
 
         else:
             centers, corners = self.roi_extractor.get_marker_locations(image)
-            self.roi_extractor.draw_markers(disp_image, centers, corners)
+            for _, corner in corners.items():
+                (tl, _, br, _) = corner
+                rects = self.photo_viewer.addRect(*tl, *br)
+                self.rects.append(rects)
 
         for region in regions:
             image_layout = QHBoxLayout()
             roi_image = QLabel()
             roi_image.setAttribute(Qt.WA_DeleteOnClose)
+            coordinates = []
             if 'use_coordinates' in template and \
                     template.get('use_coordinates'):
                 coordinates = region.get('coordinates')
-                self.photo_viewer.drawRect(*coordinates)
-                # self.roi_extractor.draw_roi_coordinates(
-                #     disp_image, *coordinates
-                # )
-                cropped_roi = self.roi_extractor.crop_roi_coordinates(
-                    image, *coordinates)
-                pixmap = QPixmap.fromImage(create_image(cropped_roi))
-                roi_image.setPixmap(pixmap)
             else:
                 try:
                     markers = region.get('markers')
-                    self.roi_extractor.draw_roi(
-                        disp_image, centers, *markers)
-                    cropped_roi = self.roi_extractor.crop_roi(
-                        image, centers, *markers)
-                    pixmap = QPixmap.fromImage(create_image(cropped_roi))
-                    roi_image.setPixmap(pixmap)
+                    coordinates = markers_to_coordinates(markers, centers)
                 except Exception as e:
                     print(f'Failed to identify region: {e}')
+
+            rect = self.photo_viewer.addRect(*coordinates)
+            self.rects.append(rect)
+            cropped_roi = self.roi_extractor.crop_roi_coordinates(
+                image, *coordinates)
+            pixmap = QPixmap.fromImage(create_image(cropped_roi))
+            roi_image.setPixmap(pixmap)
 
             image_layout.addSpacing(20)
             image_layout.addWidget(roi_image)
@@ -230,9 +231,6 @@ class ProjectApp(QMainWindow):
             self.data_widget_layout.addLayout(image_layout)
             self.data_widget_layout.addSpacing(20)
 
-        pixmap = QPixmap.fromImage(create_image(disp_image))
-        self.photo_viewer.viewer.setPhoto(pixmap)
-
     def save_data(self):
         if self.datafields == {}:
             return
@@ -272,6 +270,7 @@ class ProjectApp(QMainWindow):
         self.clear_layout(self.data_widget_layout)
         self.current_image_path = ''
         self.selected_template = ''
+        self.clear_rects()
 
     def clear_layout(self, layout: QLayout):
         while layout.count():
@@ -309,6 +308,37 @@ class ProjectApp(QMainWindow):
             except Exception as e:
                 print(f'Error parsing YAML file: {e}')
                 continue
+
+    def clear_rects(self):
+        for rect in self.rects:
+            # Hide it and hope the garbage collector frees the memory
+            rect.hide()
+            self.photo_viewer.removeRect(rect)
+        self.rects = []
+
+
+Point = tuple[int, int]
+
+
+def markers_to_coordinates(
+        markers: list[int],
+        centers: dict[int, Point]
+        ) -> list[int]:
+
+    assert len(markers) == 4
+    x1_id, x2_id, y1_id, y2_id = markers
+
+    a = centers[x1_id][0]
+    h = centers[x2_id][0]
+    b = centers[y1_id][1]
+    k = centers[y2_id][1]
+
+    return [
+        min(a, h),
+        min(b, k),
+        max(a, h),
+        max(b, k),
+    ]
 
 
 def create_image(image: MatLike) -> QImage:

@@ -151,19 +151,41 @@ class PhotoViewerWidget(QWidget):
         layout.setSpacing(0)
         self.setContentsMargins(0, 0, 0, 0)
 
-    def handleCoords(self, point):
+    def handleCoords(self, point: QPoint):
         if not point.isNull():
             self.labelCoords.setText(f'{point.x()}, {point.y()}')
         else:
             self.labelCoords.clear()
 
-    def drawRect(self, x1, y1, x2, y2):
+    def addRect(
+            self,
+            x1: int,
+            y1: int,
+            x2: int,
+            y2: int,
+            ) -> QGraphicsRectItem | None:
+
+        if not self.viewer.hasPhoto():
+            return None
         top_left = QPoint(x1, y1)
         bottom_right = QPoint(x2, y2)
-        red_pen = QPen(Qt.green, 3)
-        rect = QGraphicsRectItem(QRectF(top_left, bottom_right))
-        rect.setPen(red_pen)
-        self.viewer._scene.addItem(rect)
+        rectf = QRectF(top_left, bottom_right)
+        rect_item = QGraphicsRectItem(rectf)
+        pen = QPen(Qt.green, 3)
+        rect_item.setPen(pen)
+        self.viewer._scene.addItem(rect_item)
+        return rect_item
+
+    def removeRect(
+            self,
+            rect_item: QGraphicsRectItem
+            ):
+
+        if rect_item is None:
+            return
+        if not self.viewer.hasPhoto():
+            return
+        self.viewer._scene.removeItem(rect_item)
 
 
 def main():
