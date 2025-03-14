@@ -1,3 +1,4 @@
+from typing import Callable
 from PyQt5.QtWidgets import (
     QApplication,
     QGraphicsRectItem,
@@ -61,6 +62,8 @@ class ROIRectItem(QGraphicsRectItem):
         self.start_rect = None
         self.start_pos = None
 
+        self.scroll_on_click: Callable = None
+
     def itemChange(self, change, value):
         if change == QGraphicsRectItem.ItemSelectedChange:
             if value:
@@ -113,6 +116,9 @@ class ROIRectItem(QGraphicsRectItem):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
+            # Scroll to ROI if scroll_on_click is set
+            if self.scroll_on_click:
+                self.scroll_on_click()
             if self.edit_mode:
                 # Resize enabled only in edit mode
                 for name, (handle, cursor) in self.handles.items():

@@ -14,13 +14,10 @@ class ROILabel(QLabel):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._onclick_func: Callable = None
+        self.zoom_on_click: Callable = None
         self.setCursor(Qt.PointingHandCursor)
 
-    def setOnClick(self, func: Callable):
-        self._onclick_func = func
-
     def mousePressEvent(self, event: QMouseEvent):
-        if self._onclick_func:
-            self._onclick_func()
+        if self.zoom_on_click:
+            self.zoom_on_click()
         super().mousePressEvent(event)

@@ -1,10 +1,10 @@
 import os
 import sys
-import yaml
 import json
 import cv2
 from cv2.typing import MatLike
 import qdarkstyle
+from pathlib import Path
 from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -28,6 +28,8 @@ from PyQt5.QtGui import (
 )
 from PyQt5.QtCore import (
     Qt,
+    QPropertyAnimation,
+    QEasingCurve,
 )
 from modules import (
     ROIExtractor,
@@ -35,6 +37,9 @@ from modules import (
     CheckboxDetector,
     EncirclementDetector,
     TextRecognizer,
+    validate_template_file,
+    Template,
+    RegionType,
 )
 from ui import (
     PhotoViewerWidget,
@@ -64,7 +69,7 @@ class ProjectApp(QMainWindow):
 
         self.datafields = {}
 
-        self.templates = {}
+        self.templates: dict[str, Template] = {}
         self.templates_folder = 'templates'
         self.scanned_folder = 'scanned'
         self.data_folder = 'data'
@@ -112,15 +117,15 @@ class ProjectApp(QMainWindow):
         self.right_tab_widget = QTabWidget()
         self.main_widget.addWidget(self.right_tab_widget)
 
-        scroll_area = QScrollArea()
-        scroll_area.setWidgetResizable(True)
-        self.right_tab_widget.addTab(scroll_area, 'Data')
+        self.data_scroll_area = QScrollArea()
+        self.data_scroll_area.setWidgetResizable(True)
+        self.right_tab_widget.addTab(self.data_scroll_area, 'Data')
 
         self.data_widget = QWidget()
         self.data_widget_layout = QVBoxLayout()
         self.data_widget_layout.setContentsMargins(20, 20, 20, 20)
         self.data_widget.setLayout(self.data_widget_layout)
-        scroll_area.setWidget(self.data_widget)
+        self.data_scroll_area.setWidget(self.data_widget)
 
         self.text_editor = QTextEdit()
         self.text_editor.setFont(QFont('Courier New', 12))
@@ -151,9 +156,9 @@ class ProjectApp(QMainWindow):
         self.current_image_path = image_path
         self.selected_template = selected
 
-        template: dict = self.templates[selected]
-        length = template.get('length')
-        width = template.get('width')
+        template = self.templates[selected]
+        length = template.length
+        width = template.width
 
         image = cv2.imread(image_path)
         image = self.homography_aligner.align(image, length, width)
@@ -161,12 +166,10 @@ class ProjectApp(QMainWindow):
         pixmap = QPixmap.fromImage(create_image(image))
         self.photo_viewer.viewer.setPhoto(pixmap)
 
-        regions: list[dict] = template.get('regions')
+        regions = template.regions
 
-        if 'use_coordinates' in template and \
-                template.get('use_coordinates'):
+        if template.use_coordinates:
             pass
-
         else:
             centers, corners = self.roi_extractor.get_marker_locations(image)
             for _, corner in corners.items():
@@ -175,18 +178,25 @@ class ProjectApp(QMainWindow):
 
         for region in regions:
             coordinates = []
-            if 'use_coordinates' in template and \
-                    template.get('use_coordinates'):
-                coordinates = region.get('coordinates')
+            if template.use_coordinates:
+                coordinates = region.coordinates
             else:
                 try:
-                    markers = region.get('markers')
+                    markers = region.markers
                     coordinates = markers_to_coordinates(markers, centers)
                 except Exception as e:
                     print(f'Failed to identify region: {e}')
 
             # Draw the ROI
             rect_item = self.add_rect(*coordinates)
+
+            def create_scroll_on_click(
+                    widget: ProjectApp,
+                    groupbox: QGroupBox):
+                def callback():
+                    widget.scroll_to_widget(groupbox)
+                return callback
+
             # Crop the ROI
             cropped_roi = self.roi_extractor.crop_roi_coordinates(
                 image, *coordinates)
@@ -197,6 +207,8 @@ class ProjectApp(QMainWindow):
                 def callback():
                     widget.photo_viewer.viewer.zoomToRect(
                         rect_item.rect())
+                    rect_item.setSelected(True)
+                    widget.photo_viewer.viewer._scene.update()
                 return callback
 
             # Display the ROI under the label
@@ -204,19 +216,19 @@ class ProjectApp(QMainWindow):
             roi_image = ROILabel()
             roi_image.setAttribute(Qt.WA_DeleteOnClose)
             roi_image.setPixmap(pixmap)
-            roi_image.setOnClick(create_zoom_onclick(self, rect_item))
+            roi_image.zoom_on_click = create_zoom_onclick(self, rect_item)
 
-            region_name = region.get('name')
-            groupbox = QGroupBox(region_name)
+            groupbox = QGroupBox(region.name)
             groupbox.setAttribute(Qt.WA_DeleteOnClose)
             groupbox_layout = QVBoxLayout()
             groupbox.setLayout(groupbox_layout)
 
             groupbox_layout.addSpacing(20)
 
-            region_type = region.get('type')
+            rect_item.scroll_on_click = create_scroll_on_click(self, groupbox)
 
-            if region_type == 'encirclement' or region_type == 'checkbox':
+            if region.type == RegionType.ENCIRCLEMENT or \
+                    region.type == RegionType.CHECKBOX:
                 field_widget = QComboBox()
                 field_widget.setAttribute(Qt.WA_DeleteOnClose)
                 # field_widget.setSizeAdjustPolicy(QComboBox.AdjustToContents)
@@ -225,32 +237,32 @@ class ProjectApp(QMainWindow):
                 field_widget.resize(field_widget.sizeHint())
                 # field_widget.setMinimumContentsLength(10)
                 groupbox_layout.addWidget(field_widget)
-            elif region_type == 'text':
+            elif region.type == 'text':
                 field_widget = QLineEdit()
                 field_widget.setFixedWidth(500)
                 field_widget.setAlignment(Qt.AlignLeft)
                 field_widget.setAttribute(Qt.WA_DeleteOnClose)
                 groupbox_layout.addWidget(field_widget)
             else:
-                print(f'Unknown region type: \'{region_type}\'')
+                print(f'Unknown region type: \'{region.type}\'')
 
             gray_roi = cv2.cvtColor(cropped_roi, cv2.COLOR_BGR2GRAY)
-            if region_type == 'encirclement':
+            if region.type == 'encirclement':
                 has_circle = self.encirclement_detector.detect(gray_roi)
                 field_widget.setCurrentIndex(0 if has_circle else 1)
-            elif region_type == 'checkbox':
+            elif region.type == 'checkbox':
                 is_checked = self.checkbox_detector.detect(gray_roi)
                 field_widget.setCurrentIndex(0 if is_checked else 1)
-            elif region_type == 'text':
+            elif region.type == 'text':
                 text = self.text_recognizer.recognize_text(cropped_roi)
                 field_widget.setText(text)
             else:
-                print(f'Unknown region type: \'{region_type}\'')
+                print(f'Unknown region type: \'{region.type}\'')
 
             groupbox_layout.addWidget(roi_image)
             groupbox_layout.addSpacing(20)
 
-            self.datafields[region_name] = field_widget
+            self.datafields[region.name] = field_widget
 
             self.data_widget_layout.addWidget(groupbox)
             self.data_widget_layout.addSpacing(20)
@@ -284,9 +296,8 @@ class ProjectApp(QMainWindow):
             try:
                 with open(save_path, 'w') as file:
                     json.dump(data, file, indent=4)
-                print(f'Data saved to {save_path}')
-            except Exception as e:
-                print(f'Failed to save data: {e}')
+            except Exception:
+                ErrorDialog()
 
     def reset_datafields(self):
         self.datafields = {}
@@ -308,30 +319,40 @@ class ProjectApp(QMainWindow):
                     self.clear_layout(child_layout)
                     child_layout.deleteLater()
 
+    def scroll_to_widget(self, widget: QWidget):
+        vertical_scroll_bar = self.data_scroll_area.verticalScrollBar()
+        widget_pos = widget.mapTo(
+            self.data_widget, widget.rect().topLeft())
+
+        # Create animation for vertical scrollbar
+        self.data_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
+        self.data_animation.setDuration(300)
+        self.data_animation.setStartValue(vertical_scroll_bar.value())
+        self.data_animation.setEndValue(widget_pos.y())
+        self.data_animation.setEasingCurve(QEasingCurve.OutCubic)
+
+        # Start the animation
+        self.data_animation.start()
+
     def load_templates(self):
         self.templates = {}
-        paths = []
-        try:
-            dir_list = os.listdir(self.templates_folder)
-            for file in dir_list:
-                path = os.path.join(self.templates_folder, file)
-                if os.path.isfile(path) and file.endswith('.yaml'):
-                    paths.append(path)
-        except Exception as e:
-            print(f'Error reading folder: {e}')
 
-        for path in paths:
-            try:
-                with open(path, 'r') as file:
-                    template: dict = yaml.safe_load(file)
-                form_type = template.get('form_type')
-                form_title = template.get('form_title')
-                type_ = f'{form_type} - {form_title}'
-                # To do: INPUT VALIDATION
-                self.templates[type_] = template
-            except Exception as e:
-                print(f'Error parsing YAML file: {e}')
-                continue
+        try:
+            # Get all YAML files in the template folder
+            template_files = Path(self.templates_folder).rglob('*.yaml')
+
+            for template_file in template_files:
+                try:
+                    # Validate the template
+                    template = validate_template_file(template_file)
+
+                    # Add the template to the dictionary
+                    name = f'{template.form_type} - {template.form_title}'
+                    self.templates[name] = template
+                except Exception:
+                    ErrorDialog()
+        except Exception:
+            ErrorDialog()
 
     def add_rect(
             self,

@@ -124,6 +124,14 @@ class PhotoViewer(QGraphicsView):
         # Create a copy of the target rectangle
         target_rect = QRectF(rect)
 
+        # Modify the target rect so it is zoomed out by 33%
+        target_rect.adjust(
+            -target_rect.width() / 3,
+            -target_rect.height() / 3,
+            target_rect.width() / 3,
+            target_rect.height() / 3
+        )
+
         # Calculate target transformation
         self.fitInView(target_rect, Qt.KeepAspectRatio)
         trgt_trfm = self.transform()
