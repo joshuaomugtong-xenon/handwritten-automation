@@ -13,17 +13,18 @@ from PyQt5.QtWidgets import (
     QScrollArea,
     QComboBox,
     QLineEdit,
-    QLabel,
     QDialog,
     QLayout,
     QFileDialog,
     QSplitter,
-    QGraphicsRectItem,
     QGroupBox,
+    QTabWidget,
+    QTextEdit,
 )
 from PyQt5.QtGui import (
     QPixmap,
     QImage,
+    QFont,
 )
 from PyQt5.QtCore import (
     Qt,
@@ -39,6 +40,8 @@ from ui import (
     PhotoViewerWidget,
     OpenFileDialog,
     ErrorDialog,
+    ROILabel,
+    ROIRectItem,
 )
 
 
@@ -68,7 +71,6 @@ class ProjectApp(QMainWindow):
         self.load_templates()
         self.current_image_path = ''
         self.selected_template = ''
-        self.rects: list[QGraphicsRectItem] = []
 
         self.initUI()
         self.showMaximized()
@@ -107,15 +109,24 @@ class ProjectApp(QMainWindow):
         self.photo_viewer = PhotoViewerWidget(self)
         self.main_widget.addWidget(self.photo_viewer)
 
+        self.right_tab_widget = QTabWidget()
+        self.main_widget.addWidget(self.right_tab_widget)
+
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
-        self.main_widget.addWidget(scroll_area)
+        self.right_tab_widget.addTab(scroll_area, 'Data')
 
         self.data_widget = QWidget()
         self.data_widget_layout = QVBoxLayout()
         self.data_widget_layout.setContentsMargins(20, 20, 20, 20)
         self.data_widget.setLayout(self.data_widget_layout)
         scroll_area.setWidget(self.data_widget)
+
+        self.text_editor = QTextEdit()
+        self.text_editor.setFont(QFont('Courier New', 12))
+        self.text_editor.setLineWrapMode(QTextEdit.NoWrap)
+
+        self.right_tab_widget.addTab(self.text_editor, 'Template')
 
         self.setCentralWidget(self.main_widget)
         self.main_widget.setSizes([self.width() // 2, self.width() // 2])
@@ -159,9 +170,8 @@ class ProjectApp(QMainWindow):
         else:
             centers, corners = self.roi_extractor.get_marker_locations(image)
             for _, corner in corners.items():
-                (tl, _, br, _) = corner
-                rects = self.photo_viewer.addRect(*tl, *br)
-                self.rects.append(rects)
+                ((x1, y1), _, (x2, y2), _) = corner
+                self.add_rect(x1, y1, x2, y2)
 
         for region in regions:
             coordinates = []
@@ -176,17 +186,25 @@ class ProjectApp(QMainWindow):
                     print(f'Failed to identify region: {e}')
 
             # Draw the ROI
-            rect = self.photo_viewer.addRect(*coordinates)
-            # Save the rect so it can be deleted later
-            self.rects.append(rect)
+            rect_item = self.add_rect(*coordinates)
             # Crop the ROI
             cropped_roi = self.roi_extractor.crop_roi_coordinates(
                 image, *coordinates)
+
+            def create_zoom_onclick(
+                    widget: ProjectApp,
+                    rect_item: ROIRectItem):
+                def callback():
+                    widget.photo_viewer.viewer.zoomToRect(
+                        rect_item.rect())
+                return callback
+
             # Display the ROI under the label
             pixmap = QPixmap.fromImage(create_image(cropped_roi))
-            roi_image = QLabel()
+            roi_image = ROILabel()
             roi_image.setAttribute(Qt.WA_DeleteOnClose)
             roi_image.setPixmap(pixmap)
+            roi_image.setOnClick(create_zoom_onclick(self, rect_item))
 
             region_name = region.get('name')
             groupbox = QGroupBox(region_name)
@@ -315,12 +333,22 @@ class ProjectApp(QMainWindow):
                 print(f'Error parsing YAML file: {e}')
                 continue
 
+    def add_rect(
+            self,
+            x1: int,
+            y1: int,
+            x2: int,
+            y2: int,
+            ) -> ROIRectItem:
+
+        rect_item = ROIRectItem(x1, y1, x2 - x1, y2 - y1)
+        self.photo_viewer.viewer._scene.addItem(rect_item)
+        return rect_item
+
     def clear_rects(self):
-        for rect in self.rects:
-            # Hide it and hope the garbage collector frees the memory
-            rect.hide()
-            self.photo_viewer.removeRect(rect)
-        self.rects = []
+        for item in self.photo_viewer.viewer._scene.items():
+            if isinstance(item, ROIRectItem):
+                self.photo_viewer.viewer._scene.removeItem(item)
 
 
 Point = tuple[int, int]

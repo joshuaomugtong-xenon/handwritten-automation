@@ -1,4 +1,6 @@
+import math
 from PyQt5.QtWidgets import (
+    QApplication,
     QWidget,
     QLabel,
     QVBoxLayout,
@@ -6,23 +8,32 @@ from PyQt5.QtWidgets import (
     QGraphicsScene,
     QGraphicsPixmapItem,
     QFrame,
-    QGraphicsRectItem,
+    QMenu,
 )
 from PyQt5.QtGui import (
     QBrush,
     QColor,
     QPixmap,
     QCursor,
-    QPen,
 )
 from PyQt5.QtCore import (
     Qt,
     QPoint,
     pyqtSignal,
     QRectF,
+    QPropertyAnimation,
+    QEasingCurve,
+    QVariantAnimation,
+    QDataStream,
+    QIODevice,
 )
 
+from .roirectitem import ROIRectItem
+
+
 SCALE_FACTOR = 1.25
+ANIMATION_DURATION = 300  # Animation duration in milliseconds
+ROI_MIME_TYPE = 'application/x-roi-rectangle'
 
 
 class PhotoViewer(QGraphicsView):
@@ -45,6 +56,8 @@ class PhotoViewer(QGraphicsView):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setBackgroundBrush(QBrush(QColor(30, 30, 30)))
         self.setFrameShape(QFrame.NoFrame)
+        # For animation
+        self._animation = None
 
     def hasPhoto(self):
         return not self._empty
@@ -85,14 +98,121 @@ class PhotoViewer(QGraphicsView):
     def zoomLevel(self):
         return self._zoom
 
+    def zoomToRect(self, rect: QRectF):
+        # Cancel any ongoing animation
+        if self._animation and \
+                self._animation.state() == QPropertyAnimation.Running:
+            self._animation.stop()
+
+        # Store initial view state
+        init_trfm = self.transform()
+        init_h_scroll = self.horizontalScrollBar().value()
+        init_v_scroll = self.verticalScrollBar().value()
+
+        # Temporarily disable scroll bars to prevent flickering during
+        # animation
+        h_policy = self.horizontalScrollBarPolicy()
+        v_policy = self.verticalScrollBarPolicy()
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        # Reset zoom to initial state if needed
+        if self._zoom != 0:
+            self.resetView()
+            self._zoom = 0
+
+        # Create a copy of the target rectangle
+        target_rect = QRectF(rect)
+
+        # Calculate target transformation
+        self.fitInView(target_rect, Qt.KeepAspectRatio)
+        trgt_trfm = self.transform()
+
+        # Calculate target scroll positions
+        target_center = target_rect.center()
+        viewport_center = self.viewport().rect().center()
+        mapped_center = self.mapFromScene(target_center)
+        trgt_h_scroll = self.horizontalScrollBar().value() \
+            + (mapped_center.x() - viewport_center.x())
+        trgt_v_scroll = self.verticalScrollBar().value() \
+            + (mapped_center.y() - viewport_center.y())
+
+        # Reset to initial transform
+        self.setTransform(init_trfm)
+        self.horizontalScrollBar().setValue(init_h_scroll)
+        self.verticalScrollBar().setValue(init_v_scroll)
+
+        # Create animation for the transform
+        self._animation = QVariantAnimation()
+        self._animation.setDuration(ANIMATION_DURATION)
+        self._animation.setEasingCurve(QEasingCurve.OutCubic)
+        self._animation.setStartValue(0.0)
+        self._animation.setEndValue(1.0)
+
+        # Define animation update function
+        def updateTransform(prog):
+            # Interpolate transform
+            m11 = init_trfm.m11() + prog * (trgt_trfm.m11() - init_trfm.m11())
+            m12 = init_trfm.m12() + prog * (trgt_trfm.m12() - init_trfm.m12())
+            m13 = init_trfm.m13() + prog * (trgt_trfm.m13() - init_trfm.m13())
+            m21 = init_trfm.m21() + prog * (trgt_trfm.m21() - init_trfm.m21())
+            m22 = init_trfm.m22() + prog * (trgt_trfm.m22() - init_trfm.m22())
+            m23 = init_trfm.m23() + prog * (trgt_trfm.m23() - init_trfm.m23())
+            m31 = init_trfm.m31() + prog * (trgt_trfm.m31() - init_trfm.m31())
+            m32 = init_trfm.m32() + prog * (trgt_trfm.m32() - init_trfm.m32())
+            m33 = init_trfm.m33() + prog * (trgt_trfm.m33() - init_trfm.m33())
+
+            crnt_trfm = self.transform()
+            crnt_trfm.setMatrix(m11, m12, m13, m21, m22, m23, m31, m32, m33)
+            self.setTransform(crnt_trfm)
+
+            # Interpolate scroll positions
+            h_scroll = init_h_scroll + prog * (trgt_h_scroll - init_h_scroll)
+            v_scroll = init_v_scroll + prog * (trgt_v_scroll - init_v_scroll)
+            self.horizontalScrollBar().setValue(int(h_scroll))
+            self.verticalScrollBar().setValue(int(v_scroll))
+
+        # Connect animation to update function
+        self._animation.valueChanged.connect(updateTransform)
+
+        # Connect animation finished signal to restore scrollbar policies
+        def onAnimationFinished():
+            self.setHorizontalScrollBarPolicy(h_policy)
+            self.setVerticalScrollBarPolicy(v_policy)
+
+            # Calculate the equivalent zoom level based on the scale
+            current_scale = trgt_trfm.m11()  # Horizontal scale factor
+
+            if current_scale > 1.0:
+                # Calculate how many zoom steps this represents
+                steps = round(
+                    math.log(current_scale) / math.log(SCALE_FACTOR))
+                self._zoom = steps
+            elif current_scale < 1.0:
+                # For zooming out
+                steps = round(
+                    math.log(1.0 / current_scale) / math.log(SCALE_FACTOR))
+                self._zoom = -steps
+            else:
+                self._zoom = 0
+
+            # Update the view
+            self.update()
+
+        self._animation.finished.connect(onAnimationFinished)
+
+        # Start the animation
+        self._animation.start()
+
     def zoomPinned(self):
         return self._pinned
 
     def setZoomPinned(self, enable):
         self._pinned = bool(enable)
 
-    def zoom(self, step):
-        zoom = max(0, self._zoom + (step := int(step)))
+    def zoom(self, step: int):
+        step = int(step)
+        zoom = max(0, self._zoom + step)
         if zoom != self._zoom:
             self._zoom = zoom
             if self._zoom > 0:
@@ -134,6 +254,106 @@ class PhotoViewer(QGraphicsView):
         self.coordinatesChanged.emit(QPoint())
         super().leaveEvent(event)
 
+    def contextMenuEvent(self, event):
+        # Only show context menu if we have a photo loaded
+        if not self.hasPhoto():
+            return
+
+        # Create context menu
+        menu = QMenu()
+
+        # Check if an ROI item is under the cursor
+        item = self.scene().itemAt(
+            self.mapToScene(event.pos()), self.transform())
+        if isinstance(item, ROIRectItem):
+            # Edit
+            edit_action = None
+            if not item.edit_mode:
+                edit_action = menu.addAction("Edit")
+            # Copy and Delete
+            copy_action = menu.addAction("Copy")
+            delete_action = menu.addAction("Delete")
+            # Show the menu and get selected action
+            selected_action = menu.exec(event.pos())
+            if selected_action == edit_action:
+                item.setSelected(True)
+                item.set_edit_mode(True)
+            elif selected_action == copy_action:
+                item.copy_to_clipboard()
+            elif selected_action == delete_action:
+                self._scene.removeItem(item)
+            event.accept()
+        else:
+            # Add new ROI action
+            new_action = menu.addAction("New")
+            # If clipboard has ROI data, add paste action
+            clipboard = QApplication.clipboard()
+            mime_data = clipboard.mimeData()
+            paste_action = None
+            if mime_data.hasFormat(ROI_MIME_TYPE):
+                paste_action = menu.addAction("Paste")
+            # Show the context menu
+            action = menu.exec(event.globalPos())
+            # Handle the selected action
+            if action == new_action:
+                # Add new ROI
+                self.new_ROI(event.pos())
+            elif paste_action and action == paste_action:
+                # Paste ROI
+                self.paste_ROI(event.pos())
+
+    def new_ROI(self, pos):
+        if not self.hasPhoto():
+            return
+
+        # If no position specified, use center of viewport
+        if pos is None:
+            viewport_center = self.viewport().rect().center()
+            pos = viewport_center
+
+        # Convert to scene coordinates
+        scene_pos = self.mapToScene(pos)
+
+        # Default size for new ROI
+        width, height = 100, 100
+        x = scene_pos.x() - width/2
+        y = scene_pos.y() - height/2
+
+        roi = ROIRectItem(x, y, width, height)
+        self._scene.addItem(roi)
+        roi.setSelected(True)
+        roi.set_edit_mode(True)
+
+    def paste_ROI(self, pos):
+        if not self.hasPhoto():
+            return
+
+        # Get ROI data from clipboard
+        clipboard = QApplication.clipboard()
+        mime_data = clipboard.mimeData()
+
+        if mime_data.hasFormat(ROI_MIME_TYPE):
+            byte_array = mime_data.data(ROI_MIME_TYPE)
+            stream = QDataStream(byte_array, QIODevice.ReadOnly)
+
+            # Read ROI data
+            _ = stream.readDouble()
+            _ = stream.readDouble()
+            width = stream.readDouble()
+            height = stream.readDouble()
+
+            # Convert to scene coordinates for target position
+            scene_pos = self.mapToScene(pos)
+
+            # Offset the ROI to be centered at the paste position
+            new_x = scene_pos.x() - width/2
+            new_y = scene_pos.y() - height/2
+
+            roi = ROIRectItem(new_x, new_y, width, height)
+            self._scene.addItem(roi)
+            roi.setSelected(True)
+            roi.set_edit_mode(True)
+
 
 class PhotoViewerWidget(QWidget):
     def __init__(self, parent=None):
@@ -156,36 +376,6 @@ class PhotoViewerWidget(QWidget):
             self.labelCoords.setText(f'{point.x()}, {point.y()}')
         else:
             self.labelCoords.clear()
-
-    def addRect(
-            self,
-            x1: int,
-            y1: int,
-            x2: int,
-            y2: int,
-            ) -> QGraphicsRectItem | None:
-
-        if not self.viewer.hasPhoto():
-            return None
-        top_left = QPoint(x1, y1)
-        bottom_right = QPoint(x2, y2)
-        rectf = QRectF(top_left, bottom_right)
-        rect_item = QGraphicsRectItem(rectf)
-        pen = QPen(Qt.green, 3)
-        rect_item.setPen(pen)
-        self.viewer._scene.addItem(rect_item)
-        return rect_item
-
-    def removeRect(
-            self,
-            rect_item: QGraphicsRectItem
-            ):
-
-        if rect_item is None:
-            return
-        if not self.viewer.hasPhoto():
-            return
-        self.viewer._scene.removeItem(rect_item)
 
 
 def main():
