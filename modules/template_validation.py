@@ -13,9 +13,16 @@ class RegionType(str, Enum):
 class Region(BaseModel):
     """Model representing a single region in the template"""
     name: str
-    type: RegionType
+    type: str
     coordinates: List[int] = Field([0, 0, 0, 0], min_items=4, max_items=4)
     markers: List[int] = Field([0, 0, 0, 0], min_items=4, max_items=4)
+
+    @field_validator('type')
+    def validate_type(cls, v):
+        """Validate region type is one of the supported types"""
+        if v not in [r.value for r in RegionType]:
+            raise ValueError(f'Invalid region type: {v}. Supported types: {", ".join(RegionType.__members__)}') # noqa
+        return v
 
     @field_validator('coordinates')
     def validate_coordinates(cls, v):

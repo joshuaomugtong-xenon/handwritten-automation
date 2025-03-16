@@ -1,4 +1,5 @@
 import math
+from typing import TYPE_CHECKING
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
@@ -28,7 +29,11 @@ from PyQt5.QtCore import (
     QIODevice,
 )
 
+if TYPE_CHECKING:
+    from main import ProjectApp
+
 from .roirectitem import ROIRectItem
+from modules.template_validation import Region
 
 
 SCALE_FACTOR = 1.25
@@ -58,6 +63,7 @@ class PhotoViewer(QGraphicsView):
         self.setFrameShape(QFrame.NoFrame)
         # For animation
         self._animation = None
+        self.owner: ProjectApp = None
 
     def hasPhoto(self):
         return not self._empty
@@ -275,9 +281,8 @@ class PhotoViewer(QGraphicsView):
             self.mapToScene(event.pos()), self.transform())
         if isinstance(item, ROIRectItem):
             # Edit
-            edit_action = None
-            if not item.edit_mode:
-                edit_action = menu.addAction("Edit")
+            edit_action = menu.addAction("Edit")
+            edit_action.setEnabled(not item.edit_mode)
             # Copy and Delete
             copy_action = menu.addAction("Copy")
             delete_action = menu.addAction("Delete")
@@ -290,6 +295,20 @@ class PhotoViewer(QGraphicsView):
                 item.copy_to_clipboard()
             elif selected_action == delete_action:
                 self._scene.removeItem(item)
+                gb = item.template_groupbox
+                if gb is not None:
+                    # Find and remove the corresponding UI handles from
+                    # template_regions
+                    for i, region_dict in enumerate(
+                            self.owner.template_regions):
+                        if any(field for field in region_dict.values()
+                                if hasattr(field, 'parent') and
+                                field.parent() == gb):
+                            del self.owner.template_regions[i]
+                            break
+                    self.owner.template_editor.remove_region(gb)
+                    item.template_groupbox = None
+
             event.accept()
         else:
             # Add new ROI action
@@ -297,18 +316,56 @@ class PhotoViewer(QGraphicsView):
             # If clipboard has ROI data, add paste action
             clipboard = QApplication.clipboard()
             mime_data = clipboard.mimeData()
-            paste_action = None
-            if mime_data.hasFormat(ROI_MIME_TYPE):
-                paste_action = menu.addAction("Paste")
+            paste_action = menu.addAction("Paste")
+            paste_action.setEnabled(mime_data.hasFormat(ROI_MIME_TYPE))
             # Show the context menu
             action = menu.exec(event.globalPos())
             # Handle the selected action
             if action == new_action:
                 # Add new ROI
-                self.new_ROI(event.pos())
-            elif paste_action and action == paste_action:
+                roi = self.new_ROI(event.pos())
+                loc = [int(a) for a in roi.rect().getCoords()]
+                region = Region(
+                    name='',
+                    type='text',
+                    coordinates=loc,
+                    markers=loc,
+                )
+                ui_handles, gb, link = self.owner.template_editor.add_region(
+                    region)
+                self.owner.template_regions.append(ui_handles)
+                x1, y1, x2, y2 = ui_handles['coordinates']
+                roi.x1 = x1
+                roi.y1 = y1
+                roi.x2 = x2
+                roi.y2 = y2
+                roi.template_groupbox = gb
+                roi.owner = self.owner
+                link.owner = self.owner
+                link.rect_item = roi
+
+            elif action == paste_action:
                 # Paste ROI
-                self.paste_ROI(event.pos())
+                roi = self.paste_ROI(event.pos())
+                loc = [int(a) for a in roi.rect().getCoords()]
+                region = Region(
+                    name='',
+                    type='text',
+                    coordinates=loc,
+                    markers=loc,
+                )
+                ui_handles, gb, link = self.owner.template_editor.add_region(
+                    region)
+                self.owner.template_regions.append(ui_handles)
+                x1, y1, x2, y2 = ui_handles['coordinates']
+                roi.x1 = x1
+                roi.y1 = y1
+                roi.x2 = x2
+                roi.y2 = y2
+                roi.template_groupbox = gb
+                roi.owner = self.owner
+                link.owner = self.owner
+                link.rect_item = roi
 
     def new_ROI(self, pos):
         if not self.hasPhoto():
@@ -332,6 +389,8 @@ class PhotoViewer(QGraphicsView):
         roi.setSelected(True)
         roi.set_edit_mode(True)
 
+        return roi
+
     def paste_ROI(self, pos):
         if not self.hasPhoto():
             return
@@ -340,27 +399,28 @@ class PhotoViewer(QGraphicsView):
         clipboard = QApplication.clipboard()
         mime_data = clipboard.mimeData()
 
-        if mime_data.hasFormat(ROI_MIME_TYPE):
-            byte_array = mime_data.data(ROI_MIME_TYPE)
-            stream = QDataStream(byte_array, QIODevice.ReadOnly)
+        byte_array = mime_data.data(ROI_MIME_TYPE)
+        stream = QDataStream(byte_array, QIODevice.ReadOnly)
 
-            # Read ROI data
-            _ = stream.readDouble()
-            _ = stream.readDouble()
-            width = stream.readDouble()
-            height = stream.readDouble()
+        # Read ROI data
+        _ = stream.readDouble()
+        _ = stream.readDouble()
+        width = stream.readDouble()
+        height = stream.readDouble()
 
-            # Convert to scene coordinates for target position
-            scene_pos = self.mapToScene(pos)
+        # Convert to scene coordinates for target position
+        scene_pos = self.mapToScene(pos)
 
-            # Offset the ROI to be centered at the paste position
-            new_x = scene_pos.x() - width/2
-            new_y = scene_pos.y() - height/2
+        # Offset the ROI to be centered at the paste position
+        new_x = scene_pos.x() - width/2
+        new_y = scene_pos.y() - height/2
 
-            roi = ROIRectItem(new_x, new_y, width, height)
-            self._scene.addItem(roi)
-            roi.setSelected(True)
-            roi.set_edit_mode(True)
+        roi = ROIRectItem(new_x, new_y, width, height)
+        self._scene.addItem(roi)
+        roi.setSelected(True)
+        roi.set_edit_mode(True)
+
+        return roi
 
 
 class PhotoViewerWidget(QWidget):

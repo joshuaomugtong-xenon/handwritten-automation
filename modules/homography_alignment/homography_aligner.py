@@ -15,7 +15,14 @@ class HomographyAligner:
             width=2200
             ) -> MatLike:
 
-        marker_corners, marker_ids, _ = self.arucodetector.detectMarkers(image)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        kernel = np.ones((3, 3), np.uint8)
+        gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
+        alpha = 1.5  # Contrast control (1.0-3.0)
+        beta = 10    # Brightness control (0-100)
+        gray = cv2.convertScaleAbs(gray, alpha=alpha, beta=beta)
+
+        marker_corners, marker_ids, _ = self.arucodetector.detectMarkers(gray)
 
         if marker_ids is None:
             raise ValueError('No markers found')
@@ -30,7 +37,8 @@ class HomographyAligner:
         }
 
         if len(marker_dict) < 4:
-            raise ValueError('Not all markers found')
+            raise ValueError(
+                f'Found {len(marker_dict)} markers {list(marker_dict.keys())}. Not all markers found') # noqa
 
         for id_ in [100, 101, 102, 103]:
             points = marker_dict[id_]

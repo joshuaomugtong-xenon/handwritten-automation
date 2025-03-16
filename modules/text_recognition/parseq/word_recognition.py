@@ -7,6 +7,10 @@ from PIL import Image
 
 class WordRecognizer:
     def __init__(self):
+        self.model = None
+        self.transform = None
+
+    def load_model(self):
         self.model = torch.hub.load('baudm/parseq', 'parseq', pretrained=True)
         self.model.eval()
         self.transform = T.Compose([
@@ -16,6 +20,10 @@ class WordRecognizer:
         ])
 
     def extract_text(self, image: np.ndarray) -> tuple[str, np.ndarray]:
+        # Lazy loading
+        if self.model is None:
+            self.load_model()
+
         # Input is a numpy array loaded using cv2
 
         # Convert to PIL image

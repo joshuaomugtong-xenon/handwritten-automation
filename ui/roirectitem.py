@@ -1,8 +1,10 @@
-from typing import Callable
+from typing import TYPE_CHECKING
 from PyQt5.QtWidgets import (
     QApplication,
     QGraphicsRectItem,
     QGraphicsItem,
+    QLineEdit,
+    QGroupBox,
 )
 from PyQt5.QtCore import (
     Qt,
@@ -17,6 +19,9 @@ from PyQt5.QtGui import (
     QBrush,
     QColor,
 )
+
+if TYPE_CHECKING:
+    from main import ProjectApp
 
 
 ROI_MIME_TYPE = 'application/x-roi-rectangle'
@@ -58,11 +63,27 @@ class ROIRectItem(QGraphicsRectItem):
         self.hide_highlight()
 
         self.is_resizing = False
+        self.is_moving = False
         self.current_handle = None
         self.start_rect = None
         self.start_pos = None
 
-        self.scroll_on_click: Callable = None
+        self.owner: ProjectApp = None
+        self.template_groupbox: QGroupBox = None
+        self.data_groupbox: QGroupBox = None
+
+        self.x1: QLineEdit = None
+        self.y1: QLineEdit = None
+        self.x2: QLineEdit = None
+        self.y2: QLineEdit = None
+
+    def scroll_to_template_groupbox(self):
+        if self.template_groupbox is not None:
+            self.owner.scroll_to_template_groupbox(self.template_groupbox)
+
+    def scroll_to_data_groupbox(self):
+        if self.data_groupbox is not None:
+            self.owner.scroll_to_data_groupbox(self.data_groupbox)
 
     def itemChange(self, change, value):
         if change == QGraphicsRectItem.ItemSelectedChange:
@@ -116,9 +137,10 @@ class ROIRectItem(QGraphicsRectItem):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            # Scroll to ROI if scroll_on_click is set
-            if self.scroll_on_click:
-                self.scroll_on_click()
+            # Scroll to data groupbox
+            self.scroll_to_data_groupbox()
+            # Scroll to template groupbox
+            self.scroll_to_template_groupbox()
             if self.edit_mode:
                 # Resize enabled only in edit mode
                 for name, (handle, cursor) in self.handles.items():
@@ -129,6 +151,7 @@ class ROIRectItem(QGraphicsRectItem):
                         self.start_pos = event.pos()
                         event.accept()
                         return
+                self.is_moving = True
         elif event.button() == Qt.RightButton:
             if not self.isSelected():
                 self.setSelected(True)
@@ -140,6 +163,7 @@ class ROIRectItem(QGraphicsRectItem):
             if self.edit_mode:
                 self.is_resizing = False
                 self.current_handle = None
+                self.is_moving = False
         super().mouseReleaseEvent(event)
 
     def mouseMoveEvent(self, event):
@@ -168,8 +192,37 @@ class ROIRectItem(QGraphicsRectItem):
                     rect.setRight(right)
                     if right < rect.left():
                         self.current_handle.replace('R', 'L')
-                self.setRect(rect.normalized())
+                norm_rect = rect.normalized()
+                self.setRect(norm_rect)
                 self.update_resize_handles()
+
+                # Update text input fields
+                scene_rect = self.mapRectToScene(self.rect())
+                x1, y1, x2, y2 = scene_rect.getCoords()
+                if self.x1 is not None:
+                    self.x1.setText(str(int(x1)))
+                if self.y1 is not None:
+                    self.y1.setText(str(int(y1)))
+                if self.x2 is not None:
+                    self.x2.setText(str(int(x2)))
+                if self.y2 is not None:
+                    self.y2.setText(str(int(y2)))
+            elif self.is_moving:
+                delta = event.pos() - event.lastPos()
+                self.moveBy(delta.x(), delta.y())
+                self.update_resize_handles()
+
+                # Update text input fields
+                scene_rect = self.mapRectToScene(self.rect())
+                x1, y1, x2, y2 = scene_rect.getCoords()
+                if self.x1 is not None:
+                    self.x1.setText(str(int(x1)))
+                if self.y1 is not None:
+                    self.y1.setText(str(int(y1)))
+                if self.x2 is not None:
+                    self.x2.setText(str(int(x2)))
+                if self.y2 is not None:
+                    self.y2.setText(str(int(y2)))
             else:
                 super().mouseMoveEvent(event)
 
