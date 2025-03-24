@@ -1,7 +1,12 @@
+from __future__ import annotations
 import traceback
 
-from PyQt5.QtWidgets import (
-    QMessageBox, QTextEdit
+from PyQt6.QtWidgets import (
+    QGridLayout,
+)
+from PyQt6.QtWidgets import (
+    QMessageBox,
+    QTextEdit,
 )
 
 
@@ -13,13 +18,12 @@ class ErrorDialog(QMessageBox):
 
         self.traceback_edit = QTextEdit()
         self.traceback_edit.setReadOnly(True)
-        self.traceback_edit.setLineWrapMode(QTextEdit.NoWrap)
+        self.traceback_edit.setLineWrapMode(QTextEdit.LineWrapMode.NoWrap)
         self.traceback_edit.setText(traceback_text)
-        self.traceback_edit.setMinimumWidth(600)
-        self.traceback_edit.setMinimumHeight(300)
+        self.traceback_edit.setFixedSize(600, 300)
 
-        layout = self.layout()
+        layout: QGridLayout = self.layout()
         layout.addWidget(self.traceback_edit, 1, 0, 1, layout.columnCount())
 
-        self.setStandardButtons(QMessageBox.Ok)
+        self.setStandardButtons(QMessageBox.StandardButton.Ok)
         self.exec()

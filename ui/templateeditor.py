@@ -1,6 +1,7 @@
+from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QWidget,
     QVBoxLayout,
     QHBoxLayout,
@@ -10,34 +11,35 @@ from PyQt5.QtWidgets import (
     QGroupBox,
     QFormLayout,
 )
-from PyQt5.QtGui import (
-    QRegExpValidator,
+from PyQt6.QtGui import (
+    QRegularExpressionValidator,
 )
-from PyQt5.QtCore import (
+from PyQt6.QtCore import (
     Qt,
-    QRegExp,
+    QRegularExpression,
 )
 
 from modules.template_validation import Template, Region
 
 if TYPE_CHECKING:
-    from main import ProjectApp
-    from ui.roirectitem import ROIRectItem
+    from .MainWindow import MainWindow
+
+from .ROIRectItem import ROIRectItem
 
 
 class Label(QLabel):
     def __init__(self, text: str = ''):
         super().__init__(text, parent=None)
-        self.setAlignment(Qt.AlignLeft)
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
 
 
 class TextInput(QLineEdit):
     def __init__(self, text: str = '', width: int = 500):
         super().__init__(text, parent=None)
         self.setStyleSheet('background-color: white; color: black;')
-        self.setAlignment(Qt.AlignLeft)
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setFixedWidth(width)
         self.setPlaceholderText('Enter text')
 
@@ -46,12 +48,12 @@ class PositiveIntegerInput(QLineEdit):
     def __init__(self, text: str = '', width: int = 120):
         super().__init__(text, parent=None)
         self.setStyleSheet('background-color: white; color: black;')
-        self.setAlignment(Qt.AlignRight)
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setFixedWidth(width)
         pattern = r"^([0-9]|[1-9][0-9]|[1-9][0-9]{2}|[1-9][0-9]{3}|10000)$"
         self.setValidator(
-            QRegExpValidator(QRegExp(pattern)))
+            QRegularExpressionValidator(QRegularExpression(pattern)))
         self.setPlaceholderText('0-10000')
 
 
@@ -59,12 +61,13 @@ class BooleanInput(QLineEdit):
     def __init__(self, text: str = '', width: int = 120):
         super().__init__(text, parent=None)
         self.setStyleSheet('background-color: white; color: black;')
-        self.setAlignment(Qt.AlignLeft)
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setFixedWidth(width)
         yaml_bool_pattern = r"^(true|false|yes|no|on|off|y|n)$"
         self.setValidator(
-            QRegExpValidator(QRegExp(yaml_bool_pattern, Qt.CaseInsensitive)))
+            QRegularExpressionValidator(
+                QRegularExpression(yaml_bool_pattern, QRegularExpression.PatternOption.CaseInsensitiveOption)))
         self.setPlaceholderText('true, false, yes, no')
 
 
@@ -72,28 +75,28 @@ class TypeInput(QLineEdit):
     def __init__(self, text: str = '', width: int = 500):
         super().__init__(text, parent=None)
         self.setStyleSheet('background-color: white; color: black;')
-        self.setAlignment(Qt.AlignLeft)
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setFixedWidth(width)
         pattern = r"^(text|encirclement|checkbox)$"
         self.setValidator(
-            QRegExpValidator(QRegExp(pattern)))
+            QRegularExpressionValidator(QRegularExpression(pattern)))
         self.setPlaceholderText('text, encirclement, checkbox')
 
 
 class ClickableLabel(QLabel):
     def __init__(self, text: str = ''):
         super().__init__(text, parent=None)
-        self.setAlignment(Qt.AlignLeft)
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setStyleSheet('text-decoration: italic;')
-        self.setCursor(Qt.PointingHandCursor)
-        self.owner: ProjectApp = None
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.owner: MainWindow = None
         self.rect_item: ROIRectItem = None
 
     def zoom_to_rect(self):
         if self.rect_item is not None and self.owner is not None:
-            self.owner.photo_viewer.viewer.zoomToRect(
+            self.owner.photo_viewer.viewer.zoom_to_rect(
                 self.rect_item.rect())
             self.rect_item.setSelected(True)
             self.owner.photo_viewer.viewer._scene.update()

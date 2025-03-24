@@ -1,6 +1,7 @@
-import math
+from __future__ import annotations
 from typing import TYPE_CHECKING
-from PyQt5.QtWidgets import (
+import math
+from PyQt6.QtWidgets import (
     QApplication,
     QWidget,
     QLabel,
@@ -11,13 +12,13 @@ from PyQt5.QtWidgets import (
     QFrame,
     QMenu,
 )
-from PyQt5.QtGui import (
+from PyQt6.QtGui import (
     QBrush,
     QColor,
     QPixmap,
     QCursor,
 )
-from PyQt5.QtCore import (
+from PyQt6.QtCore import (
     Qt,
     QPoint,
     pyqtSignal,
@@ -30,19 +31,19 @@ from PyQt5.QtCore import (
 )
 
 if TYPE_CHECKING:
-    from main import ProjectApp
+    from .MainWindow import MainWindow
 
-from .roirectitem import ROIRectItem
+from .ROIRectItem import ROIRectItem
 from modules.template_validation import Region
+from modules.config import ROI_MIME_TYPE
 
 
 SCALE_FACTOR = 1.25
 ANIMATION_DURATION = 300  # Animation duration in milliseconds
-ROI_MIME_TYPE = 'application/x-roi-rectangle'
 
 
 class PhotoViewer(QGraphicsView):
-    coordinatesChanged = pyqtSignal(QPoint)
+    coordinates_changed = pyqtSignal(QPoint)
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -51,30 +52,38 @@ class PhotoViewer(QGraphicsView):
         self._empty = True
         self._scene = QGraphicsScene(self)
         self._photo = QGraphicsPixmapItem()
-        self._photo.setShapeMode(QGraphicsPixmapItem.BoundingRectShape)
+        self._photo.setShapeMode(QGraphicsPixmapItem.ShapeMode.BoundingRectShape)
         # self._photo.setTransformationMode(Qt.SmoothTransformation)
         self._scene.addItem(self._photo)
         self.setScene(self._scene)
-        self.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
-        self.setResizeAnchor(QGraphicsView.AnchorUnderMouse)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setTransformationAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
+        self.setResizeAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.setBackgroundBrush(QBrush(QColor(30, 30, 30)))
-        self.setFrameShape(QFrame.NoFrame)
+        self.setFrameShape(QFrame.Shape.NoFrame)
         # For animation
         self._animation = None
-        self.owner: ProjectApp = None
+        self.owner: MainWindow = None
 
-    def hasPhoto(self):
+        # Set focus policy to accept keyboard events
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.selected_item = None
+
+    def keyPressEvent(self, event):
+        # To do: Add keyboard shortcuts for copy, paste, delete
+        return super().keyPressEvent(event)
+
+    def has_photo(self):
         return not self._empty
 
-    def resetView(self, scale=1):
+    def reset_view(self, scale=1):
         rect = QRectF(self._photo.pixmap().rect())
         if not rect.isNull():
             self.setSceneRect(rect)
             if (scale := max(1, scale)) == 1:
                 self._zoom = 0
-            if self.hasPhoto():
+            if self.has_photo():
                 unity = self.transform().mapRect(QRectF(0, 0, 1, 1))
                 self.scale(1 / unity.width(), 1 / unity.height())
                 viewrect = self.viewport().rect()
@@ -84,30 +93,29 @@ class PhotoViewer(QGraphicsView):
                     viewrect.height() / scenerect.height()
                 )
                 self.scale(factor, factor)
-                if not self.zoomPinned():
+                if not self.zoom_pinned():
                     self.centerOn(self._photo)
-                self.updateCoordinates()
+                self.update_coordinates()
 
-    def setPhoto(self, pixmap=None):
+    def set_photo(self, pixmap: QPixmap = None):
         if pixmap and not pixmap.isNull():
             self._empty = False
-            self.setDragMode(QGraphicsView.ScrollHandDrag)
+            self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
             self._photo.setPixmap(pixmap)
         else:
             self._empty = True
-            self.setDragMode(QGraphicsView.NoDrag)
+            self.setDragMode(QGraphicsView.DragMode.NoDrag)
             self._photo.setPixmap(QPixmap())
-        if not (self.zoomPinned() and self.hasPhoto()):
+        if not (self.zoom_pinned() and self.has_photo()):
             self._zoom = 0
-        self.resetView(SCALE_FACTOR ** self._zoom)
+        self.reset_view(SCALE_FACTOR ** self._zoom)
 
-    def zoomLevel(self):
+    def zoom_level(self):
         return self._zoom
 
-    def zoomToRect(self, rect: QRectF):
+    def zoom_to_rect(self, rect: QRectF):
         # Cancel any ongoing animation
-        if self._animation and \
-                self._animation.state() == QPropertyAnimation.Running:
+        if self._animation and self._animation.state() == QPropertyAnimation.State.Running:
             self._animation.stop()
 
         # Store initial view state
@@ -115,16 +123,9 @@ class PhotoViewer(QGraphicsView):
         init_h_scroll = self.horizontalScrollBar().value()
         init_v_scroll = self.verticalScrollBar().value()
 
-        # Temporarily disable scroll bars to prevent flickering during
-        # animation
-        h_policy = self.horizontalScrollBarPolicy()
-        v_policy = self.verticalScrollBarPolicy()
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
         # Reset zoom to initial state if needed
         if self._zoom != 0:
-            self.resetView()
+            self.reset_view()
             self._zoom = 0
 
         # Create a copy of the target rectangle
@@ -139,7 +140,7 @@ class PhotoViewer(QGraphicsView):
         )
 
         # Calculate target transformation
-        self.fitInView(target_rect, Qt.KeepAspectRatio)
+        self.fitInView(target_rect, Qt.AspectRatioMode.KeepAspectRatio)
         trgt_trfm = self.transform()
 
         # Calculate target scroll positions
@@ -159,7 +160,8 @@ class PhotoViewer(QGraphicsView):
         # Create animation for the transform
         self._animation = QVariantAnimation()
         self._animation.setDuration(ANIMATION_DURATION)
-        self._animation.setEasingCurve(QEasingCurve.OutCubic)
+
+        self._animation.setEasingCurve(QEasingCurve.Type.OutCubic)
         self._animation.setStartValue(0.0)
         self._animation.setEndValue(1.0)
 
@@ -189,10 +191,8 @@ class PhotoViewer(QGraphicsView):
         # Connect animation to update function
         self._animation.valueChanged.connect(updateTransform)
 
-        # Connect animation finished signal to restore scrollbar policies
+        # Connect animation finished signal
         def onAnimationFinished():
-            self.setHorizontalScrollBarPolicy(h_policy)
-            self.setVerticalScrollBarPolicy(v_policy)
 
             # Calculate the equivalent zoom level based on the scale
             current_scale = trgt_trfm.m11()  # Horizontal scale factor
@@ -218,10 +218,10 @@ class PhotoViewer(QGraphicsView):
         # Start the animation
         self._animation.start()
 
-    def zoomPinned(self):
+    def zoom_pinned(self):
         return self._pinned
 
-    def setZoomPinned(self, enable):
+    def set_zoom_pinned(self, enable):
         self._pinned = bool(enable)
 
     def zoom(self, step: int):
@@ -236,7 +236,7 @@ class PhotoViewer(QGraphicsView):
                     factor = 1 / SCALE_FACTOR ** abs(step)
                 self.scale(factor, factor)
             else:
-                self.resetView()
+                self.reset_view()
 
     def wheelEvent(self, event):
         delta = event.angleDelta().y()
@@ -245,49 +245,50 @@ class PhotoViewer(QGraphicsView):
     def resizeEvent(self, event):
         super().resizeEvent(event)
 
-    def toggleDragMode(self):
-        if self.dragMode() == QGraphicsView.ScrollHandDrag:
-            self.setDragMode(QGraphicsView.NoDrag)
+    def toggle_drag_mode(self):
+        if self.dragMode() == QGraphicsView.DragMode.ScrollHandDrag:
+            self.setDragMode(QGraphicsView.DragMode.NoDrag)
         elif not self._photo.pixmap().isNull():
-            self.setDragMode(QGraphicsView.ScrollHandDrag)
+            self.setDragMode(QGraphicsView.DragMode.ScrollHandDrag)
 
-    def updateCoordinates(self, pos=None):
+    def update_coordinates(self, pos=None):
         if self._photo.isUnderMouse():
             if pos is None:
                 pos = self.mapFromGlobal(QCursor.pos())
             point = self.mapToScene(pos).toPoint()
         else:
             point = QPoint()
-        self.coordinatesChanged.emit(point)
+        self.coordinates_changed.emit(point)
 
     def mouseMoveEvent(self, event):
-        self.updateCoordinates(event.pos())
+        self.update_coordinates(event.pos())
         super().mouseMoveEvent(event)
 
     def leaveEvent(self, event):
-        self.coordinatesChanged.emit(QPoint())
+        self.coordinates_changed.emit(QPoint())
         super().leaveEvent(event)
 
     def contextMenuEvent(self, event):
         # Only show context menu if we have a photo loaded
-        if not self.hasPhoto():
+        if not self.has_photo():
             return
 
         # Create context menu
         menu = QMenu()
 
         # Check if an ROI item is under the cursor
-        item = self.scene().itemAt(
-            self.mapToScene(event.pos()), self.transform())
+        item = self.scene().itemAt(self.mapToScene(event.pos()), self.transform())
         if isinstance(item, ROIRectItem):
             # Edit
             edit_action = menu.addAction("Edit")
             edit_action.setEnabled(not item.edit_mode)
-            # Copy and Delete
+            # Copy
             copy_action = menu.addAction("Copy")
+            # Delete
             delete_action = menu.addAction("Delete")
+
             # Show the menu and get selected action
-            selected_action = menu.exec(event.pos())
+            selected_action = menu.exec(event.globalPos())
             if selected_action == edit_action:
                 item.setSelected(True)
                 item.set_edit_mode(True)
@@ -311,19 +312,20 @@ class PhotoViewer(QGraphicsView):
 
             event.accept()
         else:
-            # Add new ROI action
+            # New
             new_action = menu.addAction("New")
             # If clipboard has ROI data, add paste action
+            paste_action = menu.addAction("Paste")
+
             clipboard = QApplication.clipboard()
             mime_data = clipboard.mimeData()
-            paste_action = menu.addAction("Paste")
             paste_action.setEnabled(mime_data.hasFormat(ROI_MIME_TYPE))
             # Show the context menu
             action = menu.exec(event.globalPos())
             # Handle the selected action
             if action == new_action:
                 # Add new ROI
-                roi = self.new_ROI(event.pos())
+                roi = self.new_region(event.pos())
                 loc = [int(a) for a in roi.rect().getCoords()]
                 region = Region(
                     name='',
@@ -346,7 +348,7 @@ class PhotoViewer(QGraphicsView):
 
             elif action == paste_action:
                 # Paste ROI
-                roi = self.paste_ROI(event.pos())
+                roi = self.paste_region(event.pos())
                 loc = [int(a) for a in roi.rect().getCoords()]
                 region = Region(
                     name='',
@@ -363,12 +365,11 @@ class PhotoViewer(QGraphicsView):
                 roi.x2 = x2
                 roi.y2 = y2
                 roi.template_groupbox = gb
-                roi.owner = self.owner
                 link.owner = self.owner
                 link.rect_item = roi
 
-    def new_ROI(self, pos):
-        if not self.hasPhoto():
+    def new_region(self, pos: QPoint):
+        if not self.has_photo():
             return
 
         # If no position specified, use center of viewport
@@ -385,14 +386,15 @@ class PhotoViewer(QGraphicsView):
         y = scene_pos.y() - height/2
 
         roi = ROIRectItem(x, y, width, height)
+        roi.owner = self.owner
         self._scene.addItem(roi)
         roi.setSelected(True)
         roi.set_edit_mode(True)
 
         return roi
 
-    def paste_ROI(self, pos):
-        if not self.hasPhoto():
+    def paste_region(self, pos: QPoint):
+        if not self.has_photo():
             return
 
         # Get ROI data from clipboard
@@ -400,7 +402,7 @@ class PhotoViewer(QGraphicsView):
         mime_data = clipboard.mimeData()
 
         byte_array = mime_data.data(ROI_MIME_TYPE)
-        stream = QDataStream(byte_array, QIODevice.ReadOnly)
+        stream = QDataStream(byte_array, QIODevice.OpenModeFlag.ReadOnly)
 
         # Read ROI data
         _ = stream.readDouble()
@@ -416,6 +418,7 @@ class PhotoViewer(QGraphicsView):
         new_y = scene_pos.y() - height/2
 
         roi = ROIRectItem(new_x, new_y, width, height)
+        roi.owner = self.owner
         self._scene.addItem(roi)
         roi.setSelected(True)
         roi.set_edit_mode(True)
@@ -427,23 +430,22 @@ class PhotoViewerWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.viewer = PhotoViewer(self)
-        self.viewer.coordinatesChanged.connect(self.handleCoords)
-        self.labelCoords = QLabel(self)
-        self.labelCoords.setStyleSheet("background: rgba(255, 0, 0, 0);")
+        self.viewer.coordinates_changed.connect(self.handle_coordinates)
+        self.coordinates_label = QLabel(self)
         layout = QVBoxLayout(self)
         layout.addWidget(self.viewer)
         layout.addWidget(
-            self.labelCoords,
-            alignment=Qt.AlignRight | Qt.AlignCenter)
+            self.coordinates_label,
+            alignment=Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignCenter)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
         self.setContentsMargins(0, 0, 0, 0)
 
-    def handleCoords(self, point: QPoint):
+    def handle_coordinates(self, point: QPoint):
         if not point.isNull():
-            self.labelCoords.setText(f'{point.x()}, {point.y()}')
+            self.coordinates_label.setText(f'{point.x()}, {point.y()}')
         else:
-            self.labelCoords.clear()
+            self.coordinates_label.clear()
 
 
 def main():

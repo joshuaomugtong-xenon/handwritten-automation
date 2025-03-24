@@ -1,12 +1,14 @@
+from __future__ import annotations
 from typing import TYPE_CHECKING
-from PyQt5.QtWidgets import (
+
+from PyQt6.QtWidgets import (
     QApplication,
     QGraphicsRectItem,
     QGraphicsItem,
     QLineEdit,
     QGroupBox,
 )
-from PyQt5.QtCore import (
+from PyQt6.QtCore import (
     Qt,
     QRectF,
     QByteArray,
@@ -14,17 +16,16 @@ from PyQt5.QtCore import (
     QIODevice,
     QMimeData,
 )
-from PyQt5.QtGui import (
+from PyQt6.QtGui import (
     QPen,
     QBrush,
     QColor,
 )
 
+from modules.config import ROI_MIME_TYPE
+
 if TYPE_CHECKING:
-    from main import ProjectApp
-
-
-ROI_MIME_TYPE = 'application/x-roi-rectangle'
+    from .MainWindow import MainWindow
 
 
 class ROIRectItem(QGraphicsRectItem):
@@ -34,11 +35,10 @@ class ROIRectItem(QGraphicsRectItem):
 
         # Set flags to enable mouse interaction
         self.setAcceptHoverEvents(True)
-        GraphicsItemFlag = QGraphicsItem.GraphicsItemFlag
-        self.setFlag(GraphicsItemFlag.ItemIsSelectable, True)
-        self.setFlag(GraphicsItemFlag.ItemIsMovable, False)
-        self.setFlag(GraphicsItemFlag.ItemSendsGeometryChanges, True)
-        self.setAcceptedMouseButtons(Qt.LeftButton | Qt.RightButton)
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsSelectable, True)
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsMovable, False)
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemSendsGeometryChanges, True)
+        self.setAcceptedMouseButtons(Qt.MouseButton.LeftButton | Qt.MouseButton.RightButton)
 
         # Default colors
         self.normal_color = QColor(52, 152, 219, 102)  # RGBA: ~40% opacity
@@ -68,7 +68,7 @@ class ROIRectItem(QGraphicsRectItem):
         self.start_rect = None
         self.start_pos = None
 
-        self.owner: ProjectApp = None
+        self.owner: MainWindow = None
         self.template_groupbox: QGroupBox = None
         self.data_groupbox: QGroupBox = None
 
@@ -86,25 +86,33 @@ class ROIRectItem(QGraphicsRectItem):
             self.owner.scroll_to_data_groupbox(self.data_groupbox)
 
     def itemChange(self, change, value):
-        if change == QGraphicsRectItem.ItemSelectedChange:
+        if change == QGraphicsRectItem.GraphicsItemChange.ItemSelectedChange:
             if value:
+                self.set_selected(True)
                 if self.edit_mode:
                     pass
                 else:
                     self.show_highlight()
             else:
+                self.set_selected(False)
                 if self.edit_mode:
                     self.set_edit_mode(False)
                 else:
                     self.hide_highlight()
         return super().itemChange(change, value)
 
+    def set_selected(self, selected: bool):
+        if selected:
+            self.owner.photo_viewer.viewer.selected_item = self
+        else:
+            self.owner.photo_viewer.viewer.selected_item = None
+
     def copy_to_clipboard(self):
         rect = self.rect()
 
         # Create a byte array to store the ROI data
         byte_array = QByteArray()
-        stream = QDataStream(byte_array, QIODevice.WriteOnly)
+        stream = QDataStream(byte_array, QIODevice.OpenModeFlag.WriteOnly)
 
         # Write rectangle properties to the stream
         stream.writeDouble(rect.x())
@@ -119,8 +127,7 @@ class ROIRectItem(QGraphicsRectItem):
 
     def set_edit_mode(self, enable: bool):
         self.edit_mode = enable
-        GraphicsItemFlag = QGraphicsItem.GraphicsItemFlag
-        self.setFlag(GraphicsItemFlag.ItemIsMovable, enable)
+        self.setFlag(QGraphicsItem.GraphicsItemFlag.ItemIsMovable, enable)
         if enable:
             self.bring_to_front()
             # Show handles and highlight when in edit mode
@@ -136,7 +143,7 @@ class ROIRectItem(QGraphicsRectItem):
         self.scene().update()  # Refresh scene
 
     def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             # Scroll to data groupbox
             self.scroll_to_data_groupbox()
             # Scroll to template groupbox
@@ -152,14 +159,14 @@ class ROIRectItem(QGraphicsRectItem):
                         event.accept()
                         return
                 self.is_moving = True
-        elif event.button() == Qt.RightButton:
+        elif event.button() == Qt.MouseButton.RightButton:
             if not self.isSelected():
                 self.setSelected(True)
 
         super().mousePressEvent(event)
 
     def mouseReleaseEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             if self.edit_mode:
                 self.is_resizing = False
                 self.current_handle = None
@@ -229,7 +236,7 @@ class ROIRectItem(QGraphicsRectItem):
     def hoverMoveEvent(self, event):
         if self.edit_mode:
             # Initially set cursor to size all
-            self.setCursor(Qt.SizeAllCursor)
+            self.setCursor(Qt.CursorShape.SizeAllCursor)
             # Then check if cursor is under a resize handle
             for handle, cursor in self.handles.values():
                 if handle.contains(event.pos()):
@@ -237,7 +244,7 @@ class ROIRectItem(QGraphicsRectItem):
                     break
         else:
             # Set cursor to pointing hand if selected but not in edit mode
-            self.setCursor(Qt.PointingHandCursor)
+            self.setCursor(Qt.CursorShape.PointingHandCursor)
         super().hoverMoveEvent(event)
 
     def hoverLeaveEvent(self, event):
@@ -315,7 +322,7 @@ class ROIRectItem(QGraphicsRectItem):
             for name, (location, cursor) in locations.items():
                 x, y, w, h = location
                 rect_item = QGraphicsRectItem(x, y, w, h, self)
-                rect_item.setFlag(QGraphicsRectItem.ItemIsMovable, False)
+                rect_item.setFlag(QGraphicsRectItem.GraphicsItemFlag.ItemIsMovable, False)
                 rect_item.setBrush(QBrush(self.handle_fill_color))
                 rect_item.setPen(QPen(self.handle_border_color))
 

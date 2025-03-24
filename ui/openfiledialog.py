@@ -1,9 +1,21 @@
+from __future__ import annotations
 import os
-from PyQt5.QtWidgets import (
-    QDialog, QFileDialog, QHBoxLayout, QGridLayout,
-    QLabel, QComboBox, QPushButton, QLineEdit
+
+from PyQt6.QtWidgets import (
+    QDialog,
+    QFileDialog,
+    QHBoxLayout,
+    QGridLayout,
+    QLabel,
+    QComboBox,
+    QPushButton,
+    QLineEdit,
 )
-from PyQt5.QtCore import Qt
+from PyQt6.QtCore import (
+    Qt,
+)
+
+from modules.config import ACCEPTED_FILE_TYPES, SCANNED_FOLDER
 
 
 class OpenFileDialog(QDialog):
@@ -11,12 +23,10 @@ class OpenFileDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle('Open File')
         self.setModal(True)
-        self.setWindowFlags(
-            self.windowFlags() &
-            ~Qt.WindowContextHelpButtonHint)
+        self.setWindowFlag(Qt.WindowType.WindowContextHelpButtonHint, False)
         # self.setFixedSize(500, 100)
 
-        allowed_types = [f'*{fp}' for fp in self.parent().accepted_image_types]
+        allowed_types = [f'*{fp}' for fp in ACCEPTED_FILE_TYPES]
         self.accepted_filetypes = ';'.join(allowed_types)
 
         layout = QGridLayout()
@@ -58,10 +68,8 @@ class OpenFileDialog(QDialog):
         self.setLayout(layout)
 
     def browse_image(self):
-        options = QFileDialog.Options()
         current_dir = os.getcwd()
-        scanned_folder = self.parent().scanned_folder
-        dir_path = os.path.join(current_dir, scanned_folder)
+        dir_path = os.path.join(current_dir, SCANNED_FOLDER)
         if os.path.isdir(dir_path):
             start_dir = dir_path
         else:
@@ -72,7 +80,6 @@ class OpenFileDialog(QDialog):
             caption='Open Image File',
             directory=start_dir,
             filter=f'Image Files ({self.accepted_filetypes})',
-            options=options
         )
         if file_path:
             self.path_lineedit.setText(file_path)
