@@ -19,6 +19,7 @@ from PyQt6.QtWidgets import (
     QSplitter,
     QGroupBox,
     QTabWidget,
+    QProgressDialog,
 )
 from PyQt6.QtGui import (
     QPixmap,
@@ -179,19 +180,39 @@ class MainWindow(QMainWindow):
         self.selected_template = selected
 
         template = self.templates[selected]
+        regions = template.regions
+
+        # Create progress dialog
+        progress = QProgressDialog("Processing image...", "Cancel", 0, len(regions) + 3, self)
+        progress.setWindowTitle("Progress")
+        progress.setWindowModality(Qt.WindowModality.WindowModal)
+        progress.setFixedSize(400, 100)
+        progress.setValue(0)
+        progress.show()
+
+        # Initialize template
+        progress.setLabelText("Initializing template...")
         length = template.length
         width = template.width
         self.template_ui = self.template_editor.init_ui(template)
+        progress.setValue(1)
 
+        if progress.wasCanceled():
+            return
+
+        # Load the image and align it
+        progress.setLabelText("Aligning image...")
         image = cv2.imread(image_path)
         image = self.homography_aligner.align(image, length, width)
 
         pixmap = QPixmap.fromImage(create_image(image))
         self.photo_viewer.viewer.set_photo(pixmap)
+        progress.setValue(2)
 
-        regions = template.regions
+        if progress.wasCanceled():
+            return
+
         centers = {}
-
         if not template.use_coordinates:
             centers, corners = self.roi_extractor.get_marker_locations(image)
             for _, corner in corners.items():
@@ -199,7 +220,17 @@ class MainWindow(QMainWindow):
                 # TODO: Add the marker to the image
                 # self.add_rect(x1, y1, x2, y2)
 
-        for region in regions:
+        # Load the text recognition model
+        progress.setLabelText("Loading the text recognition model...")
+        self.text_recognizer.word_recognizer.load_model()
+        progress.setValue(3)
+
+        if progress.wasCanceled():
+            return
+
+        # Process each region in the template
+        for i, region in enumerate(regions):
+            progress.setLabelText(f"Processing region: {i + 1}/{len(regions)}")
             coordinates = []
             if template.use_coordinates:
                 coordinates = region.coordinates
@@ -253,6 +284,11 @@ class MainWindow(QMainWindow):
 
             else:
                 # This should not happen because the template is validated
+                # Update progress bar
+                progress.setValue(3 + i)
+
+                if progress.wasCanceled():
+                    return
                 continue
 
             self.datafields[region.name] = field_widget
@@ -273,6 +309,15 @@ class MainWindow(QMainWindow):
 
             self.data_widget_layout.addWidget(groupbox)
             self.data_widget_layout.addSpacing(20)
+
+            # Update progress bar
+            progress.setValue(4 + i)
+
+            if progress.wasCanceled():
+                return
+
+        # Close the progress dialog
+        progress.close()
 
     def save_data(self):
         if self.datafields == {}:
