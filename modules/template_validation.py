@@ -52,6 +52,45 @@ class Template(BaseModel):
     regions: List[Region]
 
 
+def convert_template_to_dict(template: Template) -> dict:
+    """
+    Convert a Pydantic model to a dictionary.
+    This is needed because Template model dump does not display keys in the order they are defined.
+    It's also useful for removing markers from the output.
+
+    Args:
+        template: Template model
+
+    Returns:
+        dict: Dictionary representation of the template with keys in the order they are defined
+    """
+
+    result = {
+        'form_type': template.form_type,
+        'form_title': template.form_title,
+        'length': template.length,
+        'width': template.width,
+        'use_coordinates': template.use_coordinates,
+        'regions': []
+    }
+
+    for region in template.regions:
+        if template.use_coordinates:
+            result['regions'].append({
+                'name': region.name,
+                'type': region.type,
+                'coordinates': region.coordinates,
+            })
+        else:
+            result['regions'].append({
+                'name': region.name,
+                'type': region.type,
+                'markers': region.markers,
+            })
+
+    return result
+
+
 def validate_template_file(file_path: str) -> Template:
     """
     Validate a YAML template file using Pydantic models
@@ -60,7 +99,7 @@ def validate_template_file(file_path: str) -> Template:
         file_path: Path to the YAML template file
 
     Returns:
-        TemplateModel: Validated template model
+        Template: Validated template model
 
     Raises:
         ValueError: If validation fails

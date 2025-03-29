@@ -1,12 +1,7 @@
-from __future__ import annotations
-from typing import TYPE_CHECKING
-
 from PyQt6.QtWidgets import (
     QApplication,
     QGraphicsRectItem,
     QGraphicsItem,
-    QLineEdit,
-    QGroupBox,
 )
 from PyQt6.QtCore import (
     Qt,
@@ -21,17 +16,32 @@ from PyQt6.QtGui import (
     QBrush,
     QColor,
 )
+from PyQt6.QtCore import (
+    pyqtSignal,
+    QObject,
+)
 
 from modules.config import ROI_MIME_TYPE
 
-if TYPE_CHECKING:
-    from .MainWindow import MainWindow
+
+class RegionBoxSignals(QObject):
+    request_scroll_to_template_groupbox = pyqtSignal()
+    request_scroll_to_data_groupbox = pyqtSignal()
+    request_delete_region = pyqtSignal()
+    coordinates_changed = pyqtSignal(int, int, int, int)
 
 
-class ROIRectItem(QGraphicsRectItem):
+class RegionBox(QGraphicsRectItem):
 
-    def __init__(self, x, y, width, height):
-        super().__init__(x, y, width, height, None)
+    def __init__(
+            self,
+            x: float,
+            y: float,
+            w: float,
+            h: float,
+            ):
+
+        super().__init__(x, y, w, h, None)
 
         # Set flags to enable mouse interaction
         self.setAcceptHoverEvents(True)
@@ -51,6 +61,9 @@ class ROIRectItem(QGraphicsRectItem):
         self.setBrush(QBrush(self.normal_color))
         self.setPen(QPen(self.normal_border, 2))
 
+        # Signals
+        self.signals = RegionBoxSignals()
+
         # Edit mode flag
         self.edit_mode = False
 
@@ -68,44 +81,19 @@ class ROIRectItem(QGraphicsRectItem):
         self.start_rect = None
         self.start_pos = None
 
-        self.owner: MainWindow = None
-        self.template_groupbox: QGroupBox = None
-        self.data_groupbox: QGroupBox = None
-
-        self.x1: QLineEdit = None
-        self.y1: QLineEdit = None
-        self.x2: QLineEdit = None
-        self.y2: QLineEdit = None
-
-    def scroll_to_template_groupbox(self):
-        if self.template_groupbox is not None:
-            self.owner.scroll_to_template_groupbox(self.template_groupbox)
-
-    def scroll_to_data_groupbox(self):
-        if self.data_groupbox is not None:
-            self.owner.scroll_to_data_groupbox(self.data_groupbox)
-
     def itemChange(self, change, value):
         if change == QGraphicsRectItem.GraphicsItemChange.ItemSelectedChange:
             if value:
-                self.set_selected(True)
                 if self.edit_mode:
                     pass
                 else:
                     self.show_highlight()
             else:
-                self.set_selected(False)
                 if self.edit_mode:
                     self.set_edit_mode(False)
                 else:
                     self.hide_highlight()
         return super().itemChange(change, value)
-
-    def set_selected(self, selected: bool):
-        if selected:
-            self.owner.photo_viewer.viewer.selected_item = self
-        else:
-            self.owner.photo_viewer.viewer.selected_item = None
 
     def copy_to_clipboard(self):
         rect = self.rect()
@@ -124,6 +112,12 @@ class ROIRectItem(QGraphicsRectItem):
         mime_data = QMimeData()
         mime_data.setData(ROI_MIME_TYPE, byte_array)
         QApplication.clipboard().setMimeData(mime_data)
+
+    def delete_region(self):
+        # Emit signal to request deletion of this region
+        # MainWindow will handle the deletion
+        # The connected function needs a reference to this RegionBox
+        self.signals.request_delete_region.emit()
 
     def set_edit_mode(self, enable: bool):
         self.edit_mode = enable
@@ -144,10 +138,8 @@ class ROIRectItem(QGraphicsRectItem):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
-            # Scroll to data groupbox
-            self.scroll_to_data_groupbox()
-            # Scroll to template groupbox
-            self.scroll_to_template_groupbox()
+            self.signals.request_scroll_to_template_groupbox.emit()
+            self.signals.request_scroll_to_data_groupbox.emit()
             if self.edit_mode:
                 # Resize enabled only in edit mode
                 for name, (handle, cursor) in self.handles.items():
@@ -175,8 +167,9 @@ class ROIRectItem(QGraphicsRectItem):
 
     def mouseMoveEvent(self, event):
         if self.edit_mode:
+            # Only handle resizing and moving in edit mode
             if self.is_resizing and self.current_handle:
-                # Only handle resizing and moving in edit mode
+                # If resizing, calculate new rectangle based on handle position
                 delta = event.pos() - self.start_pos
                 rect = QRectF(self.start_rect)
                 if 'T' in self.current_handle:
@@ -203,33 +196,21 @@ class ROIRectItem(QGraphicsRectItem):
                 self.setRect(norm_rect)
                 self.update_resize_handles()
 
-                # Update text input fields
+                # Update text input fields by emitting a signal
+                # (needs to be connected in MainWindow!)
                 scene_rect = self.mapRectToScene(self.rect())
                 x1, y1, x2, y2 = scene_rect.getCoords()
-                if self.x1 is not None:
-                    self.x1.setText(str(int(x1)))
-                if self.y1 is not None:
-                    self.y1.setText(str(int(y1)))
-                if self.x2 is not None:
-                    self.x2.setText(str(int(x2)))
-                if self.y2 is not None:
-                    self.y2.setText(str(int(y2)))
+                self.signals.coordinates_changed.emit(int(x1), int(y1), int(x2), int(y2))
             elif self.is_moving:
                 delta = event.pos() - event.lastPos()
                 self.moveBy(delta.x(), delta.y())
                 self.update_resize_handles()
 
-                # Update text input fields
+                # Update text input fields by emitting a signal
+                # (needs to be connected in MainWindow!)
                 scene_rect = self.mapRectToScene(self.rect())
                 x1, y1, x2, y2 = scene_rect.getCoords()
-                if self.x1 is not None:
-                    self.x1.setText(str(int(x1)))
-                if self.y1 is not None:
-                    self.y1.setText(str(int(y1)))
-                if self.x2 is not None:
-                    self.x2.setText(str(int(x2)))
-                if self.y2 is not None:
-                    self.y2.setText(str(int(y2)))
+                self.signals.coordinates_changed.emit(int(x1), int(y1), int(x2), int(y2))
             else:
                 super().mouseMoveEvent(event)
 
@@ -243,7 +224,7 @@ class ROIRectItem(QGraphicsRectItem):
                     self.setCursor(cursor)
                     break
         else:
-            # Set cursor to pointing hand if selected but not in edit mode
+            # Set cursor to pointing hand if not in edit mode
             self.setCursor(Qt.CursorShape.PointingHandCursor)
         super().hoverMoveEvent(event)
 
@@ -276,7 +257,7 @@ class ROIRectItem(QGraphicsRectItem):
         highest_z = 1  # Start at 1 as default ROI Z-value
 
         for item in self.scene().items():
-            if isinstance(item, ROIRectItem) and item != self:
+            if isinstance(item, RegionBox) and item != self:
                 highest_z = max(highest_z, item.zValue())
 
         # Set this ROI's Z-value higher than the highest

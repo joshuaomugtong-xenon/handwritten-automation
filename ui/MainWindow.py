@@ -19,7 +19,6 @@ from PyQt6.QtWidgets import (
     QSplitter,
     QGroupBox,
     QTabWidget,
-    QLabel,
 )
 from PyQt6.QtGui import (
     QPixmap,
@@ -29,6 +28,7 @@ from PyQt6.QtCore import (
     Qt,
     QPropertyAnimation,
     QEasingCurve,
+    QRectF,
 )
 
 from modules import (
@@ -49,9 +49,14 @@ from modules.config import (
 from .ErrorDialog import ErrorDialog
 from .OpenFileDialog import OpenFileDialog
 from .PhotoViewer import PhotoViewerWidget
-from .ROILabel import ROILabel
-from .ROIRectItem import ROIRectItem
-from .TemplateEditor import TemplateWidget, PositiveIntegerInput
+from .RegionImage import RegionImage
+from .RegionBox import RegionBox
+from .TemplateWidget import TemplateWidget, TemplateUI, RegionUI
+from .Label import Label
+from .BooleanComboBox import BooleanComboBox
+from .TextInput import TextInput
+
+from modules.template_validation import Region, convert_template_to_dict
 
 
 class MainWindow(QMainWindow):
@@ -69,15 +74,17 @@ class MainWindow(QMainWindow):
         self.encirclement_detector = EncirclementDetector()
         self.text_recognizer = TextRecognizer()
 
-        self.datafields = {}
-
+        self.datafields: dict[str, BooleanComboBox | TextInput] = {}
         self.templates: dict[str, Template] = {}
+
         self.load_templates()
         self.current_image_path = ''
         self.selected_template = ''
 
-        self.template_fields: dict[str, QLineEdit] = {}
-        self.template_regions: list[dict[str, QLineEdit | list[QLineEdit]]] = [] # noqa
+        self.template_ui: TemplateUI = None
+
+        self.data_animation = QPropertyAnimation()
+        self.temp_animation = QPropertyAnimation()
 
         self.initUI()
         self.showMaximized()
@@ -118,7 +125,7 @@ class MainWindow(QMainWindow):
         self.main_widget = QSplitter(Qt.Orientation.Horizontal)
 
         self.photo_viewer = PhotoViewerWidget(self)
-        self.photo_viewer.viewer.owner = self
+        self.photo_viewer.viewer.region_created.connect(self.region_created)
         self.main_widget.addWidget(self.photo_viewer)
 
         self.right_tab_widget = QTabWidget()
@@ -148,19 +155,23 @@ class MainWindow(QMainWindow):
 
     def show_file_dialog(self):
         dialog = OpenFileDialog(self)
-        self.load_templates()
-        if dialog.exec() == QDialog.DialogCode.Accepted:
-            image_path, selected = dialog.get_selected_files()
-            try:
-                self.process_image(image_path, selected)
-            except Exception:
-                ErrorDialog()
+        if dialog.exec() != QDialog.DialogCode.Accepted:
+            return
+        image_path, selected = dialog.get_selected_files()
+        try:
+            self.load_templates()
+            self.process_image(image_path, selected)
+        except Exception:
+            ErrorDialog()
 
     def reload_data(self):
         if self.current_image_path == '' or self.selected_template == '':
             return
-        self.load_templates()
-        self.process_image(self.current_image_path, self.selected_template)
+        try:
+            self.load_templates()
+            self.process_image(self.current_image_path, self.selected_template)
+        except Exception:
+            ErrorDialog()
 
     def process_image(self, image_path, selected):
         self.reset_datafields()
@@ -170,7 +181,7 @@ class MainWindow(QMainWindow):
         template = self.templates[selected]
         length = template.length
         width = template.width
-        self.template_fields = self.template_editor.init_ui(template)
+        self.template_ui = self.template_editor.init_ui(template)
 
         image = cv2.imread(image_path)
         image = self.homography_aligner.align(image, length, width)
@@ -179,14 +190,14 @@ class MainWindow(QMainWindow):
         self.photo_viewer.viewer.set_photo(pixmap)
 
         regions = template.regions
+        centers = {}
 
-        if template.use_coordinates:
-            pass
-        else:
+        if not template.use_coordinates:
             centers, corners = self.roi_extractor.get_marker_locations(image)
             for _, corner in corners.items():
                 ((x1, y1), _, (x2, y2), _) = corner
-                self.add_rect(x1, y1, x2, y2)
+                # TODO: Add the marker to the image
+                # self.add_rect(x1, y1, x2, y2)
 
         for region in regions:
             coordinates = []
@@ -195,117 +206,70 @@ class MainWindow(QMainWindow):
             else:
                 coordinates = markers_to_coordinates(region.markers, centers)
 
-            # Draw the ROI
-            rect_item = self.add_rect(*coordinates)
+            # Draw the ROI and add it to the photo viewer
+            x1, y1, x2, y2 = coordinates
+            region_box = RegionBox(x1, y1, x2 - x1, y2 - y1)
+
+            # Add the region to the template editor and link it to the ui elements
+            self.create_region(region_box, region, template.use_coordinates, False)
 
             # Crop the ROI
-            cropped_roi = self.roi_extractor.crop_roi_coordinates(
-                image, *coordinates)
-
-            def create_zoom_onclick(
-                    widget: MainWindow,
-                    rect_item: ROIRectItem):
-                def callback():
-                    widget.photo_viewer.viewer.zoom_to_rect(
-                        rect_item.rect())
-                    rect_item.setSelected(True)
-                    widget.photo_viewer.viewer._scene.update()
-                return callback
-
-            # Display the ROI under the label
-            pixmap = QPixmap.fromImage(create_image(cropped_roi))
-            roi_image = ROILabel()
-            roi_image.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
-            roi_image.setPixmap(pixmap)
-            # When the ROI image is click on the data tab, it will zoom
-            # to the ROI on the photo viewer
-            roi_image.zoom_on_click = create_zoom_onclick(self, rect_item)
-
-            # Add the region to the template regions
-            ui_handles, tp_groupbox, link = self.template_editor.add_region(
-                region,
-                template.use_coordinates)
-
-            # Store the region handles so we can save it
-            self.template_regions.append(ui_handles)
-
-            # Store the rect_item so we can zoom to it
-            if link:
-                link.owner = self
-                link.rect_item = rect_item
-
-            x1, y1, x2, y2 = None, None, None, None
-            if template.use_coordinates:
-                x1, y1, x2, y2 = ui_handles['coordinates']
+            cropped_region = self.roi_extractor.crop_roi_coordinates(image, *coordinates)
+            gray_region = cv2.cvtColor(cropped_region, cv2.COLOR_BGR2GRAY)
 
             # Define the data groupbox first so the rect_item can scroll to it
             groupbox = QGroupBox(region.name)
-            groupbox.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
             groupbox_layout = QVBoxLayout()
             groupbox.setLayout(groupbox_layout)
             groupbox_layout.addSpacing(20)
 
-            # When the ROI is resized, it will update the coordinates on the
-            # template editor
-            rect_item.x1 = x1
-            rect_item.y1 = y1
-            rect_item.x2 = x2
-            rect_item.y2 = y2
+            region_box.signals.request_scroll_to_data_groupbox.connect(
+                self.scroll_to_data_groupbox(groupbox))
 
-            # Store the parent widget so we can call parent functions
-            # from it
-            rect_item.owner = self
-            # Store the template region so we can scroll to it
-            # and delete it later
-            rect_item.template_groupbox = tp_groupbox
-            # Store the data groupbox so we can scroll to it
-            rect_item.data_groupbox = groupbox
-
-            value_label = QLabel('Value:')
-            value_label.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
+            value_label = Label('Value:')
             groupbox_layout.addWidget(value_label)
-            if region.type == RegionType.ENCIRCLEMENT or \
-                    region.type == RegionType.CHECKBOX:
-                field_widget = QComboBox()
-                field_widget.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
-                # field_widget.setSizeAdjustPolicy(QComboBox.AdjustToContents)
-                field_widget.addItems(['Yes', 'No'])
-                field_widget.setFixedWidth(100)
-                field_widget.resize(field_widget.sizeHint())
-                # field_widget.setMinimumContentsLength(10)
-                groupbox_layout.addWidget(field_widget)
-            elif region.type == 'text':
-                field_widget = QLineEdit()
-                field_widget.setFixedWidth(500)
-                field_widget.setAlignment(Qt.AlignmentFlag.AlignLeft)
-                field_widget.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
-                groupbox_layout.addWidget(field_widget)
-            else:
-                print(f'Unknown region type: \'{region.type}\'')
+            field_widget = None
 
-            gray_roi = cv2.cvtColor(cropped_roi, cv2.COLOR_BGR2GRAY)
-            if region.type == 'encirclement':
-                has_circle = self.encirclement_detector.detect(gray_roi)
+            if region.type == RegionType.ENCIRCLEMENT:
+
+                field_widget = BooleanComboBox()
+                groupbox_layout.addWidget(field_widget)
+                has_circle = self.encirclement_detector.detect(gray_region)
                 field_widget.setCurrentIndex(0 if has_circle else 1)
-            elif region.type == 'checkbox':
-                is_checked = self.checkbox_detector.detect(gray_roi)
-                field_widget.setCurrentIndex(0 if is_checked else 1)
-            elif region.type == 'text':
-                text = self.text_recognizer.recognize_text(cropped_roi)
-                field_widget.setText(text)
-            else:
-                print(f'Unknown region type: \'{region.type}\'')
 
-            roi_label = QLabel('Image:')
-            roi_label.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
-            roi_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
-            groupbox_layout.addWidget(roi_label)
+            elif region.type == RegionType.CHECKBOX:
+
+                field_widget = BooleanComboBox()
+                groupbox_layout.addWidget(field_widget)
+                is_checked = self.checkbox_detector.detect(gray_region)
+                field_widget.setCurrentIndex(0 if is_checked else 1)
+
+            elif region.type == RegionType.TEXT:
+
+                field_widget = TextInput()
+                groupbox_layout.addWidget(field_widget)
+                text = self.text_recognizer.recognize_text(cropped_region)
+                field_widget.setText(text)
+
+            else:
+                # This should not happen because the template is validated
+                continue
+
+            self.datafields[region.name] = field_widget
+
+            groupbox_layout.addWidget(Label('Image:'))
+
+            # Display the ROI under the label
+            pixmap = QPixmap.fromImage(create_image(cropped_region))
+            roi_image = RegionImage()
+            roi_image.setPixmap(pixmap)
+            # When the ROI image is clicked on the data tab, it will zoom
+            # to the ROI on the photo viewer
+            roi_image.clicked.connect(self.zoom_to_region(region_box))
 
             groupbox_layout.addWidget(roi_image)
 
             groupbox_layout.addSpacing(20)
-
-            self.datafields[region.name] = field_widget
 
             self.data_widget_layout.addWidget(groupbox)
             self.data_widget_layout.addSpacing(20)
@@ -348,10 +312,9 @@ class MainWindow(QMainWindow):
         self.clear_layout(self.data_widget_layout)
         self.current_image_path = ''
         self.selected_template = ''
-        self.clear_rects()
+        self.clear_boxes()
         self.template_editor.reset_layout()
-        self.template_fields.clear()
-        self.template_regions.clear()
+        self.template_ui = None
 
     def clear_layout(self, layout: QLayout):
         while layout.count():
@@ -365,38 +328,117 @@ class MainWindow(QMainWindow):
                     self.clear_layout(child_layout)
                     child_layout.deleteLater()
 
+    def region_box_coordinates_changed(
+            self,
+            x1_ui: QLineEdit,
+            y1_ui: QLineEdit,
+            x2_ui: QLineEdit,
+            y2_ui: QLineEdit,
+            ):
+        def callback(x1: int, y1: int, x2: int, y2: int):
+            if x1_ui:
+                x1_ui.setText(str(x1))
+            if y1_ui:
+                y1_ui.setText(str(y1))
+            if x2_ui:
+                x2_ui.setText(str(x2))
+            if y2_ui:
+                y2_ui.setText(str(y2))
+        return callback
+
+    def zoom_to_region(self, region_box: RegionBox):
+        def callback():
+            self.photo_viewer.viewer.zoom_to_rect(region_box.rect())
+            self.photo_viewer.viewer.unselect_all()
+            region_box.setSelected(True)
+            self.photo_viewer.viewer._scene.update()
+        return callback
+
     def scroll_to_data_groupbox(self, widget: QWidget):
-        vertical_scroll_bar = self.data_scroll_area.verticalScrollBar()
-        widget_pos = widget.mapTo(
-            self.data_widget, widget.rect().topLeft())
+        def callback():
+            vertical_scroll_bar = self.data_scroll_area.verticalScrollBar()
+            widget_pos = widget.mapTo(self.data_widget, widget.rect().topLeft())
 
-        # Create animation for vertical scrollbar
-        self.data_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
-        self.data_animation.setDuration(300)
-        self.data_animation.setStartValue(vertical_scroll_bar.value())
-        self.data_animation.setEndValue(widget_pos.y())
-        self.data_animation.setEasingCurve(QEasingCurve.Type.OutCubic)
+            # Create animation for vertical scrollbar
+            self.data_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
+            self.data_animation.setDuration(300)
+            self.data_animation.setStartValue(vertical_scroll_bar.value())
+            self.data_animation.setEndValue(widget_pos.y())
+            self.data_animation.setEasingCurve(QEasingCurve.Type.OutCubic)
 
-        # Start the animation
-        self.data_animation.start()
+            # Start the animation
+            self.data_animation.start()
+        return callback
 
     def scroll_to_template_groupbox(self, widget: QWidget):
-        vertical_scroll_bar = self.template_scroll_area.verticalScrollBar()
-        widget_pos = widget.mapTo(
-            self.template_editor, widget.rect().topLeft())
+        def callback():
+            vertical_scroll_bar = self.template_scroll_area.verticalScrollBar()
+            widget_pos = widget.mapTo(self.template_editor, widget.rect().topLeft())
 
-        # Create animation for vertical scrollbar
-        self.temp_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
-        self.temp_animation.setDuration(300)
-        self.temp_animation.setStartValue(vertical_scroll_bar.value())
-        self.temp_animation.setEndValue(widget_pos.y())
-        self.temp_animation.setEasingCurve(QEasingCurve.Type.OutCubic)
+            # Create animation for vertical scrollbar
+            self.temp_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
+            self.temp_animation.setDuration(300)
+            self.temp_animation.setStartValue(vertical_scroll_bar.value())
+            self.temp_animation.setEndValue(widget_pos.y())
+            self.temp_animation.setEasingCurve(QEasingCurve.Type.OutCubic)
 
-        # Start the animation
-        self.temp_animation.start()
+            # Start the animation
+            self.temp_animation.start()
+        return callback
+
+    def region_created(self, rect: QRectF):
+
+        # Create the region box
+        x, y, w, h = rect.getRect()
+        region_box = RegionBox(x, y, w, h)
+
+        # Create the region
+        x1, y1, x2, y2 = rect.getCoords()
+        region = Region(
+            name='',
+            type='text',
+            coordinates=[int(x1), int(y1), int(x2), int(y2)],
+            markers=[0, 0, 0, 0],
+        )
+
+        self.create_region(region_box, region)
+
+    def create_region(self, region_box: RegionBox, region: Region, use_coords: bool = True, is_edited: bool = True):
+        # Add the region to the photo viewer
+        self.photo_viewer.viewer._scene.addItem(region_box)
+        # Make it selected
+        region_box.setSelected(is_edited)
+        # Make it editable
+        region_box.set_edit_mode(is_edited)
+
+        # Create the template region
+        region_ui, tp_groupbox, link = self.template_editor.add_region(region, use_coords)
+        # Add the region ui elements to the template ui elements
+        self.template_ui.regions.append(region_ui)
+
+        x1_input, y1_input, x2_input, y2_input = region_ui.coordinates
+        region_box.signals.coordinates_changed.connect(
+            self.region_box_coordinates_changed(x1_input, y1_input, x2_input, y2_input))
+        region_box.signals.request_scroll_to_template_groupbox.connect(
+            self.scroll_to_template_groupbox(tp_groupbox))
+        region_box.signals.request_delete_region.connect(
+            self.delete_region(region_box, tp_groupbox, region_ui))
+
+        if link:
+            link.clicked.connect(self.zoom_to_region(region_box))
+
+    def delete_region(self, region_box: RegionBox, template_groupbox: QGroupBox, region_ui: RegionUI):
+        def callback():
+            # Remove the region from the photo viewer
+            self.photo_viewer.viewer._scene.removeItem(region_box)
+            # Remove the region from the template editor
+            self.template_editor.remove_region(template_groupbox)
+            # Remove the region from the datafields
+            self.template_ui.regions.remove(region_ui)
+        return callback
 
     def load_templates(self):
-        self.templates = {}
+        self.templates.clear()
 
         try:
             # Get all YAML files in the template folder
@@ -406,12 +448,15 @@ class MainWindow(QMainWindow):
                 try:
                     # Validate the template
                     template = validate_template_file(template_file)
+                    # Get the filename
+                    filename = os.path.basename(template_file)
 
                     # Add the template to the dictionary
-                    name = f'{template.form_type} - {template.form_title}'
+                    name = f'{filename}  |  \"{template.form_type} - {template.form_title}\"'
                     self.templates[name] = template
                 except Exception:
-                    ErrorDialog()
+                    # Skip the file if it is not a valid template
+                    continue
         except Exception:
             ErrorDialog()
 
@@ -437,47 +482,14 @@ class MainWindow(QMainWindow):
         if not file_path:
             return
 
-        template_dict = {}
-        # Get all the data from the template editor
-        for name, line_edit in self.template_fields.items():
-            if isinstance(line_edit, PositiveIntegerInput):
-                template_dict[name] = int(line_edit.text())
-            else:
-                template_dict[name] = line_edit.text()
-
-        regions = []
-        for region in self.template_regions:
-            region_dict = {}
-            for name, line_edit in region.items():
-                if isinstance(line_edit, list):
-                    region_dict[name] = [
-                        int(coord.text()) for coord in line_edit]
-                elif isinstance(line_edit, PositiveIntegerInput):
-                    region_dict[name] = int(line_edit.text())
-                else:
-                    region_dict[name] = line_edit.text()
-            regions.append(region_dict)
-
-        template_dict['regions'] = regions
+        template_dict = convert_template_to_dict(self.template_ui.value())
 
         with open(file_path, 'w') as file:
-            yaml.dump(template_dict, file)
+            yaml.dump(template_dict, file, sort_keys=False)
 
-    def add_rect(
-            self,
-            x1: int,
-            y1: int,
-            x2: int,
-            y2: int,
-            ) -> ROIRectItem:
-
-        rect_item = ROIRectItem(x1, y1, x2 - x1, y2 - y1)
-        self.photo_viewer.viewer._scene.addItem(rect_item)
-        return rect_item
-
-    def clear_rects(self):
+    def clear_boxes(self):
         for item in self.photo_viewer.viewer._scene.items():
-            if isinstance(item, ROIRectItem):
+            if isinstance(item, RegionBox):
                 self.photo_viewer.viewer._scene.removeItem(item)
 
 

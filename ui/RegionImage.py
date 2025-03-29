@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from PyQt6.QtWidgets import (
     QLabel,
 )
@@ -8,18 +6,18 @@ from PyQt6.QtGui import (
 )
 from PyQt6.QtCore import (
     Qt,
+    pyqtSignal,
 )
-from typing import Callable
 
 
-class ROILabel(QLabel):
+class RegionImage(QLabel):
+    clicked = pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.zoom_on_click: Callable = None
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
 
     def mousePressEvent(self, event: QMouseEvent):
-        if self.zoom_on_click:
-            self.zoom_on_click()
+        self.clicked.emit()
         super().mousePressEvent(event)
