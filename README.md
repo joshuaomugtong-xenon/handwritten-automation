@@ -37,6 +37,7 @@ If you installed Python using `pyenv` run the following command:
 ```bash
 pyenv local 3.12.2
 ```
+
 This ensures the local python version used is 3.12.2. Verify that the correct python version is being used using the following command:
 
 ```bash
@@ -48,57 +49,101 @@ The version that is displayed should be `Python 3.12.2`.
 ### 2. Create and Activate Virtual Environment
 
 In the same project directory, create a virtual enviroment using the following command:
+
 ```bash
 python -m venv .venv
 ```
+
 Activate the virtual enviroment using the following commands:
 
 On Windows:
+
 ```bash
 .venv\Scripts\activate
 ```
+
 On macOS/Linux:
+
 ```bash
 source .venv/bin/activate
 ```
+
 If the virtual environment is activated, you should see a `(.venv)` in your terminal prompt.
 
 ### 3. Install Dependencies
+
 Install the required packages while the virtual enviroment is activated:
+
 ```bash
 pip install -r requirements.txt
 ```
 
+If `pyqtdarktheme.setup_theme()` does not work, or `pyqtdarktheme` version is `0.1.7` instead of `2.1.0`, install it manually using the following command:
+
+```
+pip install pyqtdarktheme==2.1.0 --ignore-requires-python
+```
+
+Reference:
+https://github.com/5yutan5/PyQtDarkTheme/issues/252
+
 ## Usage Guide
+
+### Prerequisites
 
 Make sure that the virtual environment is activated before running any of the following commands
 
-### main.py
+### Getting Started
 
-This app allows you to select a photo of the document with fiducial markers and extracts its contents using the selected template. Templates are located in the `./templates` folder.
+The application allows you to select a photo of a document with fiducial markers and extract its contents using the selected template. Templates are located in the `./templates` folder.
+
+To launch the application:
 
 ```bash
 python main.py
 ```
 
-Open a specific image using `File` > `Open...` or using the `CTRL + O` shortcut key. Choose an image to process and select the template file to use for the ROI detection in the drop down list and click `Ok` to process the document image.
+### Basic Operations
 
-Inspect the image using `Left-Click` to drag to move around the image and `Mouse Scroll Up` or `Mouse Scroll Down` to zoom in and out, respectively.
+### Opening Files
 
-Adjust the UI size by dragging the splitter in the middle.
+- Open a specific image using `File > Open...` or the keyboard shortcut `CTRL + O`
+- Choose an image to process
+- Select the template file to use for the ROI detection from the dropdown list
+- Click `Ok` to process the document image
 
-Edit the fields for any corrections and save the JSON file using `File` > `Save...` or using the `CTRL + S` shortcut key.
+### Viewing Content
 
-### query.py
+- Click any of the highlighted ROIs in the `Photo Viewer` on the left side to automatically scroll to it in the `Data` tab
+- Navigate the image:
+  - `Left-Click` and drag to move around the image
+  - `Mouse Scroll Up` to zoom in
+  - `Mouse Scroll Down` to zoom out
+- Adjust the UI size by dragging the splitter in the middle
 
-This app looks for JSON files in the `./data` folder.
+### Editing and Saving
 
-```bash
-python query.py
-```
+- Edit the fields in the `Data` tab for any corrections
+- Save the data using `File > Save...` or the keyboard shortcut `CTRL + S`
+- The saved file will be in JSON format
 
-Enter query in the search bar and the search results will be displayed on the left side. The app uses a simple search algorithm that matches any filenames and contents containing the search term.
+### Template Editing
 
-Click on any of the search results to view the JSON file. The contents of the file will be displayed in table view on the right side.
+### Adding ROIs
 
-Adjust the UI size by dragging the splitter in the middle.
+1. Right-click any empty location in the `Photo Viewer`
+2. Choose `New`
+3. The new region will appear in the `Template` tab
+4. Assign a name for the region
+
+### Modifying ROIs
+
+- Select a ROI in the `Photo Viewer` and choose `Edit`
+- Drag the center of the ROI to move it
+- Drag any of the eight directional handles to resize it
+- Exit editing mode by clicking outside the ROI
+
+### Copying ROIs
+
+- Right-click on a ROI and select `Copy`
+- Right-click on a blank space in the `Photo Viewer` and click `Paste`
