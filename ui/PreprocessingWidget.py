@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
     QHBoxLayout,
     QFormLayout,
+    QCheckBox,
 )
 from PyQt6.QtCore import (
     Qt,
@@ -52,7 +53,15 @@ class PreprocessingWidget(QWidget):
         # Fiducial Enhancement (Morphological Closing)
         # ------------------------
 
-        frame_layout.addWidget(QLabel('<h3>Fiducial Enhancement</h3>'))
+        header_layout = QHBoxLayout()
+        frame_layout.addLayout(header_layout)
+
+        header_layout.addWidget(QLabel('<h3>Fiducial Enhancement</h3>'))
+        self.enable_fiducial_enhancement = QCheckBox("Enable")
+        self.enable_fiducial_enhancement.setChecked(True)
+        header_layout.addWidget(self.enable_fiducial_enhancement)
+        header_layout.addStretch(1)
+
         frame_layout.addWidget(QLabel('<i><font color="gray">(Morphological Closing)</font></i>'))
         frame_layout.addSpacing(5)
 
@@ -98,7 +107,15 @@ class PreprocessingWidget(QWidget):
         # Brightness and Contrast
         # ------------------------
 
-        frame_layout.addWidget(QLabel('<h3>Brightness and Contrast</h3>'))
+        header_layout = QHBoxLayout()
+        frame_layout.addLayout(header_layout)
+
+        header_layout.addWidget(QLabel('<h3>Brightness and Contrast</h3>'))
+        self.enable_brightness_contrast = QCheckBox("Enable")
+        self.enable_brightness_contrast.setChecked(True)
+        header_layout.addWidget(self.enable_brightness_contrast)
+        header_layout.addStretch(1)
+
         frame_layout.addSpacing(5)
 
         form_layout = QFormLayout()
@@ -134,7 +151,15 @@ class PreprocessingWidget(QWidget):
         frame_layout = QVBoxLayout()
         frame.setLayout(frame_layout)
 
-        frame_layout.addWidget(QLabel('<h3>Image Denoising</h3>'))
+        header_layout = QHBoxLayout()
+        frame_layout.addLayout(header_layout)
+
+        header_layout.addWidget(QLabel('<h3>Image Denoising</h3>'))
+        self.enable_denoising = QCheckBox("Enable")
+        self.enable_denoising.setChecked(True)
+        header_layout.addWidget(self.enable_denoising)
+        header_layout.addStretch(1)
+
         frame_layout.addWidget(QLabel('<i><font color="gray">(Fast Non-Local Means Denoising)</font></i>'))
         frame_layout.addSpacing(5)
 
@@ -172,7 +197,15 @@ class PreprocessingWidget(QWidget):
         frame_layout = QVBoxLayout()
         frame.setLayout(frame_layout)
 
-        frame_layout.addWidget(QLabel('<h3>Contrast Enhancement</h3>'))
+        header_layout = QHBoxLayout()
+        frame_layout.addLayout(header_layout)
+
+        header_layout.addWidget(QLabel('<h3>Contrast Enhancement</h3>'))
+        self.enable_clahe = QCheckBox("Enable")
+        self.enable_clahe.setChecked(True)
+        header_layout.addWidget(self.enable_clahe)
+        header_layout.addStretch(1)
+
         frame_layout.addWidget(QLabel('<i><font color="gray">(Contrast Limited Adaptive Histogram Equalization)</font></i>'))
         frame_layout.addSpacing(5)
 
@@ -206,67 +239,70 @@ class PreprocessingWidget(QWidget):
 
     def apply_data_extraction_preprocessing(self, image: MatLike) -> MatLike:
 
+        image = image.copy()
+
         # Denoising (Fast Non-Local Means Denoising)
         # ------------------------
 
-        image = image.copy()
-        h = self.filter_strength.value()
-        template_window_size = self.template_window_size.value()
-        template_window_size = template_window_size if template_window_size % 2 == 1 else template_window_size + 1
-        search_window_size = self.search_window_size.value()
-        search_window_size = search_window_size if search_window_size % 2 == 1 else search_window_size + 1
-        image = cv2.fastNlMeansDenoisingColored(
-            src=image,
-            h=h,
-            templateWindowSize=template_window_size,
-            searchWindowSize=search_window_size)
+        if self.enable_denoising.isChecked():
+            h = self.filter_strength.value()
+            template_window_size = self.template_window_size.value()
+            template_window_size = template_window_size if template_window_size % 2 == 1 else template_window_size + 1
+            search_window_size = self.search_window_size.value()
+            search_window_size = search_window_size if search_window_size % 2 == 1 else search_window_size + 1
+            image = cv2.fastNlMeansDenoisingColored(
+                src=image,
+                h=h,
+                templateWindowSize=template_window_size,
+                searchWindowSize=search_window_size)
 
         # Contrast Enhancement (CLAHE)
         # ------------------------
 
-        clip_limit = self.clip_limit.value()
-        tile_grid_size = (self.tile_grid_size_x.value(), self.tile_grid_size_y.value())
+        if self.enable_clahe.isChecked():
+            clip_limit = self.clip_limit.value()
+            tile_grid_size = (self.tile_grid_size_x.value(), self.tile_grid_size_y.value())
 
-        clahe = cv2.createCLAHE(
-            clipLimit=clip_limit,
-            tileGridSize=tile_grid_size)
+            clahe = cv2.createCLAHE(
+                clipLimit=clip_limit,
+                tileGridSize=tile_grid_size)
 
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        image = clahe.apply(image)
-        image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            image = clahe.apply(image)
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
 
         return image
 
     def apply_homography_preprocessing(self, image: MatLike) -> MatLike:
 
+        image = image.copy()
+
         # Morphological Closing
         # ------------------------
+        if self.enable_fiducial_enhancement.isChecked():
+            match self.kernel_shape.currentText():
+                case 'Rectangular':
+                    kernel_shape = cv2.MORPH_RECT
+                case 'Elliptical':
+                    kernel_shape = cv2.MORPH_ELLIPSE
+                case 'Cross-shaped':
+                    kernel_shape = cv2.MORPH_CROSS
+                case _:
+                    kernel_shape = cv2.MORPH_RECT
+            kernel_size = (self.kernel_size_x.value(), self.kernel_size_y.value())
+            iterations = self.iterations.value()
 
-        image = image.copy()
-        match self.kernel_shape.currentText():
-            case 'Rectangular':
-                kernel_shape = cv2.MORPH_RECT
-            case 'Elliptical':
-                kernel_shape = cv2.MORPH_ELLIPSE
-            case 'Cross-shaped':
-                kernel_shape = cv2.MORPH_CROSS
-            case _:
-                kernel_shape = cv2.MORPH_RECT
-        kernel_size = (self.kernel_size_x.value(), self.kernel_size_y.value())
-        iterations = self.iterations.value()
-
-        structuring_element = cv2.getStructuringElement(
-            shape=kernel_shape,
-            ksize=kernel_size)
-        image = cv2.morphologyEx(
-            src=image, op=cv2.MORPH_CLOSE, kernel=structuring_element, iterations=iterations)
+            structuring_element = cv2.getStructuringElement(
+                shape=kernel_shape,
+                ksize=kernel_size)
+            image = cv2.morphologyEx(
+                src=image, op=cv2.MORPH_CLOSE, kernel=structuring_element, iterations=iterations)
 
         # Brightness and Contrast
         # ------------------------
-
-        alpha = self.alpha.value()
-        beta = self.beta.value()
-
-        image = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
+        if self.enable_brightness_contrast.isChecked():
+            alpha = self.alpha.value()
+            beta = self.beta.value()
+            image = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
 
         return image
