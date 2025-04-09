@@ -203,8 +203,13 @@ class MainWindow(QMainWindow):
 
         # Load the image and align it
         progress.setLabelText("Aligning image...")
-        image = cv2.imread(image_path)
-        image = self.homography_aligner.align(image, length, width)
+        try:
+            image = cv2.imread(image_path)
+            image = self.homography_aligner.align(image, length, width)
+        except Exception:
+            ErrorDialog()
+            progress.close()
+            return
 
         pixmap = QPixmap.fromImage(create_image(image))
         self.photo_viewer.viewer.set_photo(pixmap)
@@ -215,11 +220,16 @@ class MainWindow(QMainWindow):
 
         centers = {}
         if not template.use_coordinates:
-            centers, corners = self.roi_extractor.get_marker_locations(image)
-            for _, corner in corners.items():
-                ((x1, y1), _, (x2, y2), _) = corner
-                # TODO: Add the marker to the image
-                # self.add_rect(x1, y1, x2, y2)
+            try:
+                centers, corners = self.roi_extractor.get_marker_locations(image)
+                for _, corner in corners.items():
+                    ((x1, y1), _, (x2, y2), _) = corner
+                    # TODO: Add the marker to the image
+                    # self.add_rect(x1, y1, x2, y2)
+            except Exception:
+                ErrorDialog()
+                progress.close()
+                return
 
         # Load the text recognition model
         progress.setLabelText("Loading the text recognition model...")
@@ -232,11 +242,7 @@ class MainWindow(QMainWindow):
         # Process each region in the template
         for i, region in enumerate(regions):
             progress.setLabelText(f"Processing region: {i + 1}/{len(regions)}")
-            coordinates = []
-            if template.use_coordinates:
-                coordinates = region.coordinates
-            else:
-                coordinates = markers_to_coordinates(region.markers, centers)
+            coordinates = region.coordinates if template.use_coordinates else markers_to_coordinates(region.markers, centers)
 
             # Draw the ROI and add it to the photo viewer
             x1, y1, x2, y2 = coordinates
