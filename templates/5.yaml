@@ -1,0 +1,104 @@
+form_title: DECLARATION UPON
+form_type: PGH Form No. P-310005(a)
+length: 1480
+regions:
+- coordinates:
+  - 1132
+  - 88
+  - 1419
+  - 284
+  name: Case No.
+  type: text
+- coordinates:
+  - 205
+  - 435
+  - 819
+  - 460
+  name: 'Patient: Name'
+  type: text
+- coordinates:
+  - 132
+  - 464
+  - 1046
+  - 488
+  name: 'Patient: Address'
+  type: text
+- coordinates:
+  - 207
+  - 537
+  - 829
+  - 571
+  name: 'Guardian: Name'
+  type: text
+- coordinates:
+  - 124
+  - 570
+  - 973
+  - 600
+  name: 'Guardian: Address'
+  type: text
+- coordinates:
+  - 155
+  - 601
+  - 409
+  - 629
+  name: 'Guardian: Relation to Patient'
+  type: text
+- coordinates:
+  - 433
+  - 595
+  - 954
+  - 626
+  name: 'Guardian: Name of Patient'
+  type: text
+- coordinates:
+  - 222
+  - 1330
+  - 1405
+  - 1422
+  name: '7.'
+  type: text
+- coordinates:
+  - 982
+  - 1443
+  - 1072
+  - 1494
+  name: Day
+  type: text
+- coordinates:
+  - 1141
+  - 1451
+  - 1245
+  - 1497
+  name: Month
+  type: text
+- coordinates:
+  - 1278
+  - 1455
+  - 1390
+  - 1496
+  name: Year
+  type: text
+- coordinates:
+  - 241
+  - 1500
+  - 587
+  - 1528
+  name: Place
+  type: text
+- coordinates:
+  - 725
+  - 325
+  - 788
+  - 354
+  name: 'DECLARATION UPON: Admission'
+  type: checkbox
+- coordinates:
+  - 1044
+  - 321
+  - 1107
+  - 350
+  name: 'DECLARATION UPON: Consultation (for DEM only)'
+  type: checkbox
+use_coordinates: 'True'
+width: 2125

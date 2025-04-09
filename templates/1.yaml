@@ -1,0 +1,238 @@
+form_title: ADMITTING ORDERS
+form_type: PGH Form
+length: 1480
+regions:
+- coordinates:
+  - 295
+  - 455
+  - 1423
+  - 526
+  name: Date
+  type: text
+- coordinates:
+  - 296
+  - 530
+  - 1009
+  - 601
+  name: Name
+  type: text
+- coordinates:
+  - 1149
+  - 531
+  - 1423
+  - 601
+  name: Age/Sex
+  type: text
+- coordinates:
+  - 308
+  - 609
+  - 1228
+  - 680
+  name: Diagnosis
+  type: text
+- coordinates:
+  - 294
+  - 682
+  - 1422
+  - 753
+  name: Plan
+  type: text
+- coordinates:
+  - 718
+  - 759
+  - 812
+  - 795
+  name: Bed No.
+  type: text
+- coordinates:
+  - 1141
+  - 756
+  - 1481
+  - 792
+  name: Service
+  type: text
+- coordinates:
+  - 296
+  - 871
+  - 1423
+  - 942
+  name: Diet
+  type: text
+- coordinates:
+  - 128
+  - 986
+  - 226
+  - 1019
+  name: 'Diagnostics: CBC with pc and dc'
+  type: checkbox
+- coordinates:
+  - 129
+  - 1023
+  - 224
+  - 1054
+  name: 'Diagnostics: BUN, Crea, Na, K, Cl'
+  type: checkbox
+- coordinates:
+  - 128
+  - 1062
+  - 219
+  - 1095
+  name: 'Diagnostics: FBS, LP'
+  type: checkbox
+- coordinates:
+  - 128
+  - 1100
+  - 222
+  - 1134
+  name: 'Diagnostics: Chest X-ray PA upright'
+  type: checkbox
+- coordinates:
+  - 130
+  - 1139
+  - 222
+  - 1172
+  name: 'Diagnostics: 12L ECG'
+  type: checkbox
+- coordinates:
+  - 689
+  - 984
+  - 780
+  - 1018
+  name: 'Diagnostics: Blood typing'
+  type: checkbox
+- coordinates:
+  - 687
+  - 1023
+  - 779
+  - 1057
+  name: 'Diagnostics: PT / PTT'
+  type: checkbox
+- coordinates:
+  - 686
+  - 1063
+  - 780
+  - 1095
+  name: 'Diagnostics: Urinalysis'
+  type: checkbox
+- coordinates:
+  - 687
+  - 1100
+  - 778
+  - 1132
+  name: 'Diagnostics: FT4, TSH'
+  type: checkbox
+- coordinates:
+  - 685
+  - 1137
+  - 777
+  - 1171
+  name: 'Diagnostics: Ca, alb'
+  type: checkbox
+- coordinates:
+  - 130
+  - 1178
+  - 226
+  - 1211
+  name: 'Diagnostics: Others'
+  type: checkbox
+- coordinates:
+  - 655
+  - 1176
+  - 1417
+  - 1212
+  name: 'Diagnostics: Others'
+  type: text
+- coordinates:
+  - 137
+  - 1331
+  - 220
+  - 1365
+  name: 'SIC/IOD/COD to: Do complete history and physical examination'
+  type: checkbox
+- coordinates:
+  - 138
+  - 1369
+  - 218
+  - 1404
+  name: 'SIC/IOD/COD to: Make 2 copies of clinical abstract, 2 copies of discharge
+    summary and CF4 form on ERP'
+  type: checkbox
+- coordinates:
+  - 136
+  - 1407
+  - 219
+  - 1441
+  name: 'SIC/IOD/COD to: Prepare 1 histopath form'
+  type: checkbox
+- coordinates:
+  - 142
+  - 1595
+  - 216
+  - 1630
+  name: 'Refer to: SAPOD'
+  type: checkbox
+- coordinates:
+  - 143
+  - 1635
+  - 214
+  - 1669
+  name: 'Refer to: Endo'
+  type: checkbox
+- coordinates:
+  - 143
+  - 1674
+  - 213
+  - 1706
+  name: 'Refer to: Pulmo'
+  type: checkbox
+- coordinates:
+  - 144
+  - 1711
+  - 213
+  - 1745
+  name: 'Refer to: Gen Ped'
+  type: checkbox
+- coordinates:
+  - 694
+  - 1596
+  - 780
+  - 1629
+  name: 'Refer to: Psych'
+  type: checkbox
+- coordinates:
+  - 694
+  - 1635
+  - 780
+  - 1668
+  name: 'Refer to: Med Onco'
+  type: checkbox
+- coordinates:
+  - 695
+  - 1672
+  - 780
+  - 1706
+  name: 'Refer to: Rad Onco'
+  type: checkbox
+- coordinates:
+  - 695
+  - 1710
+  - 779
+  - 1745
+  name: 'Refer to: Dentistry'
+  type: checkbox
+- coordinates:
+  - 144
+  - 1749
+  - 213
+  - 1783
+  name: 'Refer to: Others'
+  type: checkbox
+- coordinates:
+  - 656
+  - 1750
+  - 1420
+  - 1783
+  name: 'Refer to: Others'
+  type: text
+use_coordinates: 'True'
+width: 2180

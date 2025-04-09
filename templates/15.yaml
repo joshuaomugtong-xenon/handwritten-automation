@@ -1,0 +1,643 @@
+form_title: Preoperative Checklist Form
+form_type: PGH Form No. P-610011
+length: 1335
+regions:
+- coordinates:
+  - 250
+  - 292
+  - 794
+  - 345
+  name: Name (Last, First, MI)
+  type: text
+- coordinates:
+  - 245
+  - 349
+  - 790
+  - 399
+  name: 'Ward & Bed #'
+  type: text
+- coordinates:
+  - 249
+  - 405
+  - 793
+  - 442
+  name: Diagnosis
+  type: text
+- coordinates:
+  - 250
+  - 441
+  - 791
+  - 488
+  name: Date & Time of Operation
+  type: text
+- coordinates:
+  - 251
+  - 493
+  - 791
+  - 544
+  name: Operation
+  type: text
+- coordinates:
+  - 257
+  - 561
+  - 312
+  - 597
+  name: Operation = Elective
+  type: checkbox
+- coordinates:
+  - 499
+  - 561
+  - 556
+  - 602
+  name: Operation = Emergency
+  type: checkbox
+- coordinates:
+  - 993
+  - 288
+  - 1279
+  - 338
+  name: Case No.
+  type: text
+- coordinates:
+  - 991
+  - 341
+  - 1280
+  - 391
+  name: X-ray No.
+  type: text
+- coordinates:
+  - 971
+  - 403
+  - 1295
+  - 438
+  name: Service
+  type: text
+- coordinates:
+  - 986
+  - 445
+  - 1274
+  - 505
+  name: Surgeon
+  type: text
+- coordinates:
+  - 993
+  - 504
+  - 1059
+  - 594
+  name: MSS Classification = A
+  type: encirclement
+- coordinates:
+  - 1060
+  - 503
+  - 1133
+  - 592
+  name: MSS Classification = B
+  type: encirclement
+- coordinates:
+  - 1133
+  - 507
+  - 1211
+  - 592
+  name: MSS Classification = C
+  type: encirclement
+- coordinates:
+  - 1209
+  - 507
+  - 1273
+  - 592
+  name: MSS Classification = D
+  type: encirclement
+- coordinates:
+  - 302
+  - 631
+  - 798
+  - 672
+  name: Body Weight (kg)
+  type: text
+- coordinates:
+  - 691
+  - 733
+  - 780
+  - 761
+  name: Consent for Operation Signed = Yes
+  type: checkbox
+- coordinates:
+  - 800
+  - 731
+  - 921
+  - 760
+  name: Consent for Operation Signed = No
+  type: checkbox
+- coordinates:
+  - 686
+  - 770
+  - 791
+  - 797
+  name: 'Preparation: Oral Care = Yes'
+  type: checkbox
+- coordinates:
+  - 799
+  - 767
+  - 921
+  - 796
+  name: 'Preparation: Oral Care = No'
+  type: checkbox
+- coordinates:
+  - 690
+  - 807
+  - 785
+  - 832
+  name: 'Preparation: Skin Preparation = Yes'
+  type: checkbox
+- coordinates:
+  - 799
+  - 803
+  - 922
+  - 832
+  name: 'Preparation: Skin Preparation = No'
+  type: checkbox
+- coordinates:
+  - 686
+  - 842
+  - 792
+  - 870
+  name: 'Preparation: Bowel Preparation = Yes'
+  type: checkbox
+- coordinates:
+  - 798
+  - 839
+  - 921
+  - 870
+  name: 'Preparation: Bowel Preparation = No'
+  type: checkbox
+- coordinates:
+  - 686
+  - 876
+  - 793
+  - 907
+  name: Intravenous Line Placed = Yes
+  type: checkbox
+- coordinates:
+  - 795
+  - 874
+  - 921
+  - 908
+  name: Intravenous Line Placed = No
+  type: checkbox
+- coordinates:
+  - 99
+  - 1001
+  - 485
+  - 1038
+  name: Pre-Anesthetic Medications Ordered (1)
+  type: text
+- coordinates:
+  - 492
+  - 1001
+  - 558
+  - 1032
+  name: 'Pre-Anesthetic Medications Ordered (1): Given = Yes'
+  type: checkbox
+- coordinates:
+  - 564
+  - 1002
+  - 625
+  - 1031
+  name: 'Pre-Anesthetic Medications Ordered (1): Given = No'
+  type: checkbox
+- coordinates:
+  - 631
+  - 1002
+  - 818
+  - 1033
+  name: 'Pre-Anesthetic Medications Ordered (1): Time'
+  type: text
+- coordinates:
+  - 100
+  - 1038
+  - 486
+  - 1071
+  name: Pre-Anesthetic Medications Ordered (2)
+  type: text
+- coordinates:
+  - 492
+  - 1039
+  - 558
+  - 1069
+  name: 'Pre-Anesthetic Medications Ordered (2): Given = Yes'
+  type: checkbox
+- coordinates:
+  - 566
+  - 1040
+  - 624
+  - 1068
+  name: 'Pre-Anesthetic Medications Ordered (2): Given = No'
+  type: checkbox
+- coordinates:
+  - 631
+  - 1037
+  - 820
+  - 1070
+  name: 'Pre-Anesthetic Medications Ordered (2): Time'
+  type: text
+- coordinates:
+  - 98
+  - 1074
+  - 486
+  - 1105
+  name: Pre-Anesthetic Medications Ordered (3)
+  type: text
+- coordinates:
+  - 491
+  - 1074
+  - 559
+  - 1106
+  name: 'Pre-Anesthetic Medications Ordered (3): Given = Yes'
+  type: checkbox
+- coordinates:
+  - 565
+  - 1072
+  - 624
+  - 1105
+  name: 'Pre-Anesthetic Medications Ordered (3): Given = No'
+  type: checkbox
+- coordinates:
+  - 630
+  - 1074
+  - 818
+  - 1108
+  name: 'Pre-Anesthetic Medications Ordered (3): Time'
+  type: text
+- coordinates:
+  - 299
+  - 1155
+  - 548
+  - 1185
+  name: 'Vital Signs (HR): Pre-Med'
+  type: text
+- coordinates:
+  - 549
+  - 1156
+  - 818
+  - 1186
+  name: 'Vital Signs (HR): Post-Med'
+  type: text
+- coordinates:
+  - 303
+  - 1185
+  - 548
+  - 1213
+  name: 'Vital Signs (BP): Pre-Med'
+  type: text
+- coordinates:
+  - 549
+  - 1183
+  - 818
+  - 1214
+  name: 'Vital Signs (BP): Post-Med'
+  type: text
+- coordinates:
+  - 306
+  - 1212
+  - 545
+  - 1239
+  name: 'Vital Signs (RR): Pre-Med'
+  type: text
+- coordinates:
+  - 549
+  - 1214
+  - 817
+  - 1243
+  name: 'Vital Signs (RR): Post-Med'
+  type: text
+- coordinates:
+  - 300
+  - 1237
+  - 543
+  - 1264
+  name: 'Vital Signs (T): Pre-Med'
+  type: text
+- coordinates:
+  - 549
+  - 1239
+  - 818
+  - 1269
+  name: 'Vital Signs (T): Post-Med'
+  type: text
+- coordinates:
+  - 101
+  - 1357
+  - 498
+  - 1393
+  name: Antibiotic Ordered 1
+  type: text
+- coordinates:
+  - 508
+  - 1364
+  - 694
+  - 1394
+  name: 'Antibiotic Ordered 1: Skin Test'
+  type: text
+- coordinates:
+  - 702
+  - 1364
+  - 786
+  - 1394
+  name: 'Antibiotic Ordered 1: Given = Yes'
+  type: checkbox
+- coordinates:
+  - 791
+  - 1363
+  - 873
+  - 1394
+  name: 'Antibiotic Ordered 1: Given = No'
+  type: checkbox
+- coordinates:
+  - 94
+  - 1393
+  - 495
+  - 1423
+  name: Antibiotic Ordered 2
+  type: text
+- coordinates:
+  - 507
+  - 1402
+  - 695
+  - 1431
+  name: 'Antibiotic Ordered 2: Skin Test'
+  type: text
+- coordinates:
+  - 701
+  - 1400
+  - 783
+  - 1431
+  name: 'Antibiotic Ordered 2: Given = Yes'
+  type: checkbox
+- coordinates:
+  - 789
+  - 1400
+  - 872
+  - 1429
+  name: 'Antibiotic Ordered 2: Given = No'
+  type: checkbox
+- coordinates:
+  - 91
+  - 1437
+  - 501
+  - 1468
+  name: Antibiotic Ordered 3
+  type: text
+- coordinates:
+  - 507
+  - 1438
+  - 694
+  - 1467
+  name: 'Antibiotic Ordered 3: Skin Test'
+  type: text
+- coordinates:
+  - 702
+  - 1437
+  - 783
+  - 1466
+  name: 'Antibiotic Ordered 3: Given = Yes'
+  type: checkbox
+- coordinates:
+  - 791
+  - 1436
+  - 874
+  - 1468
+  name: 'Antibiotic Ordered 3: Given = No'
+  type: checkbox
+- coordinates:
+  - 455
+  - 1480
+  - 507
+  - 1524
+  name: Blood for O.R. Use Ordered = Yes
+  type: checkbox
+- coordinates:
+  - 602
+  - 1477
+  - 671
+  - 1525
+  name: Blood for O.R. Use Ordered = No
+  type: checkbox
+- coordinates:
+  - 780
+  - 1473
+  - 938
+  - 1525
+  name: 'Blood for O.R. Use Ordered: Type'
+  type: text
+- coordinates:
+  - 247
+  - 1599
+  - 437
+  - 1643
+  name: 'Fresh Whole Blood: No. of Units Available'
+  type: text
+- coordinates:
+  - 249
+  - 1647
+  - 437
+  - 1685
+  name: 'Fresh Whole Blood: Serial Numbers'
+  type: text
+- coordinates:
+  - 442
+  - 1599
+  - 565
+  - 1643
+  name: 'X- Matched Fresh Whole Blood: No. of Units Available'
+  type: text
+- coordinates:
+  - 442
+  - 1647
+  - 566
+  - 1684
+  name: 'X- Matched Fresh Whole Blood: Serial Numbers'
+  type: text
+- coordinates:
+  - 572
+  - 1598
+  - 699
+  - 1642
+  name: 'Packed RBC: No. of Units Available'
+  type: text
+- coordinates:
+  - 573
+  - 1638
+  - 710
+  - 1692
+  name: 'Packed RBC: Serial Numbers'
+  type: text
+- coordinates:
+  - 706
+  - 1599
+  - 862
+  - 1641
+  name: 'X- Matched Packed RBC: No. of Units Available'
+  type: text
+- coordinates:
+  - 703
+  - 1648
+  - 862
+  - 1685
+  name: 'X- Matched Packed RBC: Serial Numbers'
+  type: text
+- coordinates:
+  - 427
+  - 1764
+  - 488
+  - 1800
+  name: Identification Wristlet Applied = Yes
+  type: checkbox
+- coordinates:
+  - 494
+  - 1764
+  - 550
+  - 1799
+  name: Identification Wristlet Applied = No
+  type: checkbox
+- coordinates:
+  - 431
+  - 1804
+  - 478
+  - 1838
+  name: False Teeth Removed = Yes
+  type: checkbox
+- coordinates:
+  - 505
+  - 1807
+  - 552
+  - 1834
+  name: False Teeth Removed = No
+  type: checkbox
+- coordinates:
+  - 557
+  - 1815
+  - 626
+  - 1845
+  name: False Teeth Removed = None
+  type: checkbox
+- coordinates:
+  - 431
+  - 1845
+  - 488
+  - 1880
+  name: Nail Polish Removed = Yes
+  type: checkbox
+- coordinates:
+  - 492
+  - 1844
+  - 550
+  - 1882
+  name: Nail Polish Removed = No
+  type: checkbox
+- coordinates:
+  - 428
+  - 1887
+  - 485
+  - 1925
+  name: All Garments Removed = Yes
+  type: checkbox
+- coordinates:
+  - 496
+  - 1887
+  - 554
+  - 1923
+  name: All Garments Removed = No
+  type: checkbox
+- coordinates:
+  - 426
+  - 1931
+  - 480
+  - 1961
+  name: Jewelry Removed = Yes
+  type: checkbox
+- coordinates:
+  - 496
+  - 1937
+  - 548
+  - 1969
+  name: Jewelry Removed = No
+  type: checkbox
+- coordinates:
+  - 555
+  - 1931
+  - 627
+  - 1961
+  name: Jewelry Removed = None
+  type: checkbox
+- coordinates:
+  - 429
+  - 1971
+  - 484
+  - 2003
+  name: X-Ray Plates with Patient = Yes
+  type: checkbox
+- coordinates:
+  - 499
+  - 1970
+  - 549
+  - 2002
+  name: X-Ray Plates with Patient = No
+  type: checkbox
+- coordinates:
+  - 555
+  - 1975
+  - 627
+  - 2010
+  name: X-Ray Plates with Patient = None
+  type: checkbox
+- coordinates:
+  - 425
+  - 2010
+  - 485
+  - 2050
+  name: Side Rails Applied = Yes
+  type: checkbox
+- coordinates:
+  - 494
+  - 2010
+  - 552
+  - 2044
+  name: Side Rails Applied = No
+  type: checkbox
+- coordinates:
+  - 992
+  - 698
+  - 1279
+  - 1973
+  name: Remarks
+  type: text
+- coordinates:
+  - 656
+  - 1767
+  - 971
+  - 2057
+  name: O.R. Needs Sent with Patient
+  type: text
+- coordinates:
+  - 239
+  - 2055
+  - 616
+  - 2100
+  name: Nurse In-Charge
+  type: text
+- coordinates:
+  - 825
+  - 2058
+  - 1139
+  - 2101
+  name: Resident In-Charge
+  type: text
+- coordinates:
+  - 445
+  - 2101
+  - 815
+  - 2146
+  name: Countersigned by Head Nurse
+  type: text
+use_coordinates: 'True'
+width: 2200

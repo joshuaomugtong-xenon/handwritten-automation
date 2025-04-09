@@ -1,0 +1,315 @@
+form_title: Nursing Care Plan
+form_type: PGH Form No. P-610004
+length: 2159
+regions:
+- coordinates:
+  - 1629
+  - 123
+  - 2021
+  - 158
+  name: 'Case #'
+  type: text
+- coordinates:
+  - 1628
+  - 165
+  - 2021
+  - 200
+  name: RIC/Consultant(s)
+  type: text
+- coordinates:
+  - 1627
+  - 205
+  - 2022
+  - 240
+  name: 'MSS Classification/Card #'
+  type: text
+- coordinates:
+  - 1627
+  - 247
+  - 2022
+  - 285
+  name: PhilHealth Info
+  type: text
+- coordinates:
+  - 265
+  - 357
+  - 953
+  - 491
+  name: Name
+  type: text
+- coordinates:
+  - 961
+  - 391
+  - 1277
+  - 489
+  name: Age/Birthdate
+  type: text
+- coordinates:
+  - 1278
+  - 391
+  - 1328
+  - 426
+  name: Sex = Female
+  type: checkbox
+- coordinates:
+  - 1282
+  - 461
+  - 1331
+  - 492
+  name: Sex = Male
+  type: checkbox
+- coordinates:
+  - 1442
+  - 438
+  - 1526
+  - 490
+  name: Ht(cm)
+  type: text
+- coordinates:
+  - 1534
+  - 438
+  - 1611
+  - 489
+  name: Wt(kg)
+  type: text
+- coordinates:
+  - 1619
+  - 391
+  - 1795
+  - 490
+  name: Religion
+  type: text
+- coordinates:
+  - 1800
+  - 391
+  - 2011
+  - 491
+  name: Nationality
+  type: text
+- coordinates:
+  - 265
+  - 497
+  - 1527
+  - 595
+  name: Address
+  type: text
+- coordinates:
+  - 147
+  - 636
+  - 412
+  - 699
+  name: Date Admitted
+  type: text
+- coordinates:
+  - 418
+  - 637
+  - 705
+  - 698
+  name: Ward/Unit/Room/Bed No.
+  type: text
+- coordinates:
+  - 710
+  - 638
+  - 956
+  - 699
+  name: Educational Level
+  type: text
+- coordinates:
+  - 961
+  - 636
+  - 1276
+  - 699
+  name: Occupation
+  type: text
+- coordinates:
+  - 1281
+  - 636
+  - 1526
+  - 700
+  name: Allergies
+  type: text
+- coordinates:
+  - 1797
+  - 600
+  - 2009
+  - 635
+  name: Blood Type/Date done
+  type: text
+- coordinates:
+  - 414
+  - 701
+  - 1526
+  - 771
+  name: Diagnosis
+  type: text
+- coordinates:
+  - 143
+  - 813
+  - 1526
+  - 975
+  name: Operation/Delivery/Date
+  type: text
+- coordinates:
+  - 1531
+  - 636
+  - 1618
+  - 699
+  name: Blood Type = A
+  type: encirclement
+- coordinates:
+  - 1619
+  - 636
+  - 1715
+  - 700
+  name: Blood Type = B
+  type: encirclement
+- coordinates:
+  - 1717
+  - 636
+  - 1813
+  - 699
+  name: Blood Type = AB
+  type: encirclement
+- coordinates:
+  - 1816
+  - 639
+  - 1905
+  - 699
+  name: Blood Type = O
+  type: encirclement
+- coordinates:
+  - 1533
+  - 526
+  - 1620
+  - 596
+  name: Civil Status = S
+  type: encirclement
+- coordinates:
+  - 1621
+  - 530
+  - 1729
+  - 595
+  name: Civil Status = M
+  type: encirclement
+- coordinates:
+  - 1730
+  - 538
+  - 1824
+  - 595
+  name: Civil Status = W
+  type: encirclement
+- coordinates:
+  - 1824
+  - 538
+  - 1927
+  - 595
+  name: Civil Status = C
+  type: encirclement
+- coordinates:
+  - 1926
+  - 538
+  - 2011
+  - 596
+  name: Civil Status = Sep
+  type: encirclement
+- coordinates:
+  - 1536
+  - 737
+  - 1577
+  - 772
+  name: Precautions = Standard Prec (white)
+  type: checkbox
+- coordinates:
+  - 1537
+  - 772
+  - 1576
+  - 805
+  name: Precautions = Blood / Body fluid Prec (pink)
+  type: checkbox
+- coordinates:
+  - 1538
+  - 806
+  - 1577
+  - 839
+  name: Precautions = Airborne Prec (yellow)
+  type: checkbox
+- coordinates:
+  - 1540
+  - 841
+  - 1576
+  - 873
+  name: Precautions = Droplet Prec (blue)
+  type: checkbox
+- coordinates:
+  - 1540
+  - 875
+  - 1575
+  - 909
+  name: Precautions = Contact Prec (green)
+  type: checkbox
+- coordinates:
+  - 1539
+  - 910
+  - 1576
+  - 943
+  name: Precautions = SHEA Prec
+  type: checkbox
+- coordinates:
+  - 1539
+  - 945
+  - 1577
+  - 978
+  name: Precautions = Radiation Prec
+  type: checkbox
+- coordinates:
+  - 139
+  - 1202
+  - 291
+  - 1455
+  name: Date/Shift Nursing Problem
+  type: text
+- coordinates:
+  - 297
+  - 1199
+  - 562
+  - 1453
+  name: Parenteral Therapy (IV, BT, TPN, GT, etc)
+  type: text
+- coordinates:
+  - 568
+  - 1198
+  - 843
+  - 1454
+  name: Intake (TFI, IV, NGT, diet, etc.)
+  type: text
+- coordinates:
+  - 847
+  - 1198
+  - 1067
+  - 1451
+  name: Output (foley cath, thora, NGT, ostomy)
+  type: text
+- coordinates:
+  - 1066
+  - 1197
+  - 1278
+  - 1452
+  name: Monitoring (NVS, CBG, Measurements)
+  type: text
+- coordinates:
+  - 1284
+  - 1197
+  - 1705
+  - 1451
+  name: Nursing Interventions (O2, turning sked, trache, CPAP, Mech. Vent. Dressing,
+    etc.)
+  type: text
+- coordinates:
+  - 1711
+  - 1199
+  - 2020
+  - 1457
+  name: Other Endorsements (Laboratories, Procedures)
+  type: text
+use_coordinates: 'True'
+width: 1654

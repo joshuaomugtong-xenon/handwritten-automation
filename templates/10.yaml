@@ -1,0 +1,188 @@
+form_title: Health Management Record
+form_type: PGH Form No. P-310012
+length: 1500
+regions:
+- coordinates:
+  - 1116
+  - 133
+  - 1400
+  - 334
+  name: Case No.
+  type: text
+- coordinates:
+  - 104
+  - 409
+  - 872
+  - 468
+  name: Name
+  type: text
+- coordinates:
+  - 876
+  - 412
+  - 986
+  - 472
+  name: Age
+  type: text
+- coordinates:
+  - 989
+  - 412
+  - 1112
+  - 472
+  name: Sex
+  type: text
+- coordinates:
+  - 1111
+  - 412
+  - 1400
+  - 472
+  name: Ward/Bed No.
+  type: text
+- coordinates:
+  - 103
+  - 537
+  - 423
+  - 590
+  name: (1) DATE/TIME
+  type: text
+- coordinates:
+  - 427
+  - 534
+  - 1111
+  - 587
+  name: (1) ORDERS
+  type: text
+- coordinates:
+  - 1226
+  - 534
+  - 1399
+  - 587
+  name: (1) TIME NOTED
+  type: text
+- coordinates:
+  - 105
+  - 589
+  - 425
+  - 642
+  name: (2) DATE/TIME
+  type: text
+- coordinates:
+  - 436
+  - 591
+  - 1108
+  - 644
+  name: (2) ORDERS
+  type: text
+- coordinates:
+  - 1226
+  - 588
+  - 1400
+  - 641
+  name: (2) TIME NOTED
+  type: text
+- coordinates:
+  - 104
+  - 641
+  - 424
+  - 694
+  name: (3) DATE/TIME
+  type: text
+- coordinates:
+  - 440
+  - 644
+  - 1099
+  - 697
+  name: (3) ORDERS
+  type: text
+- coordinates:
+  - 1225
+  - 643
+  - 1400
+  - 696
+  name: (3) TIME NOTED
+  type: text
+- coordinates:
+  - 102
+  - 696
+  - 422
+  - 749
+  name: (4) DATE/TIME
+  type: text
+- coordinates:
+  - 428
+  - 696
+  - 1098
+  - 749
+  name: (4) ORDERS
+  type: text
+- coordinates:
+  - 1226
+  - 696
+  - 1400
+  - 749
+  name: (4) TIME NOTED
+  type: text
+- coordinates:
+  - 108
+  - 754
+  - 425
+  - 807
+  name: (5) DATE/TIME
+  type: text
+- coordinates:
+  - 432
+  - 751
+  - 1105
+  - 804
+  name: (5) ORDERS
+  type: text
+- coordinates:
+  - 1227
+  - 750
+  - 1400
+  - 803
+  name: (5) TIME NOTED
+  type: text
+- coordinates:
+  - 104
+  - 809
+  - 421
+  - 862
+  name: (6) DATE/TIME
+  type: text
+- coordinates:
+  - 433
+  - 808
+  - 1106
+  - 861
+  name: (6) ORDERS
+  type: text
+- coordinates:
+  - 1223
+  - 808
+  - 1396
+  - 861
+  name: (6) TIME NOTED
+  type: text
+- coordinates:
+  - 106
+  - 862
+  - 423
+  - 915
+  name: (7) DATE/TIME
+  type: text
+- coordinates:
+  - 431
+  - 864
+  - 1104
+  - 917
+  name: (7) ORDERS
+  type: text
+- coordinates:
+  - 1225
+  - 862
+  - 1398
+  - 915
+  name: (7) TIME NOTED
+  type: text
+use_coordinates: 'True'
+width: 2000

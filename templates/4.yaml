@@ -1,0 +1,104 @@
+form_title: PAHAYAG SA
+form_type: PGH Form No. P-310005(b)
+length: 1480
+regions:
+- coordinates:
+  - 111
+  - 309
+  - 170
+  - 373
+  name: Pananatili sa Ospital (Confinenment)
+  type: checkbox
+- coordinates:
+  - 792
+  - 323
+  - 844
+  - 359
+  name: Pagpapakonsulta sa Department of Emergency Medicine (for DEM only)
+  type: checkbox
+- coordinates:
+  - 1118
+  - 384
+  - 1262
+  - 449
+  name: Kaso Blg.
+  type: text
+- coordinates:
+  - 210
+  - 486
+  - 1046
+  - 536
+  name: Pangalan
+  type: text
+- coordinates:
+  - 55
+  - 539
+  - 1006
+  - 574
+  name: Tirahan
+  type: text
+- coordinates:
+  - 210
+  - 632
+  - 732
+  - 685
+  name: Pangalan
+  type: text
+- coordinates:
+  - 63
+  - 685
+  - 801
+  - 712
+  name: Tirahan
+  type: text
+- coordinates:
+  - 64
+  - 716
+  - 457
+  - 742
+  name: Relasyon
+  type: text
+- coordinates:
+  - 470
+  - 716
+  - 978
+  - 742
+  name: Pangalan ng Pasyente
+  type: text
+- coordinates:
+  - 154
+  - 1498
+  - 1434
+  - 1608
+  name: Iba pa
+  type: text
+- coordinates:
+  - 1209
+  - 1669
+  - 1263
+  - 1712
+  name: 'Petsa: Araw'
+  type: text
+- coordinates:
+  - 1292
+  - 1662
+  - 1476
+  - 1714
+  name: 'Petsa: Buwan'
+  type: text
+- coordinates:
+  - 132
+  - 1716
+  - 192
+  - 1756
+  name: 'Petsa: Taon'
+  type: text
+- coordinates:
+  - 222
+  - 1712
+  - 417
+  - 1745
+  name: Lugar
+  type: text
+use_coordinates: 'True'
+width: 2130

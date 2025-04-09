@@ -219,11 +219,20 @@ class MainWindow(QMainWindow):
             # Convert to grayscale
             marker_image = image.copy()
             marker_image = cv2.cvtColor(marker_image, cv2.COLOR_BGR2GRAY)
-            marker_image = self.preprocessing_widget.apply_preprocessing(marker_image)
+            marker_image = self.preprocessing_widget.apply_homography_preprocessing(marker_image)
             image = self.homography_aligner.align(image, marker_image, length, width)
         except Exception:
-            ErrorDialog()
             progress.close()
+            ErrorDialog()
+            return
+
+        # Preprocess the image
+        try:
+            progress.setLabelText("Preprocessing image...")
+            image = self.preprocessing_widget.apply_data_extraction_preprocessing(image)
+        except Exception:
+            progress.close()
+            ErrorDialog()
             return
 
         pixmap = QPixmap.fromImage(create_image(image))
@@ -242,8 +251,8 @@ class MainWindow(QMainWindow):
                     # TODO: Add the marker to the image
                     # self.add_rect(x1, y1, x2, y2)
             except Exception:
-                ErrorDialog()
                 progress.close()
+                ErrorDialog()
                 return
 
         # Load the text recognition model

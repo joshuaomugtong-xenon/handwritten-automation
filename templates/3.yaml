@@ -1,0 +1,91 @@
+form_title: CLINICAL ABSTRACT - PAGE 2
+form_type: PGH Form No. P-310010
+length: 1520
+regions:
+- coordinates:
+  - 352
+  - 77
+  - 1441
+  - 183
+  name: Skin/ Extremities
+  type: text
+- coordinates:
+  - 351
+  - 188
+  - 1440
+  - 293
+  name: Neuro Examination
+  type: text
+- coordinates:
+  - 83
+  - 326
+  - 1442
+  - 484
+  name: Course in the Wards
+  type: text
+- coordinates:
+  - 80
+  - 516
+  - 1443
+  - 840
+  name: 'Pertinent Laboratory and Pertinent Diagnostics Findings: (CBC, Urinalysis,
+    Fecalysis, X-ray, Biopsy, etc.)'
+  type: text
+- coordinates:
+  - 317
+  - 847
+  - 778
+  - 883
+  name: Surgical Operation
+  type: text
+- coordinates:
+  - 279
+  - 881
+  - 447
+  - 945
+  name: 'Surgical Operation: Date (Month/Day/Year)'
+  type: text
+- coordinates:
+  - 537
+  - 881
+  - 775
+  - 943
+  name: 'Surgical Operation: Time'
+  type: text
+- coordinates:
+  - 80
+  - 973
+  - 775
+  - 1110
+  name: Type of Anesthesia
+  type: text
+- coordinates:
+  - 225
+  - 1139
+  - 508
+  - 1193
+  name: 'Discharge: Date'
+  type: text
+- coordinates:
+  - 606
+  - 1116
+  - 997
+  - 1194
+  name: 'Discharge: Time'
+  type: text
+- coordinates:
+  - 408
+  - 1239
+  - 1388
+  - 1329
+  name: Final Diagnosis
+  type: text
+- coordinates:
+  - 406
+  - 1331
+  - 1389
+  - 1422
+  name: Condition on Discharge
+  type: text
+use_coordinates: 'True'
+width: 2160

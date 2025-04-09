@@ -1,0 +1,111 @@
+form_title: PAGBIGAY PAHINTULOT SA OPERASYON, PAMPANGIMAY, O MGA IBA PANG PANGGAGAMOT
+form_type: PGH Form No. P-310004(b)
+length: 1500
+regions:
+- coordinates:
+  - 1210
+  - 230
+  - 1390
+  - 350
+  name: Kaso Blg.
+  type: text
+- coordinates:
+  - 267
+  - 452
+  - 915
+  - 500
+  name: Pangalan ng Pasyente
+  type: text
+- coordinates:
+  - 92
+  - 504
+  - 920
+  - 535
+  name: Tirahan ng Pasyente
+  type: text
+- coordinates:
+  - 300
+  - 543
+  - 510
+  - 583
+  name: 'Operasyon/Pampangimay/Panggagamot '
+  type: text
+- coordinates:
+  - 992
+  - 541
+  - 1390
+  - 572
+  name: Doktor o Nars
+  type: text
+- coordinates:
+  - 262
+  - 612
+  - 935
+  - 662
+  name: Tagapag-alaga ng Pasyente
+  type: text
+- coordinates:
+  - 96
+  - 667
+  - 932
+  - 702
+  name: Tirahan ng Tagapag-alaga
+  type: text
+- coordinates:
+  - 96
+  - 702
+  - 664
+  - 737
+  name: Operasyon/Pampangimay/Panggagamot
+  type: text
+- coordinates:
+  - 776
+  - 704
+  - 1021
+  - 737
+  name: Relasyon sa Pasyente
+  type: text
+- coordinates:
+  - 1024
+  - 707
+  - 1392
+  - 737
+  name: Pangalan ng Pasyente
+  type: text
+- coordinates:
+  - 100
+  - 812
+  - 1410
+  - 945
+  name: Panggagamot/Operasyon/Pampangimay
+  type: text
+- coordinates:
+  - 322
+  - 1340
+  - 440
+  - 1372
+  name: Araw
+  type: text
+- coordinates:
+  - 484
+  - 1340
+  - 784
+  - 1367
+  name: Buwan
+  type: text
+- coordinates:
+  - 792
+  - 1340
+  - 890
+  - 1370
+  name: Taon
+  type: text
+- coordinates:
+  - 922
+  - 1341
+  - 1369
+  - 1369
+  name: Lugar
+  type: text
+use_coordinates: 'True'
+width: 1995
