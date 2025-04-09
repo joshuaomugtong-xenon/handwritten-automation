@@ -1,4 +1,7 @@
 from PyQt6.QtWidgets import QLayout
+import cv2
+
+type MatLike = cv2.typing.MatLike
 
 
 def clear_layout(layout: QLayout = None):

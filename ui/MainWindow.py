@@ -20,7 +20,6 @@ from PyQt6.QtWidgets import (
     QGroupBox,
     QTabWidget,
     QProgressDialog,
-    QFrame,
 )
 from PyQt6.QtGui import (
     QPixmap,
@@ -54,9 +53,11 @@ from .PhotoViewer import PhotoViewerWidget
 from .RegionImage import RegionImage
 from .RegionBox import RegionBox
 from .TemplateWidget import TemplateWidget, TemplateUI, RegionUI
+from .PreprocessingWidget import PreprocessingWidget
 from .Label import Label
 from .BooleanComboBox import BooleanComboBox
 from .TextInput import TextInput
+from .Frame import Frame
 
 from modules.template_validation import Region, convert_template_to_dict
 
@@ -133,9 +134,16 @@ class MainWindow(QMainWindow):
         self.right_tab_widget = QTabWidget()
         self.main_widget.addWidget(self.right_tab_widget)
 
+        self.preprocessing_scroll_area = QScrollArea()
+        self.preprocessing_scroll_area.setWidgetResizable(True)
+        self.right_tab_widget.addTab(self.preprocessing_scroll_area, 'Preprocessing')
+
+        self.preprocessing_widget = PreprocessingWidget()
+        self.preprocessing_scroll_area.setWidget(self.preprocessing_widget)
+
         self.data_scroll_area = QScrollArea()
         self.data_scroll_area.setWidgetResizable(True)
-        self.right_tab_widget.addTab(self.data_scroll_area, 'Data')
+        self.right_tab_widget.addTab(self.data_scroll_area, 'Data View')
 
         self.data_widget = QWidget()
         self.data_widget_layout = QVBoxLayout()
@@ -150,7 +158,7 @@ class MainWindow(QMainWindow):
         # Disable horizontal scrollbar
         self.template_scroll_area.setHorizontalScrollBarPolicy(
             Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.right_tab_widget.addTab(self.template_scroll_area, 'Template')
+        self.right_tab_widget.addTab(self.template_scroll_area, 'Template View')
 
         self.setCentralWidget(self.main_widget)
         self.main_widget.setSizes([self.width() // 2, self.width() // 2])
@@ -205,7 +213,12 @@ class MainWindow(QMainWindow):
         progress.setLabelText("Aligning image...")
         try:
             image = cv2.imread(image_path)
-            image = self.homography_aligner.align(image, length, width)
+            # Preprocess the image
+            # Convert to grayscale
+            marker_image = image.copy()
+            marker_image = cv2.cvtColor(marker_image, cv2.COLOR_BGR2GRAY)
+            marker_image = self.preprocessing_widget.apply_preprocessing(marker_image)
+            image = self.homography_aligner.align(image, marker_image, length, width)
         except Exception:
             ErrorDialog()
             progress.close()
@@ -256,15 +269,7 @@ class MainWindow(QMainWindow):
             gray_region = cv2.cvtColor(cropped_region, cv2.COLOR_BGR2GRAY)
 
             # Define the data groupbox first so the rect_item can scroll to it
-            groupbox = QFrame()
-            groupbox.setFrameShape(QFrame.Shape.Box)
-            groupbox.setFrameShadow(QFrame.Shadow.Plain)
-            groupbox.setLineWidth(1)
-            groupbox.setMidLineWidth(0)
-            groupbox.setStyleSheet(
-                "QFrame[selected=true] { background-color: rgba(135, 206, 250, 0); "
-                "border: 2px solid #4682B4; border-radius: 5px; }"
-            )
+            groupbox = Frame()
 
             region_box.signals.highlight_data_groupbox.connect(
                 self.scroll_to_data_groupbox(groupbox))
@@ -441,7 +446,7 @@ class MainWindow(QMainWindow):
 
         return callback
 
-    def scroll_to_template_groupbox(self, groupbox: QFrame):
+    def scroll_to_template_groupbox(self, groupbox: Frame):
         def callback():
             # First scroll to the widget
             vertical_scroll_bar = self.template_scroll_area.verticalScrollBar()
@@ -465,7 +470,7 @@ class MainWindow(QMainWindow):
 
         return callback
 
-    def unhighlight_groupbox(self, groupbox: QFrame):
+    def unhighlight_groupbox(self, groupbox: Frame):
         def callback():
             groupbox.setProperty('selected', False)
             groupbox.style().unpolish(groupbox)
@@ -517,7 +522,7 @@ class MainWindow(QMainWindow):
         if link:
             link.clicked.connect(self.zoom_to_region(region_box))
 
-    def delete_region(self, region_box: RegionBox, template_groupbox: QFrame, region_ui: RegionUI):
+    def delete_region(self, region_box: RegionBox, template_groupbox: Frame, region_ui: RegionUI):
         def callback():
             # Remove the region from the photo viewer
             self.photo_viewer.viewer._scene.removeItem(region_box)
@@ -608,10 +613,21 @@ def markers_to_coordinates(
 
 
 def create_image(image: MatLike) -> QImage:
-    height, width, channel = image.shape
-    bytes_per_line = channel * width
-    return QImage(
-        image.data,
-        width, height, bytes_per_line,
-        QImage.Format.Format_BGR888
-    )
+    if len(image.shape) == 2:
+        # Grayscale image
+        height, width = image.shape
+        bytes_per_line = width
+        return QImage(
+            image.data,
+            width, height, bytes_per_line,
+            QImage.Format.Format_Grayscale8
+        )
+    else:
+        # Color image (BGR)
+        height, width, channel = image.shape
+        bytes_per_line = channel * width
+        return QImage(
+            image.data,
+            width, height, bytes_per_line,
+            QImage.Format.Format_BGR888
+        )

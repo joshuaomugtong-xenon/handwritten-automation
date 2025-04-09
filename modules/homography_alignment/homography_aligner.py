@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-from cv2.typing import MatLike
+type MatLike = cv2.typing.MatLike
 
 
 class HomographyAligner:
@@ -10,19 +10,13 @@ class HomographyAligner:
 
     def align(
             self,
-            image: cv2.typing.MatLike,
+            image: MatLike,
+            marker_image: MatLike,
             length=1700,
             width=2200
             ) -> MatLike:
 
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        kernel = np.ones((3, 3), np.uint8)
-        gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
-        alpha = 1.5  # Contrast control (1.0-3.0)
-        beta = 10    # Brightness control (0-100)
-        gray = cv2.convertScaleAbs(gray, alpha=alpha, beta=beta)
-
-        marker_corners, marker_ids, _ = self.arucodetector.detectMarkers(gray)
+        marker_corners, marker_ids, _ = self.arucodetector.detectMarkers(marker_image)
 
         if marker_ids is None:
             raise ValueError('No markers found')
