@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QLayout,
     QGroupBox,
+    QFrame,
     QFormLayout,
 )
 
@@ -72,7 +73,15 @@ class TemplateWidget(QWidget):
 
         region_ui = RegionUI()
 
-        groupbox = QGroupBox('')
+        groupbox = QFrame()
+        groupbox.setFrameShape(QFrame.Shape.Box)
+        groupbox.setFrameShadow(QFrame.Shadow.Plain)
+        groupbox.setLineWidth(1)
+        groupbox.setMidLineWidth(0)
+        groupbox.setStyleSheet(
+            "QFrame[selected=true] { background-color: rgba(135, 206, 250, 0); "
+            "border: 2px solid #4682B4; border-radius: 5px; }"
+        )
         self.region_layout.addWidget(groupbox)
         groupbox_layout = QFormLayout()
         groupbox.setLayout(groupbox_layout)
@@ -108,7 +117,7 @@ class TemplateWidget(QWidget):
 
         return region_ui, groupbox, link
 
-    def remove_region(self, groupbox: QGroupBox):
+    def remove_region(self, groupbox: QFrame):
         self.region_layout.removeWidget(groupbox)
         groupbox.hide()
         groupbox.deleteLater()

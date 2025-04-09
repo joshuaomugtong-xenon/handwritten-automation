@@ -25,8 +25,10 @@ from modules.config import ROI_MIME_TYPE
 
 
 class RegionBoxSignals(QObject):
-    request_scroll_to_template_groupbox = pyqtSignal()
-    request_scroll_to_data_groupbox = pyqtSignal()
+    highlight_template_groupbox = pyqtSignal()
+    unhighlight_template_groupbox = pyqtSignal()
+    highlight_data_groupbox = pyqtSignal()
+    unhighlight_data_groupbox = pyqtSignal()
     request_delete_region = pyqtSignal()
     coordinates_changed = pyqtSignal(int, int, int, int)
 
@@ -89,6 +91,8 @@ class RegionBox(QGraphicsRectItem):
                 else:
                     self.show_highlight()
             else:
+                self.signals.unhighlight_template_groupbox.emit()
+                self.signals.unhighlight_data_groupbox.emit()
                 if self.edit_mode:
                     self.set_edit_mode(False)
                 else:
@@ -138,8 +142,8 @@ class RegionBox(QGraphicsRectItem):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
-            self.signals.request_scroll_to_template_groupbox.emit()
-            self.signals.request_scroll_to_data_groupbox.emit()
+            self.signals.highlight_template_groupbox.emit()
+            self.signals.highlight_data_groupbox.emit()
             if self.edit_mode:
                 # Resize enabled only in edit mode
                 for name, (handle, cursor) in self.handles.items():

@@ -20,6 +20,7 @@ from PyQt6.QtWidgets import (
     QGroupBox,
     QTabWidget,
     QProgressDialog,
+    QFrame,
 )
 from PyQt6.QtGui import (
     QPixmap,
@@ -138,7 +139,7 @@ class MainWindow(QMainWindow):
 
         self.data_widget = QWidget()
         self.data_widget_layout = QVBoxLayout()
-        self.data_widget_layout.setContentsMargins(20, 20, 20, 20)
+        # self.data_widget_layout.setContentsMargins(20, 20, 20, 20)
         self.data_widget.setLayout(self.data_widget_layout)
         self.data_scroll_area.setWidget(self.data_widget)
 
@@ -249,13 +250,28 @@ class MainWindow(QMainWindow):
             gray_region = cv2.cvtColor(cropped_region, cv2.COLOR_BGR2GRAY)
 
             # Define the data groupbox first so the rect_item can scroll to it
-            groupbox = QGroupBox(region.name)
+            groupbox = QFrame()
+            groupbox.setFrameShape(QFrame.Shape.Box)
+            groupbox.setFrameShadow(QFrame.Shadow.Plain)
+            groupbox.setLineWidth(1)
+            groupbox.setMidLineWidth(0)
+            groupbox.setStyleSheet(
+                "QFrame[selected=true] { background-color: rgba(135, 206, 250, 0); "
+                "border: 2px solid #4682B4; border-radius: 5px; }"
+            )
+
+            region_box.signals.highlight_data_groupbox.connect(
+                self.scroll_to_data_groupbox(groupbox))
+            region_box.signals.unhighlight_data_groupbox.connect(
+                self.unhighlight_groupbox(groupbox))
+
             groupbox_layout = QVBoxLayout()
             groupbox.setLayout(groupbox_layout)
-            groupbox_layout.addSpacing(20)
 
-            region_box.signals.request_scroll_to_data_groupbox.connect(
-                self.scroll_to_data_groupbox(groupbox))
+            groupbox_layout.addWidget(Label("Name:"))
+            name_input = TextInput(region.name)
+            name_input.setReadOnly(True)
+            groupbox_layout.addWidget(name_input)
 
             value_label = Label('Value:')
             groupbox_layout.addWidget(value_label)
@@ -305,10 +321,7 @@ class MainWindow(QMainWindow):
 
             groupbox_layout.addWidget(roi_image)
 
-            groupbox_layout.addSpacing(20)
-
             self.data_widget_layout.addWidget(groupbox)
-            self.data_widget_layout.addSpacing(20)
 
             # Update progress bar
             progress.setValue(4 + i)
@@ -399,10 +412,10 @@ class MainWindow(QMainWindow):
             self.photo_viewer.viewer._scene.update()
         return callback
 
-    def scroll_to_data_groupbox(self, widget: QWidget):
+    def scroll_to_data_groupbox(self, groupbox: QGroupBox):
         def callback():
             vertical_scroll_bar = self.data_scroll_area.verticalScrollBar()
-            widget_pos = widget.mapTo(self.data_widget, widget.rect().topLeft())
+            widget_pos = groupbox.mapTo(self.data_widget, groupbox.rect().topLeft())
 
             # Create animation for vertical scrollbar
             self.data_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
@@ -411,14 +424,22 @@ class MainWindow(QMainWindow):
             self.data_animation.setEndValue(widget_pos.y())
             self.data_animation.setEasingCurve(QEasingCurve.Type.OutCubic)
 
-            # Start the animation
+            # Set the groupbox to be selected
+            groupbox.setProperty('selected', True)
+            groupbox.style().unpolish(groupbox)
+            groupbox.style().polish(groupbox)
+            groupbox.update()
+
+            # Start the animation group
             self.data_animation.start()
+
         return callback
 
-    def scroll_to_template_groupbox(self, widget: QWidget):
+    def scroll_to_template_groupbox(self, groupbox: QFrame):
         def callback():
+            # First scroll to the widget
             vertical_scroll_bar = self.template_scroll_area.verticalScrollBar()
-            widget_pos = widget.mapTo(self.template_editor, widget.rect().topLeft())
+            widget_pos = groupbox.mapTo(self.template_editor, groupbox.rect().topLeft())
 
             # Create animation for vertical scrollbar
             self.temp_animation = QPropertyAnimation(vertical_scroll_bar, b'value')
@@ -427,8 +448,24 @@ class MainWindow(QMainWindow):
             self.temp_animation.setEndValue(widget_pos.y())
             self.temp_animation.setEasingCurve(QEasingCurve.Type.OutCubic)
 
+            # Set the groupbox to be selected
+            groupbox.setProperty('selected', True)
+            groupbox.style().unpolish(groupbox)
+            groupbox.style().polish(groupbox)
+            groupbox.update()
+
             # Start the animation
             self.temp_animation.start()
+
+        return callback
+
+    def unhighlight_groupbox(self, groupbox: QFrame):
+        def callback():
+            groupbox.setProperty('selected', False)
+            groupbox.style().unpolish(groupbox)
+            groupbox.style().polish(groupbox)
+            groupbox.update()
+
         return callback
 
     def region_created(self, rect: QRectF):
@@ -464,15 +501,17 @@ class MainWindow(QMainWindow):
         x1_input, y1_input, x2_input, y2_input = region_ui.coordinates
         region_box.signals.coordinates_changed.connect(
             self.region_box_coordinates_changed(x1_input, y1_input, x2_input, y2_input))
-        region_box.signals.request_scroll_to_template_groupbox.connect(
+        region_box.signals.highlight_template_groupbox.connect(
             self.scroll_to_template_groupbox(tp_groupbox))
+        region_box.signals.unhighlight_template_groupbox.connect(
+            self.unhighlight_groupbox(tp_groupbox))
         region_box.signals.request_delete_region.connect(
             self.delete_region(region_box, tp_groupbox, region_ui))
 
         if link:
             link.clicked.connect(self.zoom_to_region(region_box))
 
-    def delete_region(self, region_box: RegionBox, template_groupbox: QGroupBox, region_ui: RegionUI):
+    def delete_region(self, region_box: RegionBox, template_groupbox: QFrame, region_ui: RegionUI):
         def callback():
             # Remove the region from the photo viewer
             self.photo_viewer.viewer._scene.removeItem(region_box)
@@ -538,7 +577,7 @@ class MainWindow(QMainWindow):
                 self.photo_viewer.viewer._scene.removeItem(item)
 
 
-Point = tuple[int, int]
+type Point = tuple[int, int]
 
 
 def markers_to_coordinates(
