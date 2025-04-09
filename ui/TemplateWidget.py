@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import (
 
 from modules.template_validation import Template, Region
 
-from .ClickableLabel import ClickableLabel
+from .Button import Button
 from .Label import Label
 from .TypeInput import TypeInput
 from .TextInput import TextInput
@@ -104,7 +104,7 @@ class TemplateWidget(QWidget):
                 layout.addWidget(coord_ui)
                 region_ui.coordinates[i] = coord_ui
 
-            link = ClickableLabel('Click to view')
+            link = Button('Click to view')
             layout.addWidget(link)
         else:
             layout = QHBoxLayout()
