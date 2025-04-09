@@ -168,6 +168,8 @@ class MainWindow(QMainWindow):
         if dialog.exec() != QDialog.DialogCode.Accepted:
             return
         image_path, selected = dialog.get_selected_files()
+        if image_path == '' or selected == '':
+            return
         try:
             self.load_templates()
             self.process_image(image_path, selected)
