@@ -65,8 +65,53 @@ class PhotoViewer(QGraphicsView):
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
     def keyPressEvent(self, event):
-        # To do: Add keyboard shortcuts for copy, paste, delete
-        return super().keyPressEvent(event)
+
+        # Check for copy action (Ctrl+C)
+        if self.has_photo() and event.key() == Qt.Key.Key_C and event.modifiers() == Qt.KeyboardModifier.ControlModifier:
+            selected_items = [item for item in self._scene.selectedItems() if isinstance(item, RegionBox)]
+            if selected_items:
+                # Copy the selected region to clipboard
+                item = selected_items[0]
+                item.copy_to_clipboard()
+                event.accept()
+                return
+
+        # Check for paste action (Ctrl+V)
+        elif self.has_photo() and event.key() == Qt.Key.Key_V and event.modifiers() == Qt.KeyboardModifier.ControlModifier:
+            clipboard = QApplication.clipboard()
+            mime_data = clipboard.mimeData()
+            # Check if the clipboard contains ROI data
+            if mime_data.hasFormat(ROI_MIME_TYPE):
+                # Paste the ROI from clipboard
+                byte_array = mime_data.data(ROI_MIME_TYPE)
+                stream = QDataStream(byte_array, QIODevice.OpenModeFlag.ReadOnly)
+
+                _ = stream.readDouble()
+                _ = stream.readDouble()
+                w = stream.readDouble()
+                h = stream.readDouble()
+
+                pos = self.mapFromGlobal(QCursor.pos())
+                pos = self.mapToScene(pos)
+
+                x = pos.x() - w/2
+                y = pos.y() - h/2
+
+                region = QRectF(x, y, w, h)
+                self.region_created.emit(region)
+                event.accept()
+                return
+
+        # Check for delete action (Delete key)
+        elif self.has_photo() and event.key() == Qt.Key.Key_Delete:
+            selected_items = [item for item in self._scene.selectedItems() if isinstance(item, RegionBox)]
+            if selected_items:
+                for item in selected_items:
+                    item.delete_region()
+                event.accept()
+                return
+
+        super().keyPressEvent(event)
 
     def has_photo(self):
         return not self._empty
@@ -257,6 +302,19 @@ class PhotoViewer(QGraphicsView):
     def mouseMoveEvent(self, event):
         self.update_coordinates(event.pos())
         super().mouseMoveEvent(event)
+
+    def mouseDoubleClickEvent(self, event):
+        if self.has_photo():
+            item = self.scene().itemAt(self.mapToScene(event.pos()), self.transform())
+            if isinstance(item, RegionBox):
+                item.set_edit_mode(True)
+                item.setSelected(True)
+                event.accept()
+            else:
+                # If no ROI is under the cursor, emit the signal with a null point
+                super().mouseDoubleClickEvent(event)
+        else:
+            super().mouseDoubleClickEvent(event)
 
     def leaveEvent(self, event):
         self.coordinates_changed.emit(QPoint())
