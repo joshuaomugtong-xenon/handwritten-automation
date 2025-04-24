@@ -202,7 +202,7 @@ class PreprocessingWidget(QWidget):
 
         header_layout.addWidget(QLabel('<h3>Contrast Enhancement</h3>'))
         self.enable_clahe = QCheckBox("Enable")
-        self.enable_clahe.setChecked(True)
+        self.enable_clahe.setChecked(False)
         header_layout.addWidget(self.enable_clahe)
         header_layout.addStretch(1)
 
