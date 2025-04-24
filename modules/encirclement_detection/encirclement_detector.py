@@ -10,7 +10,7 @@ class EncirclementDetector:
         # Contour Finding
         img_blur = cv2.GaussianBlur(img_binary, (3, 3), sigmaX=0, sigmaY=0)
         edges = cv2.Canny(image=img_blur, threshold1=100, threshold2=200)
-        contours, _ = cv2.findContours(
+        contours, hierarchy = cv2.findContours(
             edges, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
 
         # Contour Filtering
