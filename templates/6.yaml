@@ -1,0 +1,1679 @@
+form_type: PGH Form No. P-610005
+form_title: NURSES' ADMITTING NOTES
+length: 1575
+width: 2080
+use_coordinates: true
+regions:
+- name: Name
+  type: text
+  coordinates:
+  - 143
+  - 295
+  - 686
+  - 332
+- name: Ward
+  type: text
+  coordinates:
+  - 768
+  - 301
+  - 853
+  - 332
+- name: Bed
+  type: text
+  coordinates:
+  - 907
+  - 298
+  - 987
+  - 332
+- name: Date
+  type: text
+  coordinates:
+  - 1053
+  - 297
+  - 1154
+  - 328
+- name: Case No
+  type: text
+  coordinates:
+  - 1271
+  - 301
+  - 1502
+  - 332
+- name: Age
+  type: text
+  coordinates:
+  - 125
+  - 358
+  - 220
+  - 392
+- name: Sex
+  type: text
+  coordinates:
+  - 263
+  - 367
+  - 357
+  - 394
+- name: Height
+  type: text
+  coordinates:
+  - 457
+  - 361
+  - 553
+  - 392
+- name: Weight
+  type: text
+  coordinates:
+  - 716
+  - 364
+  - 810
+  - 395
+- name: 'Birthdate: Month'
+  type: text
+  coordinates:
+  - 993
+  - 362
+  - 1033
+  - 393
+- name: 'Birthdate: Day'
+  type: text
+  coordinates:
+  - 1052
+  - 363
+  - 1090
+  - 394
+- name: 'Birthdate: Year'
+  type: text
+  coordinates:
+  - 1100
+  - 366
+  - 1153
+  - 397
+- name: Religion
+  type: text
+  coordinates:
+  - 1281
+  - 367
+  - 1576
+  - 398
+- name: Philhealth Member = Yes
+  type: encirclement
+  coordinates:
+  - 379
+  - 409
+  - 448
+  - 472
+- name: Philhealth Member = No
+  type: encirclement
+  coordinates:
+  - 458
+  - 411
+  - 522
+  - 471
+- name: Dependent = Yes
+  type: encirclement
+  coordinates:
+  - 694
+  - 411
+  - 781
+  - 465
+- name: Dependent = No
+  type: encirclement
+  coordinates:
+  - 789
+  - 411
+  - 869
+  - 465
+- name: Shift = AM
+  type: encirclement
+  coordinates:
+  - 1097
+  - 418
+  - 1153
+  - 465
+- name: Shift = PM
+  type: encirclement
+  coordinates:
+  - 1159
+  - 419
+  - 1219
+  - 465
+- name: Shift = Night
+  type: encirclement
+  coordinates:
+  - 1210
+  - 418
+  - 1308
+  - 466
+- name: Time
+  type: text
+  coordinates:
+  - 1397
+  - 417
+  - 1557
+  - 456
+- name: Chief Complaint / Reason for Admission
+  type: text
+  coordinates:
+  - 600
+  - 465
+  - 1508
+  - 505
+- name: Oz = NC
+  type: encirclement
+  coordinates:
+  - 103
+  - 539
+  - 149
+  - 590
+- name: Oz = FM
+  type: encirclement
+  coordinates:
+  - 158
+  - 541
+  - 195
+  - 587
+- name: Oz = Hood
+  type: encirclement
+  coordinates:
+  - 205
+  - 541
+  - 269
+  - 586
+- name: Oz = Funnel
+  type: encirclement
+  coordinates:
+  - 282
+  - 543
+  - 352
+  - 586
+- name: Flow Rate
+  type: text
+  coordinates:
+  - 351
+  - 538
+  - 395
+  - 586
+- name: Oz = CPAP
+  type: encirclement
+  coordinates:
+  - 515
+  - 540
+  - 583
+  - 590
+- name: Oz = BIPAP
+  type: encirclement
+  coordinates:
+  - 588
+  - 546
+  - 651
+  - 589
+- name: CPAP/BIPAP Setting
+  type: text
+  coordinates:
+  - 659
+  - 548
+  - 948
+  - 580
+- name: Oz = N/A
+  type: encirclement
+  coordinates:
+  - 942
+  - 546
+  - 984
+  - 589
+- name: Chest Tube = R
+  type: encirclement
+  coordinates:
+  - 1133
+  - 538
+  - 1157
+  - 581
+- name: Chest Tube = L
+  type: encirclement
+  coordinates:
+  - 1158
+  - 538
+  - 1182
+  - 581
+- name: Chest Tube = Bilateral
+  type: encirclement
+  coordinates:
+  - 1206
+  - 538
+  - 1309
+  - 581
+- name: Chest Tube = Mediastinal
+  type: encirclement
+  coordinates:
+  - 1315
+  - 538
+  - 1438
+  - 581
+- name: Chest Tube = N/A
+  type: encirclement
+  coordinates:
+  - 1464
+  - 540
+  - 1535
+  - 588
+- name: ET
+  type: encirclement
+  coordinates:
+  - 58
+  - 581
+  - 96
+  - 615
+- name: Tracheo CAB
+  type: encirclement
+  coordinates:
+  - 106
+  - 584
+  - 232
+  - 618
+- name: Mech Vent
+  type: encirclement
+  coordinates:
+  - 228
+  - 581
+  - 338
+  - 615
+- name: ET height/size/setting
+  type: text
+  coordinates:
+  - 586
+  - 577
+  - 977
+  - 612
+- name: NGT
+  type: encirclement
+  coordinates:
+  - 990
+  - 581
+  - 1048
+  - 626
+- name: OGT
+  type: encirclement
+  coordinates:
+  - 1055
+  - 581
+  - 1102
+  - 626
+- name: Gastro Tube
+  type: encirclement
+  coordinates:
+  - 1110
+  - 587
+  - 1227
+  - 626
+- name: PEG
+  type: encirclement
+  coordinates:
+  - 1236
+  - 588
+  - 1276
+  - 627
+- name: Jejunostomy
+  type: encirclement
+  coordinates:
+  - 1284
+  - 582
+  - 1419
+  - 625
+- name: Feeding Tube = N/A
+  type: encirclement
+  coordinates:
+  - 1463
+  - 590
+  - 1532
+  - 630
+- name: ET height/ size/ setting
+  type: text
+  coordinates:
+  - 53
+  - 612
+  - 940
+  - 648
+- name: Intubation = N/A
+  type: encirclement
+  coordinates:
+  - 930
+  - 618
+  - 994
+  - 667
+- name: FC
+  type: encirclement
+  coordinates:
+  - 997
+  - 623
+  - 1032
+  - 662
+- name: CC
+  type: encirclement
+  coordinates:
+  - 1036
+  - 623
+  - 1089
+  - 668
+- name: FC/CC = N/A
+  type: encirclement
+  coordinates:
+  - 1465
+  - 624
+  - 1536
+  - 663
+- name: IV line
+  type: encirclement
+  coordinates:
+  - 56
+  - 651
+  - 131
+  - 695
+- name: Heplock
+  type: encirclement
+  coordinates:
+  - 137
+  - 650
+  - 228
+  - 697
+- name: IVF
+  type: encirclement
+  coordinates:
+  - 226
+  - 653
+  - 279
+  - 705
+- name: BT
+  type: encirclement
+  coordinates:
+  - 281
+  - 649
+  - 308
+  - 699
+- name: TPN site
+  type: encirclement
+  coordinates:
+  - 311
+  - 650
+  - 392
+  - 700
+- name: IV Access
+  type: text
+  coordinates:
+  - 401
+  - 656
+  - 991
+  - 698
+- name: Dialysis = Peritoneal
+  type: encirclement
+  coordinates:
+  - 1087
+  - 647
+  - 1200
+  - 709
+- name: Dialysis = Tenchkoff
+  type: encirclement
+  coordinates:
+  - 1197
+  - 645
+  - 1297
+  - 709
+- name: Dialysis = AV fistula R
+  type: encirclement
+  coordinates:
+  - 1310
+  - 643
+  - 1428
+  - 705
+- name: Dialysis = AV fistula L
+  type: encirclement
+  coordinates:
+  - 1432
+  - 644
+  - 1452
+  - 702
+- name: Dialysis = N/A
+  type: encirclement
+  coordinates:
+  - 1464
+  - 661
+  - 1535
+  - 706
+- name: IV Access
+  type: text
+  coordinates:
+  - 56
+  - 698
+  - 940
+  - 730
+- name: IV line/Heplock = N/A
+  type: encirclement
+  coordinates:
+  - 939
+  - 696
+  - 1001
+  - 743
+- name: Others
+  type: text
+  coordinates:
+  - 1076
+  - 700
+  - 1511
+  - 730
+- name: Activity/Position = Ambulatory
+  type: encirclement
+  coordinates:
+  - 304
+  - 782
+  - 432
+  - 821
+- name: Activity/Position = Bedrest
+  type: encirclement
+  coordinates:
+  - 435
+  - 783
+  - 556
+  - 821
+- name: Activity/Position = With Bathroom Privilege
+  type: encirclement
+  coordinates:
+  - 559
+  - 783
+  - 838
+  - 820
+- name: Activity/Position = Flat on Bed
+  type: encirclement
+  coordinates:
+  - 841
+  - 783
+  - 994
+  - 822
+- name: Activity/Position = High Back Rest
+  type: encirclement
+  coordinates:
+  - 997
+  - 782
+  - 1201
+  - 821
+- name: Activity/Position = Others
+  type: text
+  coordinates:
+  - 1306
+  - 788
+  - 1508
+  - 810
+- name: Mental Status = Calm
+  type: encirclement
+  coordinates:
+  - 303
+  - 826
+  - 402
+  - 861
+- name: Mental Status = Anxious
+  type: encirclement
+  coordinates:
+  - 403
+  - 825
+  - 535
+  - 863
+- name: Mental Status = Fearful
+  type: encirclement
+  coordinates:
+  - 548
+  - 823
+  - 677
+  - 858
+- name: Mental Status = Withdrawn
+  type: encirclement
+  coordinates:
+  - 693
+  - 823
+  - 847
+  - 864
+- name: Mental Status = Agitated
+  type: encirclement
+  coordinates:
+  - 841
+  - 821
+  - 976
+  - 865
+- name: Mental Status = Combative
+  type: encirclement
+  coordinates:
+  - 976
+  - 825
+  - 1162
+  - 866
+- name: Mental Status = Suspicious
+  type: encirclement
+  coordinates:
+  - 1223
+  - 826
+  - 1353
+  - 867
+- name: Mental Status = Delusional
+  type: encirclement
+  coordinates:
+  - 1406
+  - 826
+  - 1535
+  - 859
+- name: Mental Status = Hallucinations
+  type: encirclement
+  coordinates:
+  - 304
+  - 862
+  - 462
+  - 903
+- name: Mental Status = Suicidal
+  type: encirclement
+  coordinates:
+  - 545
+  - 860
+  - 675
+  - 903
+- name: Mental Status = Others
+  type: text
+  coordinates:
+  - 806
+  - 867
+  - 1395
+  - 889
+- name: Neurological = Oriented to Person
+  type: encirclement
+  coordinates:
+  - 417
+  - 905
+  - 501
+  - 938
+- name: Neurological = Oriented to Place
+  type: encirclement
+  coordinates:
+  - 502
+  - 906
+  - 571
+  - 937
+- name: Neurological = Oriented to Time
+  type: encirclement
+  coordinates:
+  - 574
+  - 903
+  - 643
+  - 939
+- name: Neurological = Confused
+  type: encirclement
+  coordinates:
+  - 645
+  - 906
+  - 752
+  - 939
+- name: Neurological = Delirium
+  type: encirclement
+  coordinates:
+  - 304
+  - 934
+  - 390
+  - 978
+- name: Neurological = Lethargic
+  type: encirclement
+  coordinates:
+  - 393
+  - 934
+  - 487
+  - 980
+- name: Neurological = Obtunded
+  type: encirclement
+  coordinates:
+  - 489
+  - 938
+  - 589
+  - 979
+- name: Neurological = Stuporous
+  type: encirclement
+  coordinates:
+  - 589
+  - 940
+  - 695
+  - 979
+- name: Neurological = Comatose
+  type: encirclement
+  coordinates:
+  - 696
+  - 939
+  - 806
+  - 983
+- name: Total GCS
+  type: text
+  coordinates:
+  - 590
+  - 981
+  - 696
+  - 1009
+- name: Extremity Strength = Equal
+  type: encirclement
+  coordinates:
+  - 505
+  - 1005
+  - 572
+  - 1057
+- name: Extremity Strength = Unequal
+  type: encirclement
+  coordinates:
+  - 565
+  - 1005
+  - 657
+  - 1055
+- name: Extremity Strength = arm
+  type: encirclement
+  coordinates:
+  - 663
+  - 1007
+  - 719
+  - 1057
+- name: Extremity Strength = leg
+  type: encirclement
+  coordinates:
+  - 724
+  - 1006
+  - 771
+  - 1057
+- name: Extremity Strength = R>L
+  type: encirclement
+  coordinates:
+  - 773
+  - 1007
+  - 830
+  - 1059
+- name: Extremity Strength = R<L
+  type: encirclement
+  coordinates:
+  - 834
+  - 1008
+  - 884
+  - 1058
+- name: Pupils Size = R
+  type: text
+  coordinates:
+  - 1127
+  - 909
+  - 1235
+  - 933
+- name: Pupils Size = L
+  type: text
+  coordinates:
+  - 1245
+  - 911
+  - 1343
+  - 935
+- name: Reaction to Light = R
+  type: text
+  coordinates:
+  - 1127
+  - 937
+  - 1236
+  - 970
+- name: Reaction to Light = L
+  type: text
+  coordinates:
+  - 1246
+  - 937
+  - 1342
+  - 971
+- name: Neurological = Tremors
+  type: encirclement
+  coordinates:
+  - 921
+  - 969
+  - 1014
+  - 1016
+- name: Neurological = Numbness
+  type: encirclement
+  coordinates:
+  - 1016
+  - 970
+  - 1159
+  - 1015
+- name: Neurological = Tingling
+  type: encirclement
+  coordinates:
+  - 1157
+  - 972
+  - 1268
+  - 1017
+- name: Neurological = Seizure
+  type: encirclement
+  coordinates:
+  - 1269
+  - 972
+  - 1373
+  - 1017
+- name: Neurological = N/A
+  type: encirclement
+  coordinates:
+  - 1412
+  - 950
+  - 1513
+  - 1014
+- name: Neurological = Altered Speech
+  type: encirclement
+  coordinates:
+  - 914
+  - 1006
+  - 1083
+  - 1061
+- name: Neurological = Altered Vision
+  type: encirclement
+  coordinates:
+  - 1082
+  - 1019
+  - 1263
+  - 1056
+- name: Neurological = Altered Hearing
+  type: encirclement
+  coordinates:
+  - 1266
+  - 1016
+  - 1444
+  - 1056
+- name: Neurological = N/A
+  type: encirclement
+  coordinates:
+  - 1437
+  - 1006
+  - 1511
+  - 1056
+- name: Heart Sounds = Regular
+  type: encirclement
+  coordinates:
+  - 465
+  - 1056
+  - 541
+  - 1095
+- name: Heart Sounds = Irregular
+  type: encirclement
+  coordinates:
+  - 543
+  - 1060
+  - 640
+  - 1097
+- name: Heart Sounds = Distinct
+  type: encirclement
+  coordinates:
+  - 640
+  - 1061
+  - 727
+  - 1095
+- name: Heart Sounds = Faint
+  type: encirclement
+  coordinates:
+  - 723
+  - 1058
+  - 785
+  - 1087
+- name: Heart Sounds = Murmur
+  type: encirclement
+  coordinates:
+  - 781
+  - 1053
+  - 881
+  - 1097
+- name: Heart Sounds = Others
+  type: text
+  coordinates:
+  - 955
+  - 1062
+  - 1034
+  - 1084
+- name: Radial Pulse = Full
+  type: encirclement
+  coordinates:
+  - 441
+  - 1098
+  - 509
+  - 1132
+- name: Radial Pulse = Weak
+  type: encirclement
+  coordinates:
+  - 511
+  - 1094
+  - 589
+  - 1133
+- name: Radial Pulse = Absent
+  type: encirclement
+  coordinates:
+  - 592
+  - 1097
+  - 676
+  - 1136
+- name: Radial Pulse = Symmetrical
+  type: encirclement
+  coordinates:
+  - 679
+  - 1094
+  - 815
+  - 1138
+- name: Radial Pulse = Asymmetrical
+  type: encirclement
+  coordinates:
+  - 811
+  - 1093
+  - 983
+  - 1142
+- name: Jugular Vein = Flat
+  type: encirclement
+  coordinates:
+  - 1153
+  - 1059
+  - 1215
+  - 1097
+- name: Jugular Vein = Distended
+  type: encirclement
+  coordinates:
+  - 1213
+  - 1059
+  - 1313
+  - 1093
+- name: Jugular Vein angle
+  type: text
+  coordinates:
+  - 1335
+  - 1061
+  - 1400
+  - 1086
+- name: Pacemaker = Temp
+  type: encirclement
+  coordinates:
+  - 1149
+  - 1094
+  - 1219
+  - 1135
+- name: Pacemaker = Permanent
+  type: encirclement
+  coordinates:
+  - 1212
+  - 1094
+  - 1326
+  - 1138
+- name: Pacemaker = ICD
+  type: encirclement
+  coordinates:
+  - 1322
+  - 1090
+  - 1382
+  - 1136
+- name: Pacemaker = N/A
+  type: encirclement
+  coordinates:
+  - 1375
+  - 1090
+  - 1457
+  - 1144
+- name: Cardiovascular = Selling
+  type: text
+  coordinates:
+  - 1118
+  - 1133
+  - 1444
+  - 1161
+- name: Respiratory Pattern = Eupnea
+  type: encirclement
+  coordinates:
+  - 383
+  - 1180
+  - 490
+  - 1219
+- name: Respiratory Pattern = Bradypnea
+  type: encirclement
+  coordinates:
+  - 492
+  - 1179
+  - 622
+  - 1219
+- name: Respiratory Pattern = Tachypnea
+  type: encirclement
+  coordinates:
+  - 624
+  - 1180
+  - 754
+  - 1220
+- name: Respiratory Pattern = Dyspnea On Exertion
+  type: encirclement
+  coordinates:
+  - 756
+  - 1178
+  - 1001
+  - 1214
+- name: Respiratory Pattern = At Rest
+  type: encirclement
+  coordinates:
+  - 1002
+  - 1180
+  - 1098
+  - 1214
+- name: Respiratory Pattern = Orthopnea
+  type: encirclement
+  coordinates:
+  - 1099
+  - 1180
+  - 1224
+  - 1214
+- name: Respiratory Pillows No.
+  type: text
+  coordinates:
+  - 1325
+  - 1179
+  - 1395
+  - 1203
+- name: Breath Sounds = Clear
+  type: encirclement
+  coordinates:
+  - 481
+  - 1215
+  - 561
+  - 1251
+- name: Breath Sounds = Rates R/L
+  type: encirclement
+  coordinates:
+  - 626
+  - 1216
+  - 734
+  - 1253
+- name: Breath Sounds = Rhonchi R/L
+  type: encirclement
+  coordinates:
+  - 744
+  - 1215
+  - 894
+  - 1250
+- name: Breath Sounds = Wheezes R/L
+  type: encirclement
+  coordinates:
+  - 899
+  - 1214
+  - 1073
+  - 1257
+- name: Breath Sounds = Decreased Breath Sounds R/L
+  type: encirclement
+  coordinates:
+  - 1073
+  - 1213
+  - 1385
+  - 1250
+- name: Breath Sounds = Stridor
+  type: encirclement
+  coordinates:
+  - 1402
+  - 1204
+  - 1502
+  - 1253
+- name: Cough = Non Productive
+  type: encirclement
+  coordinates:
+  - 387
+  - 1240
+  - 581
+  - 1285
+- name: Cough =  Productive
+  type: encirclement
+  coordinates:
+  - 608
+  - 1249
+  - 747
+  - 1290
+- name: Cough = N/A
+  type: encirclement
+  coordinates:
+  - 1416
+  - 1251
+  - 1516
+  - 1292
+- name: Secretions = Whitish
+  type: encirclement
+  coordinates:
+  - 438
+  - 1291
+  - 551
+  - 1331
+- name: Secretions = Yellowish
+  type: encirclement
+  coordinates:
+  - 558
+  - 1288
+  - 679
+  - 1330
+- name: Secretions = Greenish
+  type: encirclement
+  coordinates:
+  - 681
+  - 1288
+  - 789
+  - 1332
+- name: Secretions = Hemoptysis
+  type: encirclement
+  coordinates:
+  - 791
+  - 1287
+  - 920
+  - 1330
+- name: Secretions = Frothy
+  type: encirclement
+  coordinates:
+  - 923
+  - 1286
+  - 1023
+  - 1329
+- name: Secretions = Copious
+  type: encirclement
+  coordinates:
+  - 1023
+  - 1287
+  - 1125
+  - 1331
+- name: Secretions = Others
+  type: text
+  coordinates:
+  - 1224
+  - 1264
+  - 1378
+  - 1315
+- name: Secretions = N/A
+  type: encirclement
+  coordinates:
+  - 1420
+  - 1291
+  - 1519
+  - 1326
+- name: Abdomen = Soft
+  type: encirclement
+  coordinates:
+  - 403
+  - 1320
+  - 473
+  - 1364
+- name: Abdomen = Rigid
+  type: encirclement
+  coordinates:
+  - 461
+  - 1335
+  - 521
+  - 1370
+- name: Abdomen = Flat
+  type: encirclement
+  coordinates:
+  - 524
+  - 1336
+  - 582
+  - 1370
+- name: Abdomen = Globular
+  type: encirclement
+  coordinates:
+  - 586
+  - 1335
+  - 683
+  - 1369
+- name: Abdomen = Distended
+  type: encirclement
+  coordinates:
+  - 684
+  - 1331
+  - 814
+  - 1363
+- name: Abdomen = Tender
+  type: encirclement
+  coordinates:
+  - 817
+  - 1319
+  - 904
+  - 1369
+- name: Abdomen = Non-Tender
+  type: encirclement
+  coordinates:
+  - 895
+  - 1318
+  - 1045
+  - 1369
+- name: Bowel Sounds = Normoactive
+  type: encirclement
+  coordinates:
+  - 453
+  - 1356
+  - 593
+  - 1404
+- name: Bowel Sounds = Hypoactive
+  type: encirclement
+  coordinates:
+  - 582
+  - 1368
+  - 695
+  - 1410
+- name: Bowel Sounds = Hyperactive
+  type: encirclement
+  coordinates:
+  - 698
+  - 1369
+  - 814
+  - 1410
+- name: Bowel Sounds = Absent
+  type: encirclement
+  coordinates:
+  - 816
+  - 1367
+  - 913
+  - 1411
+- name: Stoma location
+  type: text
+  coordinates:
+  - 1225
+  - 1334
+  - 1457
+  - 1358
+- name: Stoma = N/A
+  type: encirclement
+  coordinates:
+  - 1460
+  - 1333
+  - 1508
+  - 1364
+- name: Gastrointestinal color of drainage
+  type: text
+  coordinates:
+  - 1234
+  - 1361
+  - 1326
+  - 1397
+- name: color of drainage = others
+  type: text
+  coordinates:
+  - 1400
+  - 1361
+  - 1527
+  - 1396
+- name: Gento-urnary = Free Voiding
+  type: encirclement
+  coordinates:
+  - 305
+  - 1416
+  - 440
+  - 1448
+- name: Gento-urnary = Anuria
+  type: encirclement
+  coordinates:
+  - 440
+  - 1414
+  - 533
+  - 1448
+- name: Gento-urnary = Hematuria
+  type: encirclement
+  coordinates:
+  - 533
+  - 1415
+  - 670
+  - 1449
+- name: Gento-urnary = Dysuria
+  type: encirclement
+  coordinates:
+  - 672
+  - 1415
+  - 770
+  - 1448
+- name: Gento-urnary = Incontinence
+  type: encirclement
+  coordinates:
+  - 773
+  - 1416
+  - 933
+  - 1450
+- name: Gento-urnary Color = Clear
+  type: encirclement
+  coordinates:
+  - 1010
+  - 1415
+  - 1086
+  - 1451
+- name: Gento-urnary Color = Yellow
+  type: encirclement
+  coordinates:
+  - 1069
+  - 1405
+  - 1164
+  - 1448
+- name: Gento-urnary Color = Amber
+  type: encirclement
+  coordinates:
+  - 1162
+  - 1414
+  - 1244
+  - 1451
+- name: Gento-urnary Color = Tea Colored
+  type: encirclement
+  coordinates:
+  - 1246
+  - 1414
+  - 1380
+  - 1455
+- name: Gento-urnary Color = Bloody
+  type: encirclement
+  coordinates:
+  - 1381
+  - 1415
+  - 1486
+  - 1455
+- name: Cytoclysis = Clear
+  type: encirclement
+  coordinates:
+  - 422
+  - 1438
+  - 518
+  - 1485
+- name: Cytoclysis = Pinkish
+  type: encirclement
+  coordinates:
+  - 519
+  - 1448
+  - 626
+  - 1486
+- name: Cytoclysis = Bloody
+  type: encirclement
+  coordinates:
+  - 629
+  - 1446
+  - 762
+  - 1488
+- name: Cytoclysis = Others
+  type: text
+  coordinates:
+  - 845
+  - 1451
+  - 968
+  - 1477
+- name: Cytoclysis = N/A
+  type: encirclement
+  coordinates:
+  - 997
+  - 1449
+  - 1089
+  - 1489
+- name: Vaginal Discharge = Clear
+  type: encirclement
+  coordinates:
+  - 521
+  - 1486
+  - 606
+  - 1528
+- name: Vaginal Discharge = Yellowish
+  type: encirclement
+  coordinates:
+  - 626
+  - 1488
+  - 781
+  - 1528
+- name: Vaginal Discharge = Cloudy
+  type: encirclement
+  coordinates:
+  - 768
+  - 1471
+  - 865
+  - 1524
+- name: Vaginal Discharge = Foul Smelling
+  type: encirclement
+  coordinates:
+  - 866
+  - 1486
+  - 1018
+  - 1527
+- name: Vaginal Discharge = N/A
+  type: encirclement
+  coordinates:
+  - 1019
+  - 1488
+  - 1071
+  - 1527
+- name: Lochia = Rubra
+  type: encirclement
+  coordinates:
+  - 1162
+  - 1476
+  - 1244
+  - 1529
+- name: Lochia = Serosa
+  type: encirclement
+  coordinates:
+  - 1246
+  - 1475
+  - 1332
+  - 1530
+- name: Lochia = Alba
+  type: encirclement
+  coordinates:
+  - 1326
+  - 1476
+  - 1422
+  - 1528
+- name: Lochia = N/A
+  type: encirclement
+  coordinates:
+  - 1424
+  - 1476
+  - 1508
+  - 1529
+- name: Normal ROM of Extremities = Yes
+  type: encirclement
+  coordinates:
+  - 588
+  - 1520
+  - 652
+  - 1563
+- name: Normal ROM of Extremities = No
+  type: encirclement
+  coordinates:
+  - 644
+  - 1521
+  - 689
+  - 1566
+- name: Normal ROM of Extremities Traction
+  type: text
+  coordinates:
+  - 829
+  - 1531
+  - 1061
+  - 1556
+- name: Normal ROM of Extremities Specification
+  type: text
+  coordinates:
+  - 1229
+  - 1534
+  - 1457
+  - 1558
+- name: Normal ROM of Extremities = N/A
+  type: encirclement
+  coordinates:
+  - 1459
+  - 1532
+  - 1510
+  - 1566
+- name: Musculo-Skeletal = Weakness R
+  type: encirclement
+  coordinates:
+  - 408
+  - 1567
+  - 433
+  - 1602
+- name: Musculo-Skeletal = Weakness L
+  type: encirclement
+  coordinates:
+  - 440
+  - 1565
+  - 459
+  - 1603
+- name: Musculo-Skeletal = Paralysis R
+  type: encirclement
+  coordinates:
+  - 572
+  - 1565
+  - 591
+  - 1606
+- name: Musculo-Skeletal = Paralysis L
+  type: encirclement
+  coordinates:
+  - 599
+  - 1565
+  - 615
+  - 1603
+- name: Musculo-Skeletal = Contractures R
+  type: encirclement
+  coordinates:
+  - 763
+  - 1562
+  - 783
+  - 1603
+- name: Musculo-Skeletal = Contractures L
+  type: encirclement
+  coordinates:
+  - 791
+  - 1559
+  - 812
+  - 1604
+- name: Musculo-Skeletal = Joint Swelling R
+  type: encirclement
+  coordinates:
+  - 975
+  - 1559
+  - 990
+  - 1607
+- name: Musculo-Skeletal = Joint Swelling L
+  type: encirclement
+  coordinates:
+  - 998
+  - 1562
+  - 1017
+  - 1603
+- name: Musculo-Skeletal = Pain R
+  type: encirclement
+  coordinates:
+  - 1068
+  - 1561
+  - 1094
+  - 1606
+- name: Musculo-Skeletal = Pain L
+  type: encirclement
+  coordinates:
+  - 1100
+  - 1562
+  - 1118
+  - 1606
+- name: Musculo-Skeletal = Others
+  type: text
+  coordinates:
+  - 1240
+  - 1559
+  - 1433
+  - 1594
+- name: Musculo-Skeletal = N/A
+  type: encirclement
+  coordinates:
+  - 1431
+  - 1562
+  - 1491
+  - 1610
+- name: Integumentary Color = Normal
+  type: encirclement
+  coordinates:
+  - 362
+  - 1611
+  - 443
+  - 1649
+- name: Integumentary Color = Pinkish
+  type: encirclement
+  coordinates:
+  - 443
+  - 1614
+  - 525
+  - 1652
+- name: Integumentary Color = Cyanotic
+  type: encirclement
+  coordinates:
+  - 525
+  - 1613
+  - 637
+  - 1652
+- name: Integumentary Color = Pale
+  type: encirclement
+  coordinates:
+  - 630
+  - 1599
+  - 718
+  - 1646
+- name: Integumentary Color = Flushed
+  type: encirclement
+  coordinates:
+  - 732
+  - 1612
+  - 837
+  - 1649
+- name: Integumentary Color = Jaundice
+  type: encirclement
+  coordinates:
+  - 839
+  - 1613
+  - 972
+  - 1649
+- name: Integumentary Temperature = Warm
+  type: encirclement
+  coordinates:
+  - 375
+  - 1649
+  - 461
+  - 1692
+- name: Integumentary Temperature = Cool
+  type: encirclement
+  coordinates:
+  - 456
+  - 1643
+  - 534
+  - 1684
+- name: Integumentary Temperature = Cold Clammy
+  type: encirclement
+  coordinates:
+  - 539
+  - 1649
+  - 698
+  - 1690
+- name: Integumentary Temperature = Diaphoretic
+  type: encirclement
+  coordinates:
+  - 728
+  - 1651
+  - 872
+  - 1688
+- name: Edema = Anasarca
+  type: encirclement
+  coordinates:
+  - 383
+  - 1687
+  - 478
+  - 1724
+- name: Edema = Peripheral
+  type: encirclement
+  coordinates:
+  - 480
+  - 1686
+  - 587
+  - 1724
+- name: Edema Grade
+  type: text
+  coordinates:
+  - 655
+  - 1686
+  - 723
+  - 1713
+- name: Edema Location
+  type: text
+  coordinates:
+  - 822
+  - 1685
+  - 920
+  - 1713
+- name: Edema = N/A
+  type: encirclement
+  coordinates:
+  - 923
+  - 1682
+  - 971
+  - 1725
+- name: Integumentary = Pitting
+  type: encirclement
+  coordinates:
+  - 308
+  - 1716
+  - 378
+  - 1765
+- name: Integumentary = Non-pitting
+  type: encirclement
+  coordinates:
+  - 368
+  - 1717
+  - 493
+  - 1765
+- name: Turgor = Good
+  type: encirclement
+  coordinates:
+  - 1050
+  - 1604
+  - 1133
+  - 1649
+- name: Turgor = Poor
+  type: encirclement
+  coordinates:
+  - 1134
+  - 1604
+  - 1223
+  - 1649
+- name: Bedsore (size/grade/location)
+  type: text
+  coordinates:
+  - 1275
+  - 1628
+  - 1463
+  - 1674
+- name: Bedsore = N/A
+  type: encirclement
+  coordinates:
+  - 1465
+  - 1640
+  - 1517
+  - 1688
+- name: Integumentary = Hematoma
+  type: encirclement
+  coordinates:
+  - 977
+  - 1674
+  - 1091
+  - 1723
+- name: Integumentary = Rash
+  type: encirclement
+  coordinates:
+  - 1092
+  - 1675
+  - 1153
+  - 1723
+- name: Integumentary = Lesion
+  type: encirclement
+  coordinates:
+  - 1153
+  - 1674
+  - 1228
+  - 1722
+- name: Hematoma/Rash/Lesion Location
+  type: text
+  coordinates:
+  - 1328
+  - 1678
+  - 1477
+  - 1713
+- name: Hematoma/Rash/Lesion = N/A
+  type: encirclement
+  coordinates:
+  - 1475
+  - 1675
+  - 1526
+  - 1730
+- name: Pain Description
+  type: text
+  coordinates:
+  - 852
+  - 1770
+  - 1044
+  - 1838
+- name: Pain Location
+  type: text
+  coordinates:
+  - 1140
+  - 1770
+  - 1520
+  - 1845
+- name: Congenital Anomalies (specify)
+  type: text
+  coordinates:
+  - 305
+  - 1892
+  - 1532
+  - 2006

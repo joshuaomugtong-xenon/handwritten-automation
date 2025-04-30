@@ -1,0 +1,986 @@
+form_type: PGH Form No. Q-610057(b)
+form_title: MEDICATION, SUPPLEMENT, TREATMENT ADMINISTRATION RECORD B (MSTAR B2)
+length: 1625
+width: 2725
+use_coordinates: true
+regions:
+- name: Name
+  type: text
+  coordinates:
+  - 845
+  - 91
+  - 1556
+  - 180
+- name: WARD/AREA/UNIT
+  type: text
+  coordinates:
+  - 971
+  - 198
+  - 1155
+  - 247
+- name: BED/ROOM NO.
+  type: text
+  coordinates:
+  - 1337
+  - 192
+  - 1554
+  - 257
+- name: AGE
+  type: text
+  coordinates:
+  - 821
+  - 251
+  - 898
+  - 325
+- name: SEX = MALE
+  type: checkbox
+  coordinates:
+  - 956
+  - 273
+  - 1008
+  - 323
+- name: SEX = FEMALE
+  type: checkbox
+  coordinates:
+  - 1069
+  - 272
+  - 1120
+  - 322
+- name: BIRTHDATE
+  type: text
+  coordinates:
+  - 1348
+  - 266
+  - 1553
+  - 315
+- name: CASE NO.
+  type: text
+  coordinates:
+  - 879
+  - 324
+  - 1129
+  - 421
+- name: PHILHEALTH = YES
+  type: checkbox
+  coordinates:
+  - 1275
+  - 359
+  - 1326
+  - 409
+- name: PHILHEALTH = NO
+  type: checkbox
+  coordinates:
+  - 1390
+  - 362
+  - 1441
+  - 411
+- name: P.R.N (indicate reason for administration) (1)
+  type: text
+  coordinates:
+  - 311
+  - 628
+  - 833
+  - 695
+- name: 'P.R.N (indicate reason for administration) (1): Nurse A'
+  type: text
+  coordinates:
+  - 63
+  - 623
+  - 155
+  - 684
+- name: 'P.R.N (indicate reason for administration) (1): Nurse B'
+  type: text
+  coordinates:
+  - 162
+  - 621
+  - 252
+  - 683
+- name: 'P.R.N (indicate reason for administration) (1): Time Given'
+  type: text
+  coordinates:
+  - 848
+  - 629
+  - 1124
+  - 689
+- name: 'P.R.N (indicate reason for administration) (1): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 624
+  - 1558
+  - 691
+- name: P.R.N (indicate reason for administration) (2)
+  type: text
+  coordinates:
+  - 302
+  - 699
+  - 833
+  - 762
+- name: 'P.R.N (indicate reason for administration) (2): Nurse A'
+  type: text
+  coordinates:
+  - 65
+  - 690
+  - 157
+  - 751
+- name: 'P.R.N (indicate reason for administration) (2): Nurse B'
+  type: text
+  coordinates:
+  - 161
+  - 687
+  - 251
+  - 749
+- name: 'P.R.N (indicate reason for administration) (2): Time Given'
+  type: text
+  coordinates:
+  - 843
+  - 689
+  - 1121
+  - 750
+- name: 'P.R.N (indicate reason for administration) (2): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 687
+  - 1558
+  - 762
+- name: P.R.N (indicate reason for administration) (3)
+  type: text
+  coordinates:
+  - 322
+  - 757
+  - 869
+  - 831
+- name: 'P.R.N (indicate reason for administration) (3): Nurse A'
+  type: text
+  coordinates:
+  - 64
+  - 758
+  - 156
+  - 819
+- name: 'P.R.N (indicate reason for administration) (3): Nurse B'
+  type: text
+  coordinates:
+  - 158
+  - 757
+  - 248
+  - 819
+- name: 'P.R.N (indicate reason for administration) (3): Time Given'
+  type: text
+  coordinates:
+  - 877
+  - 766
+  - 1121
+  - 832
+- name: 'P.R.N (indicate reason for administration) (3): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 755
+  - 1559
+  - 822
+- name: P.R.N (indicate reason for administration) (4)
+  type: text
+  coordinates:
+  - 306
+  - 824
+  - 839
+  - 887
+- name: 'P.R.N (indicate reason for administration) (4): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 825
+  - 158
+  - 886
+- name: 'P.R.N (indicate reason for administration) (4): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 826
+  - 249
+  - 888
+- name: 'P.R.N (indicate reason for administration) (4): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 825
+  - 1120
+  - 887
+- name: 'P.R.N (indicate reason for administration) (4): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 824
+  - 1558
+  - 891
+- name: P.R.N (indicate reason for administration) (5)
+  type: text
+  coordinates:
+  - 307
+  - 891
+  - 838
+  - 954
+- name: 'P.R.N (indicate reason for administration) (5): Nurse A'
+  type: text
+  coordinates:
+  - 67
+  - 892
+  - 159
+  - 953
+- name: 'P.R.N (indicate reason for administration) (5): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 893
+  - 249
+  - 955
+- name: 'P.R.N (indicate reason for administration) (5): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 892
+  - 1121
+  - 954
+- name: 'P.R.N (indicate reason for administration) (5): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 892
+  - 1558
+  - 959
+- name: P.R.N (indicate reason for administration) (6)
+  type: text
+  coordinates:
+  - 305
+  - 960
+  - 838
+  - 1023
+- name: 'P.R.N (indicate reason for administration) (6): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 962
+  - 158
+  - 1023
+- name: 'P.R.N (indicate reason for administration) (6): Nurse B'
+  type: text
+  coordinates:
+  - 161
+  - 962
+  - 251
+  - 1024
+- name: 'P.R.N (indicate reason for administration) (6): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 960
+  - 1121
+  - 1023
+- name: 'P.R.N (indicate reason for administration) (6): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 958
+  - 1557
+  - 1025
+- name: P.R.N (indicate reason for administration) (7)
+  type: text
+  coordinates:
+  - 306
+  - 1027
+  - 838
+  - 1090
+- name: 'P.R.N (indicate reason for administration) (7): Nurse A'
+  type: text
+  coordinates:
+  - 64
+  - 1027
+  - 157
+  - 1088
+- name: 'P.R.N (indicate reason for administration) (7): Nurse B'
+  type: text
+  coordinates:
+  - 161
+  - 1027
+  - 251
+  - 1089
+- name: 'P.R.N (indicate reason for administration) (7): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 1027
+  - 1121
+  - 1091
+- name: 'P.R.N (indicate reason for administration) (7): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1026
+  - 1558
+  - 1093
+- name: P.R.N (indicate reason for administration) (8)
+  type: text
+  coordinates:
+  - 305
+  - 1095
+  - 838
+  - 1158
+- name: 'P.R.N (indicate reason for administration) (8): Nurse A'
+  type: text
+  coordinates:
+  - 67
+  - 1095
+  - 159
+  - 1156
+- name: 'P.R.N (indicate reason for administration) (8): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 1095
+  - 250
+  - 1157
+- name: 'P.R.N (indicate reason for administration) (8): Time Given'
+  type: text
+  coordinates:
+  - 845
+  - 1095
+  - 1121
+  - 1157
+- name: 'P.R.N (indicate reason for administration) (8): Remarks'
+  type: text
+  coordinates:
+  - 1125
+  - 1093
+  - 1558
+  - 1160
+- name: Stat Dose (must be givem immediately) (1)
+  type: text
+  coordinates:
+  - 320
+  - 1233
+  - 834
+  - 1300
+- name: 'Stat Dose (must be givem immediately) (1): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 1235
+  - 158
+  - 1296
+- name: 'Stat Dose (must be givem immediately) (1): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 1234
+  - 249
+  - 1296
+- name: 'Stat Dose (must be givem immediately) (1): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 1234
+  - 1120
+  - 1295
+- name: 'Stat Dose (must be givem immediately) (1): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 1232
+  - 1544
+  - 1299
+- name: Stat Dose (must be givem immediately) (2)
+  type: text
+  coordinates:
+  - 319
+  - 1302
+  - 838
+  - 1357
+- name: 'Stat Dose (must be givem immediately) (2): Nurse A'
+  type: text
+  coordinates:
+  - 64
+  - 1302
+  - 156
+  - 1363
+- name: 'Stat Dose (must be givem immediately) (2): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 1302
+  - 250
+  - 1364
+- name: 'Stat Dose (must be givem immediately) (2): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 1302
+  - 1122
+  - 1364
+- name: 'Stat Dose (must be givem immediately) (2): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 1298
+  - 1558
+  - 1365
+- name: Stat Dose (must be givem immediately) (3)
+  type: text
+  coordinates:
+  - 305
+  - 1368
+  - 838
+  - 1431
+- name: 'Stat Dose (must be givem immediately) (3): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 1370
+  - 158
+  - 1431
+- name: 'Stat Dose (must be givem immediately) (3): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 1372
+  - 250
+  - 1434
+- name: 'Stat Dose (must be givem immediately) (3): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 1369
+  - 1120
+  - 1430
+- name: 'Stat Dose (must be givem immediately) (3): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 1366
+  - 1558
+  - 1433
+- name: Stat Dose (must be givem immediately) (4)
+  type: text
+  coordinates:
+  - 305
+  - 1439
+  - 838
+  - 1502
+- name: 'Stat Dose (must be givem immediately) (4): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 1438
+  - 158
+  - 1499
+- name: 'Stat Dose (must be givem immediately) (4): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 1437
+  - 250
+  - 1499
+- name: 'Stat Dose (must be givem immediately) (4): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 1437
+  - 1120
+  - 1499
+- name: 'Stat Dose (must be givem immediately) (4): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 1434
+  - 1558
+  - 1501
+- name: Loading/Single Dose (no urgency implied on adiministering) (1)
+  type: text
+  coordinates:
+  - 322
+  - 1595
+  - 837
+  - 1660
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (1): Nurse A'
+  type: text
+  coordinates:
+  - 64
+  - 1607
+  - 156
+  - 1668
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (1): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 1607
+  - 251
+  - 1668
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (1): Time Given'
+  type: text
+  coordinates:
+  - 845
+  - 1602
+  - 1121
+  - 1664
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (1): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1601
+  - 1558
+  - 1668
+- name: Loading/Single Dose (no urgency implied on adiministering) (2)
+  type: text
+  coordinates:
+  - 306
+  - 1670
+  - 838
+  - 1733
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (2): Nurse A'
+  type: text
+  coordinates:
+  - 63
+  - 1671
+  - 155
+  - 1732
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (2): Nurse B'
+  type: text
+  coordinates:
+  - 158
+  - 1671
+  - 250
+  - 1732
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (2): Time Given'
+  type: text
+  coordinates:
+  - 843
+  - 1670
+  - 1121
+  - 1733
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (2): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1667
+  - 1557
+  - 1734
+- name: Loading/Single Dose (no urgency implied on adiministering) (3)
+  type: text
+  coordinates:
+  - 305
+  - 1738
+  - 838
+  - 1801
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (3): Nurse A'
+  type: text
+  coordinates:
+  - 67
+  - 1738
+  - 159
+  - 1799
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (3): Nurse B'
+  type: text
+  coordinates:
+  - 157
+  - 1739
+  - 249
+  - 1800
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (3): Time Given'
+  type: text
+  coordinates:
+  - 843
+  - 1738
+  - 1122
+  - 1800
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (3): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1736
+  - 1557
+  - 1803
+- name: Loading/Single Dose (no urgency implied on adiministering) (4)
+  type: text
+  coordinates:
+  - 306
+  - 1806
+  - 838
+  - 1869
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (4): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 1806
+  - 158
+  - 1867
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (4): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 1808
+  - 251
+  - 1869
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (4): Time Given'
+  type: text
+  coordinates:
+  - 843
+  - 1807
+  - 1121
+  - 1868
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (4): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1804
+  - 1557
+  - 1871
+- name: Loading/Single Dose (no urgency implied on adiministering) (5)
+  type: text
+  coordinates:
+  - 306
+  - 1874
+  - 838
+  - 1937
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (5): Nurse A'
+  type: text
+  coordinates:
+  - 69
+  - 1875
+  - 161
+  - 1936
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (5): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 1875
+  - 252
+  - 1936
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (5): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 1874
+  - 1121
+  - 1936
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (5): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1871
+  - 1557
+  - 1938
+- name: Loading/Single Dose (no urgency implied on adiministering) (6)
+  type: text
+  coordinates:
+  - 306
+  - 1942
+  - 838
+  - 2005
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (6): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 1944
+  - 158
+  - 2005
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (6): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 1942
+  - 252
+  - 2003
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (6): Time Given'
+  type: text
+  coordinates:
+  - 845
+  - 1943
+  - 1121
+  - 2004
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (6): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 1940
+  - 1557
+  - 2007
+- name: Loading/Single Dose (no urgency implied on adiministering) (7)
+  type: text
+  coordinates:
+  - 306
+  - 2010
+  - 838
+  - 2073
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (7): Nurse A'
+  type: text
+  coordinates:
+  - 65
+  - 2009
+  - 157
+  - 2070
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (7): Nurse B'
+  type: text
+  coordinates:
+  - 158
+  - 2011
+  - 250
+  - 2072
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (7): Time Given'
+  type: text
+  coordinates:
+  - 843
+  - 2010
+  - 1121
+  - 2072
+- name: 'Loading/Single Dose (no urgency implied on adiministering) (7): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 2008
+  - 1557
+  - 2075
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (1)
+  type: text
+  coordinates:
+  - 313
+  - 2174
+  - 840
+  - 2237
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (1): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 2172
+  - 158
+  - 2233
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (1): Nurse B'
+  type: text
+  coordinates:
+  - 158
+  - 2175
+  - 250
+  - 2236
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (1): Time Given'
+  type: text
+  coordinates:
+  - 845
+  - 2174
+  - 1121
+  - 2237
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 2170
+  - 1559
+  - 2237
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (2)
+  type: text
+  coordinates:
+  - 307
+  - 2244
+  - 837
+  - 2307
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (2): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 2243
+  - 158
+  - 2304
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (2): Nurse B'
+  type: text
+  coordinates:
+  - 161
+  - 2243
+  - 253
+  - 2304
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (2): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 2243
+  - 1122
+  - 2305
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (2): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 2237
+  - 1558
+  - 2304
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (3)
+  type: text
+  coordinates:
+  - 307
+  - 2311
+  - 840
+  - 2374
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (3): Nurse A'
+  type: text
+  coordinates:
+  - 65
+  - 2310
+  - 157
+  - 2371
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (3): Nurse B'
+  type: text
+  coordinates:
+  - 157
+  - 2310
+  - 249
+  - 2371
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (3): Time Given'
+  type: text
+  coordinates:
+  - 845
+  - 2310
+  - 1121
+  - 2373
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (3): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 2305
+  - 1558
+  - 2372
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (4)
+  type: text
+  coordinates:
+  - 308
+  - 2378
+  - 838
+  - 2441
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (4): Nurse A'
+  type: text
+  coordinates:
+  - 68
+  - 2378
+  - 160
+  - 2439
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (4): Nurse B'
+  type: text
+  coordinates:
+  - 158
+  - 2379
+  - 250
+  - 2440
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (4): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 2377
+  - 1122
+  - 2440
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (4): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 2376
+  - 1558
+  - 2443
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (5)
+  type: text
+  coordinates:
+  - 307
+  - 2447
+  - 839
+  - 2510
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (5): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 2446
+  - 158
+  - 2507
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (5): Nurse B'
+  type: text
+  coordinates:
+  - 157
+  - 2446
+  - 249
+  - 2507
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (5): Time Given'
+  type: text
+  coordinates:
+  - 844
+  - 2446
+  - 1122
+  - 2509
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (5): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 2445
+  - 1559
+  - 2512
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (6)
+  type: text
+  coordinates:
+  - 306
+  - 2513
+  - 838
+  - 2576
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (6): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 2514
+  - 158
+  - 2575
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (6): Nurse B'
+  type: text
+  coordinates:
+  - 161
+  - 2513
+  - 253
+  - 2574
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (6): Time Given'
+  type: text
+  coordinates:
+  - 845
+  - 2514
+  - 1122
+  - 2577
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (6): Remarks'
+  type: text
+  coordinates:
+  - 1126
+  - 2512
+  - 1558
+  - 2579
+- name: Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (7)
+  type: text
+  coordinates:
+  - 306
+  - 2581
+  - 838
+  - 2644
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (7): Nurse A'
+  type: text
+  coordinates:
+  - 67
+  - 2582
+  - 159
+  - 2643
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (7): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 2578
+  - 251
+  - 2639
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (7): Time Given'
+  type: text
+  coordinates:
+  - 843
+  - 2583
+  - 1122
+  - 2645
+- name: 'Pre-Medications (ie. Pre-procedure, pre-chemo, etc.) (7): Remarks'
+  type: text
+  coordinates:
+  - 1127
+  - 2580
+  - 1558
+  - 2647

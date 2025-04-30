@@ -1,0 +1,111 @@
+form_type: PGH Form No. P-310004(a)
+form_title: INFORMED CONSENT FOR SURGERY, ANESTHESIA, OR OTHER PROCEDURES.
+length: 1500
+width: 2000
+use_coordinates: true
+regions:
+- name: Case No.
+  type: text
+  coordinates:
+  - 1200
+  - 230
+  - 1400
+  - 350
+- name: 'Patient: Name'
+  type: text
+  coordinates:
+  - 220
+  - 440
+  - 890
+  - 509
+- name: 'Patient: Address'
+  type: text
+  coordinates:
+  - 334
+  - 510
+  - 1296
+  - 551
+- name: Procedure/operation/anesthesia
+  type: text
+  coordinates:
+  - 512
+  - 542
+  - 1263
+  - 579
+- name: Doctor/ Healthcare Provider
+  type: text
+  coordinates:
+  - 97
+  - 580
+  - 495
+  - 626
+- name: 'Guardian: Name'
+  type: text
+  coordinates:
+  - 220
+  - 650
+  - 890
+  - 708
+- name: 'Guardian: Address'
+  type: text
+  coordinates:
+  - 325
+  - 705
+  - 1300
+  - 749
+- name: Procedure/operation/anesthesia
+  type: text
+  coordinates:
+  - 499
+  - 750
+  - 727
+  - 785
+- name: Relation to Patient
+  type: text
+  coordinates:
+  - 793
+  - 750
+  - 1023
+  - 780
+- name: Name of Patient
+  type: text
+  coordinates:
+  - 1023
+  - 746
+  - 1482
+  - 785
+- name: Procedure/operation/anesthesia
+  type: text
+  coordinates:
+  - 105
+  - 839
+  - 1381
+  - 885
+- name: Day
+  type: text
+  coordinates:
+  - 1211
+  - 1323
+  - 1401
+  - 1397
+- name: Month
+  type: text
+  coordinates:
+  - 207
+  - 1368
+  - 488
+  - 1432
+- name: Year
+  type: text
+  coordinates:
+  - 501
+  - 1373
+  - 636
+  - 1408
+- name: Place
+  type: text
+  coordinates:
+  - 672
+  - 1375
+  - 1013
+  - 1420

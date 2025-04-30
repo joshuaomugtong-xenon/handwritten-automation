@@ -1,0 +1,2498 @@
+form_title: FLUID INTAKE AND OUTPUT CHART (Summary 24 Hours)
+form_type: PGH Form No. P-610010
+length: 1600
+regions:
+- coordinates:
+  - 168
+  - 410
+  - 582
+  - 482
+  name: Name
+  type: text
+- coordinates:
+  - 676
+  - 420
+  - 827
+  - 489
+  name: Age
+  type: text
+- coordinates:
+  - 924
+  - 417
+  - 1118
+  - 482
+  name: Sex
+  type: text
+- coordinates:
+  - 1209
+  - 412
+  - 1331
+  - 487
+  name: Ward
+  type: text
+- coordinates:
+  - 1405
+  - 415
+  - 1539
+  - 489
+  name: Bed
+  type: text
+- coordinates:
+  - 115
+  - 645
+  - 229
+  - 697
+  name: 'Date (1) Time: 6-2'
+  type: text
+- coordinates:
+  - 333
+  - 645
+  - 463
+  - 698
+  name: '(1) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 462
+  - 644
+  - 588
+  - 699
+  name: '(1) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 595
+  - 644
+  - 714
+  - 700
+  name: '(1) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 721
+  - 649
+  - 846
+  - 699
+  name: '(1) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 845
+  - 649
+  - 970
+  - 699
+  name: '(1) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 975
+  - 649
+  - 1122
+  - 699
+  name: '(1) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1125
+  - 645
+  - 1274
+  - 699
+  name: '(1) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1277
+  - 645
+  - 1396
+  - 697
+  name: '(1) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1403
+  - 647
+  - 1528
+  - 698
+  name: '(1) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 114
+  - 698
+  - 226
+  - 747
+  name: 'Date (1) Time: 2-10'
+  type: text
+- coordinates:
+  - 340
+  - 702
+  - 464
+  - 749
+  name: '(1) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 465
+  - 700
+  - 591
+  - 751
+  name: '(1) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 593
+  - 704
+  - 718
+  - 756
+  name: '(1) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 721
+  - 701
+  - 846
+  - 753
+  name: '(1) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 701
+  - 976
+  - 751
+  name: '(1) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 971
+  - 702
+  - 1117
+  - 756
+  name: '(1) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1118
+  - 701
+  - 1272
+  - 751
+  name: '(1) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1275
+  - 700
+  - 1399
+  - 752
+  name: '(1) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1400
+  - 700
+  - 1525
+  - 750
+  name: '(1) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 117
+  - 750
+  - 224
+  - 799
+  name: 'Date (1) Time: 10-6'
+  type: text
+- coordinates:
+  - 338
+  - 752
+  - 464
+  - 801
+  name: '(1) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 464
+  - 751
+  - 587
+  - 804
+  name: '(1) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 758
+  - 720
+  - 805
+  name: '(1) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 722
+  - 757
+  - 843
+  - 808
+  name: '(1) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 755
+  - 968
+  - 808
+  name: '(1) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 974
+  - 755
+  - 1116
+  - 808
+  name: '(1) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1123
+  - 753
+  - 1271
+  - 807
+  name: '(1) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1274
+  - 754
+  - 1400
+  - 803
+  name: '(1) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1400
+  - 752
+  - 1525
+  - 808
+  name: '(1) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 340
+  - 804
+  - 463
+  - 858
+  name: (1) TOTAL - Oral
+  type: text
+- coordinates:
+  - 464
+  - 806
+  - 590
+  - 855
+  name: '(1) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 591
+  - 809
+  - 720
+  - 860
+  name: '(1) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 718
+  - 811
+  - 844
+  - 860
+  name: '(1) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 809
+  - 967
+  - 861
+  name: '(1) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 970
+  - 809
+  - 1124
+  - 857
+  name: '(1) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1124
+  - 808
+  - 1268
+  - 856
+  name: '(1) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1271
+  - 806
+  - 1399
+  - 853
+  name: '(1) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1400
+  - 809
+  - 1524
+  - 853
+  name: '(1) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 116
+  - 857
+  - 234
+  - 908
+  name: 'Date (2) Time: 6-2'
+  type: text
+- coordinates:
+  - 340
+  - 859
+  - 461
+  - 908
+  name: '(2) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 466
+  - 861
+  - 591
+  - 913
+  name: '(2) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 597
+  - 861
+  - 719
+  - 911
+  name: '(2) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 722
+  - 861
+  - 844
+  - 912
+  name: '(2) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 851
+  - 865
+  - 973
+  - 912
+  name: '(2) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 975
+  - 863
+  - 1118
+  - 909
+  name: '(2) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1118
+  - 860
+  - 1270
+  - 910
+  name: '(2) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1274
+  - 859
+  - 1399
+  - 911
+  name: '(2) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1397
+  - 859
+  - 1527
+  - 911
+  name: '(2) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 118
+  - 910
+  - 233
+  - 964
+  name: 'Date (2) Time: 2-10'
+  type: text
+- coordinates:
+  - 338
+  - 910
+  - 465
+  - 967
+  name: '(2) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 466
+  - 913
+  - 587
+  - 967
+  name: '(2) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 589
+  - 915
+  - 718
+  - 965
+  name: '(2) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 722
+  - 915
+  - 847
+  - 963
+  name: '(2) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 850
+  - 913
+  - 971
+  - 964
+  name: '(2) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 976
+  - 913
+  - 1115
+  - 965
+  name: '(2) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1120
+  - 915
+  - 1269
+  - 964
+  name: '(2) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1274
+  - 914
+  - 1393
+  - 963
+  name: '(2) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1401
+  - 913
+  - 1524
+  - 966
+  name: '(2) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 120
+  - 963
+  - 231
+  - 1014
+  name: 'Date (2) Time: 10-6'
+  type: text
+- coordinates:
+  - 340
+  - 964
+  - 465
+  - 1017
+  name: '(2) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 467
+  - 969
+  - 593
+  - 1021
+  name: '(2) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 596
+  - 969
+  - 723
+  - 1015
+  name: '(2) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 722
+  - 969
+  - 846
+  - 1017
+  name: '(2) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 970
+  - 970
+  - 1016
+  name: '(2) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 971
+  - 970
+  - 1121
+  - 1017
+  name: '(2) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1125
+  - 970
+  - 1266
+  - 1016
+  name: '(2) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1272
+  - 969
+  - 1397
+  - 1014
+  name: '(2) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1400
+  - 969
+  - 1521
+  - 1016
+  name: '(2) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 343
+  - 1019
+  - 460
+  - 1065
+  name: (2) TOTAL - Oral
+  type: text
+- coordinates:
+  - 464
+  - 1022
+  - 592
+  - 1069
+  name: '(2) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 591
+  - 1020
+  - 720
+  - 1069
+  name: '(2) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 723
+  - 1022
+  - 848
+  - 1072
+  name: '(2) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 852
+  - 1019
+  - 968
+  - 1071
+  name: '(2) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 973
+  - 1019
+  - 1115
+  - 1071
+  name: '(2) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1122
+  - 1023
+  - 1267
+  - 1068
+  name: '(2) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1272
+  - 1022
+  - 1395
+  - 1070
+  name: '(2) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1399
+  - 1021
+  - 1524
+  - 1067
+  name: '(2) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 120
+  - 1074
+  - 235
+  - 1120
+  name: 'Date (3) Time: 6-2'
+  type: text
+- coordinates:
+  - 343
+  - 1075
+  - 465
+  - 1116
+  name: '(3) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 464
+  - 1071
+  - 590
+  - 1118
+  name: '(3) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 594
+  - 1075
+  - 717
+  - 1125
+  name: '(3) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 722
+  - 1074
+  - 848
+  - 1121
+  name: '(3) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 1075
+  - 970
+  - 1124
+  name: '(3) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 976
+  - 1074
+  - 1117
+  - 1120
+  name: '(3) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1122
+  - 1072
+  - 1274
+  - 1122
+  name: '(3) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1271
+  - 1076
+  - 1398
+  - 1117
+  name: '(3) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1398
+  - 1073
+  - 1526
+  - 1113
+  name: '(3) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 1116
+  - 227
+  - 1169
+  name: 'Date (3) Time: 2-10'
+  type: text
+- coordinates:
+  - 333
+  - 1117
+  - 452
+  - 1168
+  name: '(3) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 460
+  - 1117
+  - 589
+  - 1168
+  name: '(3) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 588
+  - 1116
+  - 715
+  - 1171
+  name: '(3) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 715
+  - 1114
+  - 844
+  - 1168
+  name: '(3) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 845
+  - 1118
+  - 975
+  - 1171
+  name: '(3) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 977
+  - 1120
+  - 1126
+  - 1169
+  name: '(3) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1127
+  - 1118
+  - 1281
+  - 1168
+  name: '(3) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1284
+  - 1119
+  - 1409
+  - 1167
+  name: '(3) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1407
+  - 1118
+  - 1535
+  - 1170
+  name: '(3) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 107
+  - 1171
+  - 227
+  - 1222
+  name: 'Date (3) Time: 10-6'
+  type: text
+- coordinates:
+  - 330
+  - 1171
+  - 457
+  - 1224
+  name: '(3) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 457
+  - 1172
+  - 587
+  - 1226
+  name: '(3) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 588
+  - 1172
+  - 715
+  - 1222
+  name: '(3) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 717
+  - 1170
+  - 845
+  - 1224
+  name: '(3) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 845
+  - 1171
+  - 977
+  - 1223
+  name: '(3) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 978
+  - 1173
+  - 1122
+  - 1221
+  name: '(3) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1124
+  - 1170
+  - 1279
+  - 1223
+  name: '(3) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1284
+  - 1173
+  - 1407
+  - 1223
+  name: '(3) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 1171
+  - 1534
+  - 1226
+  name: '(3) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 331
+  - 1225
+  - 457
+  - 1276
+  name: (3) TOTAL - Oral
+  type: text
+- coordinates:
+  - 457
+  - 1223
+  - 585
+  - 1280
+  name: '(3) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 1224
+  - 716
+  - 1278
+  name: '(3) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 719
+  - 1223
+  - 848
+  - 1278
+  name: '(3) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 1225
+  - 974
+  - 1276
+  name: '(3) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 980
+  - 1225
+  - 1126
+  - 1275
+  name: '(3) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1130
+  - 1224
+  - 1279
+  - 1277
+  name: '(3) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 1226
+  - 1410
+  - 1274
+  name: '(3) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1410
+  - 1223
+  - 1536
+  - 1278
+  name: '(3) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 105
+  - 1278
+  - 225
+  - 1332
+  name: 'Date (4) Time: 6-2'
+  type: text
+- coordinates:
+  - 333
+  - 1280
+  - 459
+  - 1332
+  name: '(4) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 458
+  - 1279
+  - 587
+  - 1331
+  name: '(4) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 1279
+  - 719
+  - 1334
+  name: '(4) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 716
+  - 1278
+  - 847
+  - 1330
+  name: '(4) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 846
+  - 1277
+  - 976
+  - 1330
+  name: '(4) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1279
+  - 1128
+  - 1329
+  name: '(4) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1130
+  - 1279
+  - 1280
+  - 1333
+  name: '(4) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1281
+  - 1279
+  - 1411
+  - 1329
+  name: '(4) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1412
+  - 1277
+  - 1534
+  - 1328
+  name: '(4) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 108
+  - 1330
+  - 222
+  - 1390
+  name: 'Date (4) Time: 2-10'
+  type: text
+- coordinates:
+  - 332
+  - 1333
+  - 460
+  - 1384
+  name: '(4) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 459
+  - 1333
+  - 584
+  - 1385
+  name: '(4) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 587
+  - 1334
+  - 715
+  - 1382
+  name: '(4) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 1333
+  - 845
+  - 1382
+  name: '(4) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 847
+  - 1332
+  - 976
+  - 1382
+  name: '(4) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1332
+  - 1124
+  - 1380
+  name: '(4) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 1335
+  - 1278
+  - 1383
+  name: '(4) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1283
+  - 1332
+  - 1406
+  - 1380
+  name: '(4) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 1330
+  - 1534
+  - 1382
+  name: '(4) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 104
+  - 1387
+  - 224
+  - 1438
+  name: 'Date (4) Time: 10-6'
+  type: text
+- coordinates:
+  - 330
+  - 1386
+  - 460
+  - 1441
+  name: '(4) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 461
+  - 1385
+  - 584
+  - 1439
+  name: '(4) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 584
+  - 1385
+  - 714
+  - 1435
+  name: '(4) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 718
+  - 1380
+  - 845
+  - 1437
+  name: '(4) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 851
+  - 1386
+  - 973
+  - 1437
+  name: '(4) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 977
+  - 1385
+  - 1128
+  - 1440
+  name: '(4) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1126
+  - 1387
+  - 1280
+  - 1437
+  name: '(4) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1280
+  - 1383
+  - 1409
+  - 1437
+  name: '(4) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1409
+  - 1384
+  - 1539
+  - 1439
+  name: '(4) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 332
+  - 1439
+  - 457
+  - 1493
+  name: (4) TOTAL - Oral
+  type: text
+- coordinates:
+  - 463
+  - 1437
+  - 586
+  - 1493
+  name: '(4) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 589
+  - 1441
+  - 715
+  - 1489
+  name: '(4) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 714
+  - 1439
+  - 844
+  - 1495
+  name: '(4) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 1440
+  - 977
+  - 1494
+  name: '(4) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 978
+  - 1437
+  - 1128
+  - 1493
+  name: '(4) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1124
+  - 1437
+  - 1278
+  - 1491
+  name: '(4) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 1439
+  - 1405
+  - 1488
+  name: '(4) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 1439
+  - 1539
+  - 1491
+  name: '(4) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 105
+  - 1494
+  - 227
+  - 1544
+  name: 'Date (5) Time: 6-2'
+  type: text
+- coordinates:
+  - 330
+  - 1492
+  - 458
+  - 1548
+  name: '(5) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 459
+  - 1493
+  - 586
+  - 1545
+  name: '(5) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 587
+  - 1493
+  - 716
+  - 1548
+  name: '(5) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 716
+  - 1494
+  - 845
+  - 1547
+  name: '(5) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 1493
+  - 976
+  - 1545
+  name: '(5) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 976
+  - 1493
+  - 1126
+  - 1545
+  name: '(5) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1128
+  - 1493
+  - 1279
+  - 1548
+  name: '(5) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1278
+  - 1491
+  - 1408
+  - 1543
+  name: '(5) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1410
+  - 1493
+  - 1537
+  - 1547
+  name: '(5) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 1548
+  - 224
+  - 1599
+  name: 'Date (5) Time: 2-10'
+  type: text
+- coordinates:
+  - 330
+  - 1549
+  - 459
+  - 1598
+  name: '(5) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 460
+  - 1549
+  - 589
+  - 1601
+  name: '(5) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 589
+  - 1545
+  - 715
+  - 1597
+  name: '(5) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 718
+  - 1545
+  - 846
+  - 1601
+  name: '(5) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 847
+  - 1544
+  - 978
+  - 1602
+  name: '(5) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 977
+  - 1549
+  - 1128
+  - 1596
+  name: '(5) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1128
+  - 1548
+  - 1281
+  - 1601
+  name: '(5) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1281
+  - 1546
+  - 1408
+  - 1599
+  name: '(5) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1410
+  - 1545
+  - 1535
+  - 1601
+  name: '(5) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 1601
+  - 224
+  - 1651
+  name: 'Date (5) Time: 10-6'
+  type: text
+- coordinates:
+  - 329
+  - 1601
+  - 458
+  - 1655
+  name: '(5) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 459
+  - 1602
+  - 588
+  - 1654
+  name: '(5) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 587
+  - 1600
+  - 717
+  - 1654
+  name: '(5) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 721
+  - 1603
+  - 846
+  - 1655
+  name: '(5) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 846
+  - 1603
+  - 975
+  - 1653
+  name: '(5) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1603
+  - 1129
+  - 1653
+  name: '(5) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1127
+  - 1602
+  - 1280
+  - 1654
+  name: '(5) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 1599
+  - 1410
+  - 1654
+  name: '(5) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1410
+  - 1601
+  - 1535
+  - 1655
+  name: '(5) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 328
+  - 1656
+  - 460
+  - 1708
+  name: (5) TOTAL - Oral
+  type: text
+- coordinates:
+  - 459
+  - 1653
+  - 588
+  - 1707
+  name: '(5) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 587
+  - 1655
+  - 717
+  - 1707
+  name: '(5) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 719
+  - 1653
+  - 847
+  - 1707
+  name: '(5) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 1654
+  - 976
+  - 1706
+  name: '(5) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 978
+  - 1652
+  - 1125
+  - 1707
+  name: '(5) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1126
+  - 1655
+  - 1280
+  - 1707
+  name: '(5) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1281
+  - 1654
+  - 1412
+  - 1706
+  name: '(5) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1410
+  - 1652
+  - 1537
+  - 1708
+  name: '(5) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 1709
+  - 226
+  - 1761
+  name: 'Date (6) Time: 6-2'
+  type: text
+- coordinates:
+  - 331
+  - 1706
+  - 460
+  - 1760
+  name: '(6) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 460
+  - 1706
+  - 589
+  - 1759
+  name: '(6) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 589
+  - 1708
+  - 717
+  - 1761
+  name: '(6) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 1707
+  - 848
+  - 1760
+  name: '(6) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 847
+  - 1706
+  - 976
+  - 1757
+  name: '(6) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1708
+  - 1127
+  - 1760
+  name: '(6) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 1707
+  - 1280
+  - 1761
+  name: '(6) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 1707
+  - 1407
+  - 1762
+  name: '(6) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1412
+  - 1709
+  - 1535
+  - 1758
+  name: '(6) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 107
+  - 1761
+  - 225
+  - 1814
+  name: 'Date (6) Time: 2-10'
+  type: text
+- coordinates:
+  - 330
+  - 1760
+  - 460
+  - 1812
+  name: '(6) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 459
+  - 1763
+  - 586
+  - 1815
+  name: '(6) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 589
+  - 1762
+  - 714
+  - 1817
+  name: '(6) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 719
+  - 1761
+  - 846
+  - 1816
+  name: '(6) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 1763
+  - 975
+  - 1817
+  name: '(6) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 973
+  - 1763
+  - 1129
+  - 1813
+  name: '(6) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1125
+  - 1763
+  - 1281
+  - 1817
+  name: '(6) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1280
+  - 1763
+  - 1410
+  - 1817
+  name: '(6) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1407
+  - 1760
+  - 1537
+  - 1816
+  name: '(6) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 104
+  - 1816
+  - 227
+  - 1867
+  name: 'Date (6) Time: 10-6'
+  type: text
+- coordinates:
+  - 329
+  - 1818
+  - 456
+  - 1866
+  name: '(6) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 463
+  - 1816
+  - 588
+  - 1869
+  name: '(6) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 588
+  - 1815
+  - 713
+  - 1870
+  name: '(6) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 717
+  - 1816
+  - 846
+  - 1867
+  name: '(6) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 1818
+  - 977
+  - 1869
+  name: '(6) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1816
+  - 1126
+  - 1867
+  name: '(6) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1127
+  - 1814
+  - 1281
+  - 1868
+  name: '(6) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1280
+  - 1813
+  - 1408
+  - 1869
+  name: '(6) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1407
+  - 1814
+  - 1533
+  - 1866
+  name: '(6) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 329
+  - 1869
+  - 459
+  - 1918
+  name: (6) TOTAL - Oral
+  type: text
+- coordinates:
+  - 459
+  - 1870
+  - 585
+  - 1920
+  name: '(6) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 1870
+  - 715
+  - 1920
+  name: '(6) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 1872
+  - 843
+  - 1920
+  name: '(6) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 1870
+  - 975
+  - 1922
+  name: '(6) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1870
+  - 1127
+  - 1918
+  name: '(6) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1123
+  - 1870
+  - 1282
+  - 1919
+  name: '(6) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1280
+  - 1869
+  - 1407
+  - 1925
+  name: '(6) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1409
+  - 1867
+  - 1534
+  - 1919
+  name: '(6) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 1925
+  - 226
+  - 1972
+  name: 'Date (7) Time: 6-2'
+  type: text
+- coordinates:
+  - 332
+  - 1922
+  - 458
+  - 1976
+  name: '(7) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 461
+  - 1922
+  - 588
+  - 1975
+  name: '(7) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 588
+  - 1924
+  - 716
+  - 1977
+  name: '(7) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 716
+  - 1924
+  - 848
+  - 1975
+  name: '(7) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 846
+  - 1924
+  - 977
+  - 1975
+  name: '(7) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 1923
+  - 1123
+  - 1977
+  name: '(7) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1128
+  - 1921
+  - 1277
+  - 1974
+  name: '(7) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1283
+  - 1920
+  - 1410
+  - 1975
+  name: '(7) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1407
+  - 1925
+  - 1538
+  - 1975
+  name: '(7) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 109
+  - 1974
+  - 222
+  - 2028
+  name: 'Date (7) Time: 2-10'
+  type: text
+- coordinates:
+  - 332
+  - 1975
+  - 459
+  - 2028
+  name: '(7) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 460
+  - 1978
+  - 586
+  - 2026
+  name: '(7) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 588
+  - 1978
+  - 715
+  - 2030
+  name: '(7) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 1977
+  - 848
+  - 2029
+  name: '(7) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 976
+  - 1977
+  - 1127
+  - 2030
+  name: '(7) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 844
+  - 1977
+  - 975
+  - 2028
+  name: '(7) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 1128
+  - 1976
+  - 1278
+  - 2027
+  name: '(7) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1279
+  - 1978
+  - 1409
+  - 2029
+  name: '(7) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 1975
+  - 1536
+  - 2024
+  name: '(7) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 2031
+  - 224
+  - 2081
+  name: 'Date (7) Time: 10-6'
+  type: text
+- coordinates:
+  - 330
+  - 2033
+  - 459
+  - 2086
+  name: '(7) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 459
+  - 2033
+  - 588
+  - 2080
+  name: '(7) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 587
+  - 2031
+  - 719
+  - 2081
+  name: '(7) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 714
+  - 2032
+  - 848
+  - 2083
+  name: '(7) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 850
+  - 2031
+  - 975
+  - 2083
+  name: '(7) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 981
+  - 2030
+  - 1128
+  - 2085
+  name: '(7) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 2030
+  - 1280
+  - 2082
+  name: '(7) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1284
+  - 2029
+  - 1410
+  - 2084
+  name: '(7) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1409
+  - 2027
+  - 1537
+  - 2080
+  name: '(7) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 332
+  - 2086
+  - 459
+  - 2139
+  name: (7) TOTAL - Oral
+  type: text
+- coordinates:
+  - 459
+  - 2084
+  - 589
+  - 2135
+  name: '(7) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 586
+  - 2083
+  - 715
+  - 2138
+  name: '(7) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 715
+  - 2084
+  - 848
+  - 2134
+  name: '(7) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 2084
+  - 974
+  - 2136
+  name: '(7) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 980
+  - 2086
+  - 1128
+  - 2136
+  name: '(7) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 2081
+  - 1280
+  - 2133
+  name: '(7) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1284
+  - 2085
+  - 1407
+  - 2135
+  name: '(7) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1410
+  - 2083
+  - 1535
+  - 2134
+  name: '(7) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 2135
+  - 226
+  - 2190
+  name: 'Date (8) Time: 6-2'
+  type: text
+- coordinates:
+  - 329
+  - 2138
+  - 458
+  - 2190
+  name: '(8) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 458
+  - 2136
+  - 587
+  - 2192
+  name: '(8) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 587
+  - 2139
+  - 715
+  - 2189
+  name: '(8) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 2136
+  - 847
+  - 2189
+  name: '(8) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 850
+  - 2138
+  - 978
+  - 2190
+  name: '(8) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 980
+  - 2139
+  - 1128
+  - 2192
+  name: '(8) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1130
+  - 2138
+  - 1278
+  - 2188
+  name: '(8) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 2137
+  - 1408
+  - 2189
+  name: '(8) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 2137
+  - 1535
+  - 2189
+  name: '(8) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 2191
+  - 224
+  - 2242
+  name: 'Date (8) Time: 2-10'
+  type: text
+- coordinates:
+  - 332
+  - 2191
+  - 462
+  - 2243
+  name: '(8) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 461
+  - 2193
+  - 588
+  - 2244
+  name: '(8) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 2192
+  - 720
+  - 2244
+  name: '(8) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 719
+  - 2192
+  - 846
+  - 2242
+  name: '(8) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 849
+  - 2193
+  - 978
+  - 2244
+  name: '(8) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 2192
+  - 1127
+  - 2244
+  name: '(8) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1130
+  - 2191
+  - 1279
+  - 2240
+  name: '(8) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1281
+  - 2192
+  - 1410
+  - 2245
+  name: '(8) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1412
+  - 2190
+  - 1537
+  - 2241
+  name: '(8) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 2243
+  - 224
+  - 2296
+  name: 'Date (8) Time: 10-6'
+  type: text
+- coordinates:
+  - 330
+  - 2243
+  - 457
+  - 2299
+  name: '(8) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 460
+  - 2245
+  - 586
+  - 2299
+  name: '(8) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 592
+  - 2246
+  - 720
+  - 2297
+  name: '(8) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 721
+  - 2247
+  - 845
+  - 2300
+  name: '(8) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 845
+  - 2247
+  - 977
+  - 2298
+  name: '(8) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 979
+  - 2246
+  - 1125
+  - 2299
+  name: '(8) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 2244
+  - 1283
+  - 2299
+  name: '(8) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1281
+  - 2246
+  - 1408
+  - 2298
+  name: '(8) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 2243
+  - 1538
+  - 2298
+  name: '(8) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 330
+  - 2299
+  - 458
+  - 2351
+  name: (8) TOTAL - Oral
+  type: text
+- coordinates:
+  - 461
+  - 2297
+  - 588
+  - 2351
+  name: '(8) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 2297
+  - 719
+  - 2353
+  name: '(8) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 719
+  - 2298
+  - 846
+  - 2350
+  name: '(8) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 847
+  - 2298
+  - 976
+  - 2350
+  name: '(8) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 976
+  - 2300
+  - 1127
+  - 2348
+  name: '(8) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1130
+  - 2299
+  - 1281
+  - 2350
+  name: '(8) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1278
+  - 2295
+  - 1411
+  - 2356
+  name: '(8) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1412
+  - 2298
+  - 1536
+  - 2351
+  name: '(8) TOTAL - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 107
+  - 2349
+  - 228
+  - 2403
+  name: 'Date (9) Time: 6-2'
+  type: text
+- coordinates:
+  - 331
+  - 2350
+  - 460
+  - 2404
+  name: '(9) Time: 6-2 - Oral'
+  type: text
+- coordinates:
+  - 460
+  - 2353
+  - 587
+  - 2402
+  name: '(9) Time: 6-2 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 591
+  - 2352
+  - 717
+  - 2402
+  name: '(9) Time: 6-2 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 2350
+  - 846
+  - 2405
+  name: '(9) Time: 6-2 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 2351
+  - 976
+  - 2405
+  name: '(9) Time: 6-2 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 977
+  - 2350
+  - 1126
+  - 2407
+  name: '(9) Time: 6-2 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 2353
+  - 1278
+  - 2404
+  name: '(9) Time: 6-2 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1283
+  - 2352
+  - 1409
+  - 2406
+  name: '(9) Time: 6-2 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1412
+  - 2352
+  - 1537
+  - 2405
+  name: '(9) Time: 6-2 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 106
+  - 2404
+  - 224
+  - 2459
+  name: 'Date (9) Time: 2-10'
+  type: text
+- coordinates:
+  - 332
+  - 2406
+  - 458
+  - 2459
+  name: '(9) Time: 2-10 - Oral'
+  type: text
+- coordinates:
+  - 461
+  - 2405
+  - 585
+  - 2458
+  name: '(9) Time: 2-10 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 2404
+  - 716
+  - 2461
+  name: '(9) Time: 2-10 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 718
+  - 2406
+  - 847
+  - 2460
+  name: '(9) Time: 2-10 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 846
+  - 2408
+  - 974
+  - 2458
+  name: '(9) Time: 2-10 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 977
+  - 2405
+  - 1129
+  - 2456
+  name: '(9) Time: 2-10 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1126
+  - 2405
+  - 1282
+  - 2459
+  name: '(9) Time: 2-10 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 2405
+  - 1407
+  - 2461
+  name: '(9) Time: 2-10 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 2403
+  - 1537
+  - 2457
+  name: '(9) Time: 2-10 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 105
+  - 2458
+  - 226
+  - 2510
+  name: 'Date (9) Time: 10-6'
+  type: text
+- coordinates:
+  - 330
+  - 2457
+  - 462
+  - 2512
+  name: '(9) Time: 10-6 - Oral'
+  type: text
+- coordinates:
+  - 462
+  - 2459
+  - 586
+  - 2511
+  name: '(9) Time: 10-6 - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 589
+  - 2461
+  - 715
+  - 2512
+  name: '(9) Time: 10-6 - INTAKE: Others'
+  type: text
+- coordinates:
+  - 720
+  - 2461
+  - 845
+  - 2513
+  name: '(9) Time: 10-6 - INTAKE: Total'
+  type: text
+- coordinates:
+  - 848
+  - 2461
+  - 975
+  - 2511
+  name: '(9) Time: 10-6 - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 975
+  - 2461
+  - 1127
+  - 2512
+  name: '(9) Time: 10-6 - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1129
+  - 2458
+  - 1281
+  - 2512
+  name: '(9) Time: 10-6 - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1282
+  - 2459
+  - 1409
+  - 2513
+  name: '(9) Time: 10-6 - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1412
+  - 2459
+  - 1537
+  - 2512
+  name: '(9) Time: 10-6 - OUTPUT: Total'
+  type: text
+- coordinates:
+  - 332
+  - 2514
+  - 457
+  - 2564
+  name: (9) TOTAL - Oral
+  type: text
+- coordinates:
+  - 462
+  - 2514
+  - 587
+  - 2564
+  name: '(9) TOTAL - INTAKE: I.V.'
+  type: text
+- coordinates:
+  - 590
+  - 2514
+  - 716
+  - 2564
+  name: '(9) TOTAL - INTAKE: Others'
+  type: text
+- coordinates:
+  - 721
+  - 2514
+  - 846
+  - 2566
+  name: '(9) TOTAL - INTAKE: Total'
+  type: text
+- coordinates:
+  - 850
+  - 2513
+  - 975
+  - 2566
+  name: '(9) TOTAL - OUTPUT: Urine'
+  type: text
+- coordinates:
+  - 977
+  - 2512
+  - 1127
+  - 2565
+  name: '(9) TOTAL - OUTPUT: Vomitus/Residual'
+  type: text
+- coordinates:
+  - 1125
+  - 2514
+  - 1281
+  - 2564
+  name: '(9) TOTAL - OUTPUT: Drainage'
+  type: text
+- coordinates:
+  - 1281
+  - 2513
+  - 1408
+  - 2564
+  name: '(9) TOTAL - OUTPUT: Others'
+  type: text
+- coordinates:
+  - 1411
+  - 2514
+  - 1538
+  - 2565
+  name: '(9) TOTAL - OUTPUT: Total'
+  type: text
+use_coordinates: 'True'
+width: 2700

@@ -1,0 +1,1126 @@
+form_type: PGH Form No. Q-610057
+form_title: MEDICATION, SUPPLEMENT, TREATMENT ADMINISTRATION RECORD B (MSTAR B1)
+length: 1625
+width: 2725
+use_coordinates: true
+regions:
+- name: Name
+  type: text
+  coordinates:
+  - 845
+  - 91
+  - 1556
+  - 172
+- name: WARD/AREA/UNIT
+  type: text
+  coordinates:
+  - 975
+  - 204
+  - 1159
+  - 253
+- name: BED/ROOM NO.
+  type: text
+  coordinates:
+  - 1337
+  - 192
+  - 1554
+  - 248
+- name: AGE
+  type: text
+  coordinates:
+  - 827
+  - 285
+  - 904
+  - 323
+- name: SEX = MALE
+  type: checkbox
+  coordinates:
+  - 956
+  - 273
+  - 1008
+  - 323
+- name: SEX = FEMALE
+  type: checkbox
+  coordinates:
+  - 1069
+  - 272
+  - 1120
+  - 322
+- name: BIRTHDATE
+  type: text
+  coordinates:
+  - 1348
+  - 266
+  - 1553
+  - 315
+- name: CASE NO.
+  type: text
+  coordinates:
+  - 883
+  - 362
+  - 1125
+  - 415
+- name: PHILHEALTH = YES
+  type: checkbox
+  coordinates:
+  - 1275
+  - 359
+  - 1326
+  - 409
+- name: PHILHEALTH = NO
+  type: checkbox
+  coordinates:
+  - 1390
+  - 362
+  - 1441
+  - 411
+- name: 'Parenteral (1): Nurse A'
+  type: text
+  coordinates:
+  - 66
+  - 585
+  - 158
+  - 646
+- name: 'Parenteral (1): Nurse B'
+  type: text
+  coordinates:
+  - 160
+  - 585
+  - 250
+  - 647
+- name: Parenteral (1)
+  type: text
+  coordinates:
+  - 307
+  - 590
+  - 870
+  - 651
+- name: 'Parenteral (1): Time Due'
+  type: text
+  coordinates:
+  - 876
+  - 591
+  - 1105
+  - 650
+- name: 'Parenteral (1): Remarks'
+  type: text
+  coordinates:
+  - 1107
+  - 595
+  - 1551
+  - 649
+- name: Parenteral (2)
+  type: text
+  coordinates:
+  - 308
+  - 656
+  - 868
+  - 717
+- name: 'Parenteral (2): Nurse A'
+  type: text
+  coordinates:
+  - 67
+  - 646
+  - 159
+  - 707
+- name: 'Parenteral (2): Nurse B'
+  type: text
+  coordinates:
+  - 159
+  - 644
+  - 249
+  - 706
+- name: 'Parenteral (2): Time Due'
+  type: text
+  coordinates:
+  - 879
+  - 660
+  - 1109
+  - 719
+- name: 'Parenteral (2): Remarks'
+  type: text
+  coordinates:
+  - 1108
+  - 658
+  - 1554
+  - 715
+- name: Parenteral  (3)
+  type: text
+  coordinates:
+  - 312
+  - 717
+  - 874
+  - 782
+- name: 'Parenteral  (3):  Nurse  A'
+  type: text
+  coordinates:
+  - 65
+  - 709
+  - 157
+  - 770
+- name: 'Parenteral  (3):  Nurse  B'
+  type: text
+  coordinates:
+  - 160
+  - 709
+  - 250
+  - 771
+- name: 'Parenteral  (3):  Time  Due'
+  type: text
+  coordinates:
+  - 872
+  - 722
+  - 1103
+  - 786
+- name: 'Parenteral  (3):  Remarks'
+  type: text
+  coordinates:
+  - 1129
+  - 725
+  - 1556
+  - 776
+- name: Parenteral  (4)
+  type: text
+  coordinates:
+  - 316
+  - 793
+  - 872
+  - 843
+- name: 'Parenteral  (4):  Nurse  A'
+  type: text
+  coordinates:
+  - 65
+  - 774
+  - 157
+  - 835
+- name: 'Parenteral  (4):  Nurse  B'
+  type: text
+  coordinates:
+  - 160
+  - 770
+  - 250
+  - 832
+- name: 'Parenteral  (4):  Time  Due'
+  type: text
+  coordinates:
+  - 878
+  - 775
+  - 1108
+  - 845
+- name: 'Parenteral  (4):  Remarks'
+  type: text
+  coordinates:
+  - 1143
+  - 788
+  - 1558
+  - 836
+- name: Parenteral  (5)
+  type: text
+  coordinates:
+  - 313
+  - 841
+  - 876
+  - 904
+- name: 'Parenteral  (5):  Nurse  A'
+  type: text
+  coordinates:
+  - 67
+  - 834
+  - 159
+  - 895
+- name: 'Parenteral  (5):  Nurse  B'
+  type: text
+  coordinates:
+  - 162
+  - 835
+  - 252
+  - 897
+- name: 'Parenteral  (5):  Time  Due'
+  type: text
+  coordinates:
+  - 878
+  - 836
+  - 1108
+  - 902
+- name: 'Parenteral  (5):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 828
+  - 1559
+  - 895
+- name: Parenteral  (6)
+  type: text
+  coordinates:
+  - 314
+  - 904
+  - 878
+  - 960
+- name: 'Parenteral  (6):  Nurse  A'
+  type: text
+  coordinates:
+  - 67
+  - 898
+  - 159
+  - 959
+- name: 'Parenteral  (6):  Nurse  B'
+  type: text
+  coordinates:
+  - 160
+  - 898
+  - 250
+  - 960
+- name: 'Parenteral  (6):  Time  Due'
+  type: text
+  coordinates:
+  - 877
+  - 898
+  - 1107
+  - 957
+- name: 'Parenteral  (6):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 895
+  - 1558
+  - 962
+- name: Parenteral  (7)
+  type: text
+  coordinates:
+  - 314
+  - 968
+  - 877
+  - 1020
+- name: 'Parenteral  (7):  Nurse  A'
+  type: text
+  coordinates:
+  - 67
+  - 958
+  - 159
+  - 1019
+- name: 'Parenteral  (7):  Nurse  B'
+  type: text
+  coordinates:
+  - 162
+  - 961
+  - 252
+  - 1023
+- name: 'Parenteral  (7):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 964
+  - 1105
+  - 1023
+- name: 'Parenteral  (7):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 957
+  - 1558
+  - 1024
+- name: Parenteral  (8)
+  type: text
+  coordinates:
+  - 314
+  - 1030
+  - 872
+  - 1083
+- name: 'Parenteral  (8):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1021
+  - 156
+  - 1082
+- name: 'Parenteral  (8):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1022
+  - 249
+  - 1084
+- name: 'Parenteral  (8):  Time  Due'
+  type: text
+  coordinates:
+  - 877
+  - 1027
+  - 1107
+  - 1086
+- name: 'Parenteral  (8):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1023
+  - 1558
+  - 1090
+- name: Parenteral  (9)
+  type: text
+  coordinates:
+  - 304
+  - 1086
+  - 874
+  - 1149
+- name: 'Parenteral  (9):  Nurse  A'
+  type: text
+  coordinates:
+  - 63
+  - 1087
+  - 155
+  - 1148
+- name: 'Parenteral  (9):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1087
+  - 249
+  - 1149
+- name: 'Parenteral  (9):  Time  Due'
+  type: text
+  coordinates:
+  - 874
+  - 1088
+  - 1104
+  - 1147
+- name: 'Parenteral  (9):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1083
+  - 1558
+  - 1150
+- name: Parenteral  (10)
+  type: text
+  coordinates:
+  - 322
+  - 1146
+  - 878
+  - 1209
+- name: 'Parenteral  (10):  Nurse  A'
+  type: text
+  coordinates:
+  - 67
+  - 1147
+  - 159
+  - 1208
+- name: 'Parenteral  (10):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1151
+  - 249
+  - 1213
+- name: 'Parenteral  (10):  Time  Due'
+  type: text
+  coordinates:
+  - 877
+  - 1151
+  - 1107
+  - 1210
+- name: 'Parenteral  (10):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 1142
+  - 1559
+  - 1209
+- name: Parenteral  (11)
+  type: text
+  coordinates:
+  - 322
+  - 1214
+  - 878
+  - 1277
+- name: 'Parenteral  (11):  Nurse  A'
+  type: text
+  coordinates:
+  - 65
+  - 1212
+  - 157
+  - 1273
+- name: 'Parenteral  (11):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1211
+  - 249
+  - 1273
+- name: 'Parenteral  (11):  Time  Due'
+  type: text
+  coordinates:
+  - 877
+  - 1214
+  - 1107
+  - 1273
+- name: 'Parenteral  (11):  Remarks'
+  type: text
+  coordinates:
+  - 1107
+  - 1207
+  - 1556
+  - 1274
+- name: Enteral  (1)
+  type: text
+  coordinates:
+  - 308
+  - 1342
+  - 878
+  - 1405
+- name: 'Enteral  (1):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1343
+  - 156
+  - 1404
+- name: 'Enteral  (1):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 1345
+  - 248
+  - 1407
+- name: 'Enteral  (1):  Time  Due'
+  type: text
+  coordinates:
+  - 877
+  - 1344
+  - 1107
+  - 1403
+- name: 'Enteral  (1):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1341
+  - 1558
+  - 1408
+- name: Enteral  (2)
+  type: text
+  coordinates:
+  - 306
+  - 1403
+  - 876
+  - 1466
+- name: 'Enteral  (2):  Nurse  A'
+  type: text
+  coordinates:
+  - 68
+  - 1407
+  - 160
+  - 1468
+- name: 'Enteral  (2):  Nurse  B'
+  type: text
+  coordinates:
+  - 163
+  - 1405
+  - 253
+  - 1467
+- name: 'Enteral  (2):  Time  Due'
+  type: text
+  coordinates:
+  - 878
+  - 1407
+  - 1108
+  - 1466
+- name: 'Enteral  (2):  Remarks'
+  type: text
+  coordinates:
+  - 1111
+  - 1404
+  - 1560
+  - 1471
+- name: Enteral  (3)
+  type: text
+  coordinates:
+  - 327
+  - 1465
+  - 876
+  - 1528
+- name: 'Enteral  (3):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1472
+  - 156
+  - 1533
+- name: 'Enteral  (3):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1469
+  - 249
+  - 1531
+- name: 'Enteral  (3):  Time  Due'
+  type: text
+  coordinates:
+  - 878
+  - 1469
+  - 1108
+  - 1528
+- name: 'Enteral  (3):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1464
+  - 1558
+  - 1531
+- name: Enteral  (4)
+  type: text
+  coordinates:
+  - 309
+  - 1529
+  - 879
+  - 1592
+- name: 'Enteral  (4):  Nurse  A'
+  type: text
+  coordinates:
+  - 67
+  - 1531
+  - 159
+  - 1592
+- name: 'Enteral  (4):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1530
+  - 249
+  - 1592
+- name: 'Enteral  (4):  Time  Due'
+  type: text
+  coordinates:
+  - 877
+  - 1533
+  - 1107
+  - 1592
+- name: 'Enteral  (4):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1529
+  - 1558
+  - 1596
+- name: Enteral  (5)
+  type: text
+  coordinates:
+  - 306
+  - 1593
+  - 876
+  - 1656
+- name: 'Enteral  (5):  Nurse  A'
+  type: text
+  coordinates:
+  - 67
+  - 1597
+  - 159
+  - 1658
+- name: 'Enteral  (5):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1593
+  - 249
+  - 1655
+- name: 'Enteral  (5):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 1595
+  - 1105
+  - 1654
+- name: 'Enteral  (5):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 1593
+  - 1559
+  - 1660
+- name: Enteral  (6)
+  type: text
+  coordinates:
+  - 308
+  - 1655
+  - 878
+  - 1718
+- name: 'Enteral  (6):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1658
+  - 156
+  - 1719
+- name: 'Enteral  (6):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 1657
+  - 250
+  - 1718
+- name: 'Enteral  (6):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 1658
+  - 1105
+  - 1717
+- name: 'Enteral  (6):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1654
+  - 1558
+  - 1721
+- name: Enteral  (7)
+  type: text
+  coordinates:
+  - 305
+  - 1720
+  - 875
+  - 1783
+- name: 'Enteral  (7):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1720
+  - 156
+  - 1781
+- name: 'Enteral  (7):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 1720
+  - 250
+  - 1781
+- name: 'Enteral  (7):  Time  Due'
+  type: text
+  coordinates:
+  - 876
+  - 1720
+  - 1106
+  - 1779
+- name: 'Enteral  (7):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1716
+  - 1558
+  - 1783
+- name: Enteral  (8)
+  type: text
+  coordinates:
+  - 304
+  - 1783
+  - 874
+  - 1846
+- name: 'Enteral  (8):  Nurse  A'
+  type: text
+  coordinates:
+  - 66
+  - 1785
+  - 158
+  - 1846
+- name: 'Enteral  (8):  Nurse  B'
+  type: text
+  coordinates:
+  - 157
+  - 1784
+  - 249
+  - 1845
+- name: 'Enteral  (8):  Time  Due'
+  type: text
+  coordinates:
+  - 876
+  - 1784
+  - 1106
+  - 1843
+- name: 'Enteral  (8):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1781
+  - 1558
+  - 1848
+- name: Enteral  (9)
+  type: text
+  coordinates:
+  - 305
+  - 1845
+  - 875
+  - 1908
+- name: 'Enteral  (9):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1847
+  - 156
+  - 1908
+- name: 'Enteral  (9):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1846
+  - 251
+  - 1907
+- name: 'Enteral  (9):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 1848
+  - 1105
+  - 1907
+- name: 'Enteral  (9):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1841
+  - 1558
+  - 1908
+- name: Enteral  (10)
+  type: text
+  coordinates:
+  - 319
+  - 1906
+  - 874
+  - 1969
+- name: 'Enteral  (10):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 1909
+  - 156
+  - 1970
+- name: 'Enteral  (10):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 1908
+  - 250
+  - 1969
+- name: 'Enteral  (10):  Time  Due'
+  type: text
+  coordinates:
+  - 873
+  - 1909
+  - 1103
+  - 1968
+- name: 'Enteral  (10):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1904
+  - 1558
+  - 1971
+- name: Enteral  (11)
+  type: text
+  coordinates:
+  - 320
+  - 1971
+  - 874
+  - 2034
+- name: 'Enteral  (11):  Nurse  A'
+  type: text
+  coordinates:
+  - 65
+  - 1971
+  - 157
+  - 2032
+- name: 'Enteral  (11):  Nurse  B'
+  type: text
+  coordinates:
+  - 159
+  - 1970
+  - 251
+  - 2031
+- name: 'Enteral  (11):  Time  Due'
+  type: text
+  coordinates:
+  - 876
+  - 1973
+  - 1106
+  - 2032
+- name: 'Enteral  (11):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 1968
+  - 1558
+  - 2035
+- name: Enteral  (12)
+  type: text
+  coordinates:
+  - 321
+  - 2032
+  - 875
+  - 2095
+- name: 'Enteral  (12):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 2034
+  - 156
+  - 2095
+- name: 'Enteral  (12):  Nurse  B'
+  type: text
+  coordinates:
+  - 157
+  - 2034
+  - 249
+  - 2095
+- name: 'Enteral  (12):  Time  Due'
+  type: text
+  coordinates:
+  - 874
+  - 2036
+  - 1104
+  - 2095
+- name: 'Enteral  (12):  Remarks'
+  type: text
+  coordinates:
+  - 1111
+  - 2032
+  - 1560
+  - 2099
+- name: Supplement/Treatment  (1)
+  type: text
+  coordinates:
+  - 311
+  - 2157
+  - 873
+  - 2218
+- name: 'Supplement/Treatment  (1):  Nurse  A'
+  type: text
+  coordinates:
+  - 68
+  - 2166
+  - 160
+  - 2227
+- name: 'Supplement/Treatment  (1):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 2167
+  - 250
+  - 2228
+- name: 'Supplement/Treatment  (1):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 2167
+  - 1105
+  - 2226
+- name: 'Supplement/Treatment  (1):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 2174
+  - 1573
+  - 2237
+- name: Supplement/Treatment  (2)
+  type: text
+  coordinates:
+  - 279
+  - 2245
+  - 885
+  - 2286
+- name: 'Supplement/Treatment  (2):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 2230
+  - 156
+  - 2291
+- name: 'Supplement/Treatment  (2):  Nurse  B'
+  type: text
+  coordinates:
+  - 160
+  - 2230
+  - 252
+  - 2291
+- name: 'Supplement/Treatment  (2):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 2229
+  - 1105
+  - 2288
+- name: 'Supplement/Treatment  (2): Remarks'
+  type: text
+  coordinates:
+  - 1112
+  - 2237
+  - 1559
+  - 2295
+- name: Supplement/Treatment  (3)
+  type: text
+  coordinates:
+  - 313
+  - 2290
+  - 877
+  - 2353
+- name: 'Supplement/Treatment  (3):  Nurse  A'
+  type: text
+  coordinates:
+  - 65
+  - 2293
+  - 157
+  - 2354
+- name: 'Supplement/Treatment  (3):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 2290
+  - 250
+  - 2351
+- name: 'Supplement/Treatment  (3):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 2292
+  - 1105
+  - 2351
+- name: 'Supplement/Treatment  (3):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 2296
+  - 1559
+  - 2352
+- name: Supplement/Treatment  (4)
+  type: text
+  coordinates:
+  - 309
+  - 2354
+  - 873
+  - 2417
+- name: 'Supplement/Treatment  (4):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 2356
+  - 156
+  - 2417
+- name: 'Supplement/Treatment  (4):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 2356
+  - 250
+  - 2417
+- name: 'Supplement/Treatment  (4):  Time  Due'
+  type: text
+  coordinates:
+  - 879
+  - 2355
+  - 1109
+  - 2414
+- name: 'Supplement/Treatment  (4):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 2351
+  - 1558
+  - 2418
+- name: Supplement/Treatment  (5)
+  type: text
+  coordinates:
+  - 309
+  - 2414
+  - 873
+  - 2477
+- name: 'Supplement/Treatment  (5):  Nurse  A'
+  type: text
+  coordinates:
+  - 64
+  - 2420
+  - 156
+  - 2481
+- name: 'Supplement/Treatment  (5):  Nurse  B'
+  type: text
+  coordinates:
+  - 158
+  - 2420
+  - 250
+  - 2481
+- name: 'Supplement/Treatment  (5):  Time  Due'
+  type: text
+  coordinates:
+  - 878
+  - 2418
+  - 1108
+  - 2477
+- name: 'Supplement/Treatment  (5):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 2416
+  - 1559
+  - 2483
+- name: Supplement/Treatment  (6)
+  type: text
+  coordinates:
+  - 310
+  - 2479
+  - 874
+  - 2542
+- name: 'Supplement/Treatment  (6):  Nurse  A'
+  type: text
+  coordinates:
+  - 63
+  - 2483
+  - 155
+  - 2544
+- name: 'Supplement/Treatment  (6):  Nurse  B'
+  type: text
+  coordinates:
+  - 156
+  - 2479
+  - 248
+  - 2540
+- name: 'Supplement/Treatment  (6):  Time  Due'
+  type: text
+  coordinates:
+  - 875
+  - 2484
+  - 1105
+  - 2543
+- name: 'Supplement/Treatment  (6):  Remarks'
+  type: text
+  coordinates:
+  - 1109
+  - 2481
+  - 1558
+  - 2548
+- name: Supplement/Treatment  (7)
+  type: text
+  coordinates:
+  - 311
+  - 2542
+  - 875
+  - 2605
+- name: 'Supplement/Treatment  (7):  Nurse  A'
+  type: text
+  coordinates:
+  - 63
+  - 2545
+  - 155
+  - 2606
+- name: 'Supplement/Treatment  (7):  Nurse  B'
+  type: text
+  coordinates:
+  - 156
+  - 2545
+  - 248
+  - 2606
+- name: 'Supplement/Treatment  (7):  Time  Due'
+  type: text
+  coordinates:
+  - 878
+  - 2544
+  - 1108
+  - 2603
+- name: 'Supplement/Treatment  (7):  Remarks'
+  type: text
+  coordinates:
+  - 1110
+  - 2540
+  - 1559
+  - 2607

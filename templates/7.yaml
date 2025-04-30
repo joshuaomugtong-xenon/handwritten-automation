@@ -1,0 +1,503 @@
+form_type: PGH Form No. P-610005
+form_title: NURSES' ADMITTING NOTES - PAGE 2
+length: 1620
+width: 2100
+use_coordinates: true
+regions:
+- name: Name
+  type: text
+  coordinates:
+  - 141
+  - 122
+  - 675
+  - 167
+- name: Ward
+  type: text
+  coordinates:
+  - 763
+  - 96
+  - 863
+  - 174
+- name: Bed
+  type: text
+  coordinates:
+  - 928
+  - 93
+  - 1043
+  - 174
+- name: Date
+  type: text
+  coordinates:
+  - 1111
+  - 94
+  - 1246
+  - 175
+- name: Case No.
+  type: text
+  coordinates:
+  - 1346
+  - 63
+  - 1617
+  - 163
+- name: Allergies = Food
+  type: text
+  coordinates:
+  - 384
+  - 226
+  - 647
+  - 272
+- name: Allergies = Drugs
+  type: text
+  coordinates:
+  - 724
+  - 231
+  - 948
+  - 262
+- name: Allergies = Others
+  type: text
+  coordinates:
+  - 1045
+  - 230
+  - 1388
+  - 262
+- name: Allergies = None
+  type: encirclement
+  coordinates:
+  - 1431
+  - 226
+  - 1551
+  - 281
+- name: Smoker = Duration
+  type: text
+  coordinates:
+  - 624
+  - 284
+  - 952
+  - 321
+- name: Smoker = No. of Sticks per Day
+  type: text
+  coordinates:
+  - 1200
+  - 284
+  - 1454
+  - 319
+- name: Smoker = N/A
+  type: encirclement
+  coordinates:
+  - 1455
+  - 285
+  - 1558
+  - 330
+- name: Alcohol Intake = Duration
+  type: text
+  coordinates:
+  - 620
+  - 321
+  - 939
+  - 353
+- name: Alcohol Intake = No. of Bottles per Day
+  type: text
+  coordinates:
+  - 1208
+  - 321
+  - 1453
+  - 353
+- name: Alcohol Intake = N/A
+  type: encirclement
+  coordinates:
+  - 1466
+  - 328
+  - 1554
+  - 379
+- name: Family History = PTB
+  type: encirclement
+  coordinates:
+  - 324
+  - 380
+  - 396
+  - 435
+- name: Family History = DM
+  type: encirclement
+  coordinates:
+  - 431
+  - 381
+  - 531
+  - 436
+- name: Family History = HPN
+  type: encirclement
+  coordinates:
+  - 586
+  - 381
+  - 686
+  - 436
+- name: Family History = Cancer
+  type: encirclement
+  coordinates:
+  - 746
+  - 379
+  - 846
+  - 436
+- name: Family History = Cardiovascular
+  type: encirclement
+  coordinates:
+  - 898
+  - 381
+  - 1075
+  - 435
+- name: Family History = Others
+  type: text
+  coordinates:
+  - 1201
+  - 379
+  - 1455
+  - 413
+- name: Family History = N/A
+  type: encirclement
+  coordinates:
+  - 1465
+  - 387
+  - 1552
+  - 439
+- name: Co-morbidity = PTB
+  type: encirclement
+  coordinates:
+  - 326
+  - 442
+  - 396
+  - 500
+- name: Co-morbidity = DM
+  type: encirclement
+  coordinates:
+  - 429
+  - 441
+  - 529
+  - 497
+- name: Co-morbidity = HPN
+  type: encirclement
+  coordinates:
+  - 584
+  - 441
+  - 684
+  - 496
+- name: Co-morbidity = Cancer
+  type: encirclement
+  coordinates:
+  - 745
+  - 442
+  - 845
+  - 496
+- name: Co-morbidity = Cardiovascular
+  type: encirclement
+  coordinates:
+  - 900
+  - 441
+  - 1075
+  - 497
+- name: Co-morbidity = Others
+  type: text
+  coordinates:
+  - 1201
+  - 445
+  - 1452
+  - 478
+- name: Co-morbidity = N/A
+  type: encirclement
+  coordinates:
+  - 1457
+  - 445
+  - 1556
+  - 500
+- name: Previous Hospitalization Reason
+  type: text
+  coordinates:
+  - 482
+  - 501
+  - 971
+  - 546
+- name: Previous Hospitalization Month/Year
+  type: text
+  coordinates:
+  - 1111
+  - 507
+  - 1441
+  - 549
+- name: Previous Hospitalization = N/A
+  type: encirclement
+  coordinates:
+  - 1455
+  - 506
+  - 1555
+  - 566
+- name: Previous Surgery
+  type: text
+  coordinates:
+  - 540
+  - 604
+  - 1377
+  - 636
+- name: Previous Surgery = N/A
+  type: encirclement
+  coordinates:
+  - 1456
+  - 595
+  - 1556
+  - 649
+- name: Menstruation Age of Menarche
+  type: text
+  coordinates:
+  - 645
+  - 661
+  - 725
+  - 694
+- name: Menopause = Yes
+  type: encirclement
+  coordinates:
+  - 869
+  - 660
+  - 931
+  - 713
+- name: Menopause = No
+  type: encirclement
+  coordinates:
+  - 931
+  - 660
+  - 989
+  - 713
+- name: Menstrual Cycle = Regular
+  type: encirclement
+  coordinates:
+  - 1102
+  - 656
+  - 1202
+  - 710
+- name: Menstrual Cycle = Irregular
+  type: encirclement
+  coordinates:
+  - 1204
+  - 656
+  - 1325
+  - 707
+- name: Menstrual Duration (in days)
+  type: text
+  coordinates:
+  - 1424
+  - 663
+  - 1472
+  - 703
+- name: Dysmenorrhea = Yes
+  type: encirclement
+  coordinates:
+  - 477
+  - 700
+  - 541
+  - 747
+- name: Dysmenorrhea = No
+  type: encirclement
+  coordinates:
+  - 537
+  - 700
+  - 596
+  - 747
+- name: No. of Pads per day
+  type: text
+  coordinates:
+  - 711
+  - 698
+  - 785
+  - 737
+- name: Pregnancy LMP
+  type: text
+  coordinates:
+  - 1028
+  - 707
+  - 1110
+  - 732
+- name: Pregnancy AOG
+  type: text
+  coordinates:
+  - 1171
+  - 706
+  - 1259
+  - 730
+- name: Pregnancy Gravida
+  type: text
+  coordinates:
+  - 1342
+  - 702
+  - 1402
+  - 732
+- name: Pregnancy Para
+  type: text
+  coordinates:
+  - 1447
+  - 702
+  - 1526
+  - 731
+- name: Pedia History = Immunization
+  type: encirclement
+  coordinates:
+  - 324
+  - 786
+  - 469
+  - 831
+- name: Pedia History = DPT
+  type: encirclement
+  coordinates:
+  - 468
+  - 785
+  - 544
+  - 837
+- name: Pedia History = BCG
+  type: encirclement
+  coordinates:
+  - 528
+  - 785
+  - 606
+  - 837
+- name: Pedia History = Measles
+  type: encirclement
+  coordinates:
+  - 598
+  - 786
+  - 699
+  - 834
+- name: Birth History
+  type: text
+  coordinates:
+  - 1179
+  - 793
+  - 1549
+  - 824
+- name: Pedia History = Others
+  type: text
+  coordinates:
+  - 535
+  - 833
+  - 914
+  - 860
+- name: Developmental Milestones
+  type: text
+  coordinates:
+  - 1180
+  - 829
+  - 1544
+  - 859
+- name: Pedia History = Others
+  type: text
+  coordinates:
+  - 328
+  - 859
+  - 913
+  - 892
+- name: Pedia History = Feeding
+  type: text
+  coordinates:
+  - 1137
+  - 862
+  - 1527
+  - 892
+- name: History of Present Illness
+  type: text
+  coordinates:
+  - 326
+  - 916
+  - 1555
+  - 1271
+- name: Admitted per
+  type: text
+  coordinates:
+  - 199
+  - 1342
+  - 376
+  - 1382
+- name: Admitted from
+  type: text
+  coordinates:
+  - 407
+  - 1347
+  - 555
+  - 1380
+- name: Accompanied by
+  type: text
+  coordinates:
+  - 727
+  - 1345
+  - 937
+  - 1382
+- name: Vital Signs Temp
+  type: text
+  coordinates:
+  - 297
+  - 1380
+  - 417
+  - 1420
+- name: Vital Signs BP
+  type: text
+  coordinates:
+  - 445
+  - 1376
+  - 556
+  - 1414
+- name: Vital Signs HR
+  type: text
+  coordinates:
+  - 577
+  - 1379
+  - 682
+  - 1414
+- name: Vital Signs RR
+  type: text
+  coordinates:
+  - 714
+  - 1379
+  - 843
+  - 1412
+- name: Dietary, Resident on Duty
+  type: text
+  coordinates:
+  - 572
+  - 1413
+  - 793
+  - 1449
+- name: Attending MD
+  type: text
+  coordinates:
+  - 926
+  - 1384
+  - 1172
+  - 1449
+- name: Referred to other services
+  type: text
+  coordinates:
+  - 488
+  - 1455
+  - 1031
+  - 1483
+- name: Oriented to hospital and ward set-up and policies
+  type: checkbox
+  coordinates:
+  - 1186
+  - 1349
+  - 1219
+  - 1396
+- name: Declaration of admission signed
+  type: checkbox
+  coordinates:
+  - 1188
+  - 1419
+  - 1219
+  - 1460
+- name: Presented Patient's Rights
+  type: checkbox
+  coordinates:
+  - 1187
+  - 1462
+  - 1221
+  - 1495
+- name: Other Nurses' Notes
+  type: text
+  coordinates:
+  - 65
+  - 1508
+  - 1558
+  - 1990
