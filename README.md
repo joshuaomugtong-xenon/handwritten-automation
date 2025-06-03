@@ -1,4 +1,4 @@
-# ECE-COE-199
+# Automated Data Extraction of Handwritten Medical Forms Using Image Processing and Advanced Text Recognition
 
 This is the repo for our ECE COE 199 project.
 
