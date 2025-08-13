@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Move } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Move, FileText, Upload } from 'lucide-react';
 import { Template, Region } from '../types';
 
 interface ImageViewerProps {
@@ -7,13 +7,15 @@ interface ImageViewerProps {
   template: Template | null;
   selectedRegion: Region | null;
   onRegionSelect: (region: Region) => void;
+  onImageUpload: (imageUrl: string) => void;
 }
 
 const ImageViewer: React.FC<ImageViewerProps> = ({
   imageUrl,
   template,
   selectedRegion,
-  onRegionSelect
+  onRegionSelect,
+  onImageUpload
 }) => {
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -21,6 +23,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleZoomIn = () => setZoom(prev => Math.min(prev * 1.25, 5));
   const handleZoomOut = () => setZoom(prev => Math.max(prev / 1.25, 0.1));
@@ -62,6 +65,18 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
   const handleRegionClick = (region: Region, e: React.MouseEvent) => {
     e.stopPropagation();
     onRegionSelect(region);
+  };
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      onImageUpload(imageUrl);
+    }
   };
 
   const getRegionStyle = (region: Region) => {

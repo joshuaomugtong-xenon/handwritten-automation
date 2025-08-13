@@ -131,6 +131,7 @@ function App() {
               template={selectedTemplate}
               selectedRegion={selectedRegion}
               onRegionSelect={handleRegionSelect}
+              onImageUpload={handleImageUpload}
             />
           </div>
           
